@@ -1,303 +1,816 @@
-
 <!doctype html>
 <html lang="en">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Buckshot Brewing</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Buckshot Brewing</title>
+  <meta name="description" content="Built for the outdoors. Party ready. Buckshot Brewing brings crisp, crowd-pleasing beer with bold, outdoors-first branding." />
+  <meta name="theme-color" content="#070a09" />
 
-<style>
-  body{
-    margin:0;
-    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
-    background:#070a09;
-    color:#fff;
-    overflow-x:hidden;
-  }
+  <style>
+    :root{
+      --bg:#070a09;
+      --panel: rgba(255,255,255,.06);
+      --panel2: rgba(255,255,255,.08);
+      --text:#ffffff;
+      --muted: rgba(255,255,255,.72);
+      --faint: rgba(255,255,255,.55);
+      --line: rgba(255,255,255,.10);
 
-  body::before{
-    content:"";
-    position:fixed;
-    inset:0;
-    background:
-      radial-gradient(900px 600px at 20% 0%, rgba(199,161,74,.25), transparent 60%),
-      radial-gradient(800px 600px at 80% 10%, rgba(26,110,87,.2), transparent 60%);
-    z-index:-1;
-  }
+      --accent:#c7a14a; /* brass vibe */
+      --accent2:#1a6e57; /* deep green */
+      --danger:#ff4d4d;
 
-  .site{
-    transition:filter .4s ease;
-  }
-  .site.blur{
-    filter:blur(12px);
-    pointer-events:none;
-    user-select:none;
-  }
+      --radius:18px;
+      --shadow: 0 18px 60px rgba(0,0,0,.45);
+      --max: 1120px;
+    }
 
-  .gate{
-    position:fixed;
-    inset:0;
-    background:rgba(0,0,0,.75);
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    z-index:999;
-    padding:20px;
-  }
-  .gate-card{
-    background:#0f1512;
-    padding:44px;
-    border-radius:24px;
-    text-align:center;
-    border:1px solid rgba(255,255,255,.12);
-    box-shadow:0 40px 120px rgba(0,0,0,.6);
-    width:min(720px, 100%);
-  }
-  .gate-card h1{
-    margin:0 0 10px;
-    font-size:34px;
-    letter-spacing:-.3px;
-  }
-  .gate-card p{
-    margin:0;
-    color:rgba(255,255,255,.7);
-    font-size:16px;
-  }
+    *{ box-sizing:border-box; }
+    html,body{ height:100%; }
+    body{
+      margin:0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      overflow-x:hidden;
+    }
 
-  .btn{
-    padding:14px 24px;
-    border-radius:16px;
-    border:none;
-    font-weight:800;
-    cursor:pointer;
-    margin-top:18px;
-  }
-  .enter{
-    background:#c7a14a;
-    color:#000;
-  }
-  .leave{
-    background:transparent;
-    color:#fff;
-    border:1px solid rgba(255,255,255,.18);
-    margin-left:10px;
-  }
+    /* Background glow + texture */
+    body:before{
+      content:"";
+      position:fixed;
+      inset:0;
+      background:
+        radial-gradient(1100px 700px at 15% 10%, rgba(199,161,74,.18), transparent 60%),
+        radial-gradient(900px 600px at 85% 15%, rgba(26,110,87,.18), transparent 60%),
+        radial-gradient(900px 800px at 50% 90%, rgba(255,255,255,.06), transparent 60%);
+      z-index:-2;
+    }
+    body:after{
+      content:"";
+      position:fixed;
+      inset:0;
+      background-image: radial-gradient(rgba(255,255,255,.06) 1px, transparent 1px);
+      background-size: 28px 28px;
+      opacity:.18;
+      z-index:-1;
+      pointer-events:none;
+    }
 
-  .transition{
-    position:fixed;
-    inset:0;
-    background:#000;
-    display:none;
-    z-index:1000;
-  }
-  .transition.isPlaying{
-    display:block;
-  }
-  .transition video{
-    width:100%;
-    height:100%;
-    object-fit:cover;
-    display:block;
-    background:#000;
-  }
-  .loading{
-    position:absolute;
-    inset:0;
-    display:grid;
-    place-items:center;
-    color:rgba(255,255,255,.75);
-    font-weight:700;
-    letter-spacing:.2px;
-    text-align:center;
-    padding:20px;
-    pointer-events:none;
-  }
+    a{ color:inherit; }
+    .wrap{ max-width: var(--max); margin:0 auto; padding: 0 20px; }
 
-  .hero{
-    padding:110px 20px 30px;
-    text-align:center;
-  }
-  .hero h1{
-    font-size:56px;
-    margin:0 0 10px;
-    letter-spacing:-.6px;
-  }
-  .hero p{
-    margin:0;
-    color:rgba(255,255,255,.7);
-    font-size:18px;
-  }
+    /* Top bar */
+    .topbar{
+      position:sticky;
+      top:0;
+      z-index:50;
+      backdrop-filter: blur(10px);
+      background: rgba(7,10,9,.60);
+      border-bottom:1px solid var(--line);
+    }
+    .nav{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:16px;
+      padding: 14px 0;
+    }
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      font-weight:800;
+      letter-spacing:.2px;
+    }
+    .mark{
+      width:34px; height:34px;
+      border-radius:12px;
+      background:
+        radial-gradient(circle at 35% 35%, rgba(255,255,255,.20), transparent 45%),
+        linear-gradient(135deg, rgba(199,161,74,.85), rgba(26,110,87,.75));
+      border:1px solid rgba(255,255,255,.14);
+      box-shadow: 0 10px 26px rgba(0,0,0,.35);
+    }
+    .navlinks{
+      display:flex;
+      align-items:center;
+      gap:18px;
+      color: var(--muted);
+      font-size:14px;
+    }
+    .navlinks a{
+      text-decoration:none;
+      padding:8px 10px;
+      border-radius:12px;
+      transition: background .15s ease, color .15s ease;
+    }
+    .navlinks a:hover{
+      background: rgba(255,255,255,.06);
+      color: #fff;
+    }
+    .navcta{ display:flex; gap:10px; align-items:center; }
 
-  .stats{
-    display:flex;
-    justify-content:center;
-    gap:60px;
-    padding:35px 20px 70px;
-    flex-wrap:wrap;
-  }
-  .stat{
-    text-align:center;
-    min-width:180px;
-  }
-  .stat b{
-    display:block;
-    font-size:32px;
-  }
-  .stat span{
-    color:rgba(255,255,255,.7);
-    font-weight:650;
-  }
+    /* Buttons */
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:10px;
+      padding: 11px 14px;
+      border-radius: 14px;
+      font-weight:700;
+      font-size:14px;
+      text-decoration:none;
+      border:1px solid rgba(255,255,255,.14);
+      background: rgba(255,255,255,.06);
+      color:#fff;
+      transition: transform .12s ease, background .15s ease, border-color .15s ease;
+      cursor:pointer;
+    }
+    .btn:hover{ transform: translateY(-1px); background: rgba(255,255,255,.09); }
+    .btn.primary{
+      border-color: rgba(199,161,74,.45);
+      background: linear-gradient(135deg, rgba(199,161,74,.95), rgba(199,161,74,.70));
+      color:#0b0f0d;
+    }
+    .btn.primary:hover{ background: linear-gradient(135deg, rgba(199,161,74,1), rgba(199,161,74,.78)); }
+    .btn.ghost{
+      background: transparent;
+      border-color: rgba(255,255,255,.18);
+      color: #fff;
+    }
 
-  @media(max-width:800px){
-    .hero h1{font-size:38px;}
-  }
-</style>
+    /* Hero */
+    .hero{
+      padding: 52px 0 26px;
+    }
+    .heroGrid{
+      display:grid;
+      grid-template-columns: 1.35fr .65fr;
+      gap:18px;
+      align-items:stretch;
+    }
+    .heroCard{
+      border:1px solid var(--line);
+      background: linear-gradient(180deg, rgba(255,255,255,.07), rgba(255,255,255,.03));
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 26px;
+      position:relative;
+      overflow:hidden;
+    }
+    .heroCard:before{
+      content:"";
+      position:absolute;
+      inset:-1px;
+      background:
+        radial-gradient(600px 280px at 15% 0%, rgba(199,161,74,.18), transparent 55%),
+        radial-gradient(520px 260px at 85% 10%, rgba(26,110,87,.20), transparent 60%);
+      pointer-events:none;
+      z-index:0;
+    }
+    .heroCard > *{ position:relative; z-index:1; }
+
+    .kicker{
+      display:inline-flex;
+      gap:10px;
+      align-items:center;
+      padding: 8px 12px;
+      border-radius: 999px;
+      border:1px solid rgba(255,255,255,.14);
+      background: rgba(0,0,0,.15);
+      color: var(--muted);
+      font-size: 13px;
+      width: fit-content;
+      margin-bottom: 14px;
+    }
+    .dot{
+      width:10px; height:10px;
+      border-radius:50%;
+      background: var(--accent);
+      box-shadow: 0 0 0 4px rgba(199,161,74,.18);
+    }
+    h1{
+      margin: 10px 0 10px;
+      font-size: 46px;
+      line-height:1.06;
+      letter-spacing:-.6px;
+    }
+    .sub{
+      margin: 0 0 18px;
+      color: var(--muted);
+      font-size: 16px;
+      line-height:1.55;
+      max-width: 58ch;
+    }
+    .heroActions{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      margin: 12px 0 18px;
+    }
+
+    .miniGrid{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap:12px;
+      margin-top: 16px;
+    }
+    .mini{
+      border:1px solid var(--line);
+      background: rgba(255,255,255,.05);
+      border-radius: 16px;
+      padding: 14px;
+    }
+    .mini .big{
+      font-size: 22px;
+      font-weight: 900;
+      letter-spacing: .2px;
+    }
+    .mini .label{
+      color: var(--faint);
+      font-size: 13px;
+      margin-top: 2px;
+    }
+
+    .sideCard{
+      border:1px solid var(--line);
+      border-radius: var(--radius);
+      background: rgba(255,255,255,.05);
+      padding: 18px;
+      box-shadow: 0 14px 42px rgba(0,0,0,.35);
+      display:flex;
+      flex-direction:column;
+      gap:12px;
+    }
+    .sideTitle{
+      font-weight: 900;
+      font-size: 14px;
+      letter-spacing:.8px;
+      text-transform:uppercase;
+      color: rgba(255,255,255,.78);
+    }
+    .pillRow{ display:flex; flex-wrap:wrap; gap:8px; }
+    .pill{
+      padding: 8px 10px;
+      border-radius: 999px;
+      background: rgba(255,255,255,.06);
+      border:1px solid rgba(255,255,255,.12);
+      color: rgba(255,255,255,.78);
+      font-size: 13px;
+      white-space:nowrap;
+    }
+    .sideNote{
+      color: var(--muted);
+      font-size: 14px;
+      line-height:1.5;
+      margin-top:auto;
+    }
+
+    /* Sections */
+    section{ padding: 26px 0; }
+    .sectionHead{
+      display:flex;
+      align-items:flex-end;
+      justify-content:space-between;
+      gap:16px;
+      margin-bottom: 14px;
+    }
+    .sectionHead h2{
+      margin:0;
+      font-size: 22px;
+      letter-spacing:-.2px;
+    }
+    .sectionHead p{
+      margin:0;
+      color: var(--muted);
+      font-size: 14px;
+      max-width: 62ch;
+      line-height:1.5;
+    }
+
+    .grid3{
+      display:grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+    }
+    .card{
+      border:1px solid var(--line);
+      background: rgba(255,255,255,.05);
+      border-radius: var(--radius);
+      padding: 16px;
+    }
+    .card h3{ margin: 8px 0 8px; font-size: 16px; }
+    .card p{ margin: 0; color: var(--muted); font-size: 14px; line-height:1.55; }
+    .tag{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding: 7px 10px;
+      border-radius: 999px;
+      border:1px solid rgba(255,255,255,.14);
+      background: rgba(0,0,0,.15);
+      color: rgba(255,255,255,.78);
+      font-size: 12px;
+    }
+    .icon{
+      width:10px; height:10px; border-radius: 3px;
+      background: linear-gradient(135deg, rgba(199,161,74,.95), rgba(26,110,87,.85));
+      opacity:.9;
+    }
+
+    /* Product tiles */
+    .products{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+    .prod{
+      border:1px solid var(--line);
+      border-radius: var(--radius);
+      background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03));
+      overflow:hidden;
+      display:grid;
+      grid-template-columns: 1.1fr .9fr;
+      min-height: 160px;
+    }
+    .prodInfo{
+      padding: 16px;
+    }
+    .prodInfo .name{
+      font-weight: 900;
+      font-size: 18px;
+      margin: 6px 0 6px;
+    }
+    .prodInfo .desc{
+      color: var(--muted);
+      font-size: 14px;
+      line-height:1.5;
+      margin: 0;
+    }
+    .prodArt{
+      position:relative;
+      border-left:1px solid rgba(255,255,255,.10);
+      background:
+        radial-gradient(420px 220px at 30% 20%, rgba(199,161,74,.22), transparent 60%),
+        radial-gradient(420px 240px at 70% 70%, rgba(26,110,87,.22), transparent 60%),
+        rgba(0,0,0,.10);
+    }
+    .shell{
+      position:absolute;
+      inset:auto 18px 18px auto;
+      width: 56px;
+      height: 108px;
+      border-radius: 18px;
+      border:1px solid rgba(255,255,255,.16);
+      background: linear-gradient(180deg, rgba(255,255,255,.10), rgba(255,255,255,.02));
+      box-shadow: 0 18px 40px rgba(0,0,0,.40);
+    }
+    .shell:before{
+      content:"";
+      position:absolute;
+      left:0; right:0;
+      bottom:0;
+      height: 30%;
+      border-top:1px solid rgba(0,0,0,.25);
+      background: linear-gradient(135deg, rgba(199,161,74,1), rgba(199,161,74,.65));
+      border-bottom-left-radius: 18px;
+      border-bottom-right-radius: 18px;
+    }
+    .shell:after{
+      content:"";
+      position:absolute;
+      left: 9px; right: 9px;
+      top: 14px; bottom: 44px;
+      border-radius: 12px;
+      background: repeating-linear-gradient(
+        90deg,
+        rgba(255,255,255,.14),
+        rgba(255,255,255,.14) 6px,
+        rgba(255,255,255,.02) 6px,
+        rgba(255,255,255,.02) 12px
+      );
+      opacity:.65;
+    }
+
+    /* Email signup */
+    .signup{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:14px;
+      border:1px solid var(--line);
+      border-radius: var(--radius);
+      background: rgba(255,255,255,.05);
+      padding: 16px;
+    }
+    .signup .copy h3{ margin:0 0 6px; font-size: 16px; }
+    .signup .copy p{ margin:0; color: var(--muted); font-size: 14px; line-height:1.5; }
+    form{
+      display:flex;
+      gap:10px;
+      align-items:center;
+      flex-wrap:wrap;
+      justify-content:flex-end;
+    }
+    input{
+      width: 260px;
+      max-width: 70vw;
+      padding: 11px 12px;
+      border-radius: 14px;
+      border:1px solid rgba(255,255,255,.16);
+      background: rgba(0,0,0,.18);
+      color:#fff;
+      outline:none;
+    }
+    input::placeholder{ color: rgba(255,255,255,.48); }
+
+    /* Footer */
+    footer{
+      padding: 26px 0 36px;
+      color: rgba(255,255,255,.60);
+      font-size: 13px;
+      border-top:1px solid rgba(255,255,255,.08);
+      margin-top: 18px;
+    }
+    .footRow{
+      display:flex;
+      justify-content:space-between;
+      gap:14px;
+      flex-wrap:wrap;
+      align-items:center;
+    }
+    .footLinks{ display:flex; gap:12px; flex-wrap:wrap; }
+    .footLinks a{ color: rgba(255,255,255,.68); text-decoration:none; }
+    .footLinks a:hover{ color:#fff; }
+
+    /* Age gate */
+    .gate{
+      position:fixed;
+      inset:0;
+      background: rgba(0,0,0,.55);
+      backdrop-filter: blur(10px);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding: 20px;
+      z-index:999;
+    }
+    .gateCard{
+      width:min(560px, 92vw);
+      border-radius: 22px;
+      border:1px solid rgba(255,255,255,.14);
+      background: rgba(12,16,14,.82);
+      box-shadow: 0 30px 90px rgba(0,0,0,.65);
+      padding: 18px;
+      position:relative;
+      overflow:hidden;
+    }
+    .gateCard:before{
+      content:"";
+      position:absolute;
+      inset:-1px;
+      background:
+        radial-gradient(520px 220px at 20% 0%, rgba(199,161,74,.20), transparent 60%),
+        radial-gradient(520px 220px at 80% 0%, rgba(26,110,87,.20), transparent 60%);
+      pointer-events:none;
+    }
+    .gateCard > *{ position:relative; z-index:1; }
+    .gateTop{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      padding-bottom: 10px;
+      border-bottom:1px solid rgba(255,255,255,.10);
+      margin-bottom: 12px;
+    }
+    .gateTop .left{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      font-weight:900;
+    }
+    .gateTop .hint{
+      color: rgba(255,255,255,.62);
+      font-size: 13px;
+    }
+    .gateCard h2{
+      margin: 10px 0 8px;
+      font-size: 22px;
+      letter-spacing:-.2px;
+    }
+    .gateCard p{
+      margin:0 0 14px;
+      color: rgba(255,255,255,.72);
+      line-height:1.5;
+      font-size: 14px;
+    }
+    .gateActions{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+    }
+    .leave{
+      border-color: rgba(255,255,255,.18);
+      background: transparent;
+      color:#fff;
+    }
+
+    /* Responsive */
+    @media (max-width: 920px){
+      h1{ font-size: 40px; }
+      .heroGrid{ grid-template-columns: 1fr; }
+      .grid3{ grid-template-columns: 1fr; }
+      .products{ grid-template-columns: 1fr; }
+      .prod{ grid-template-columns: 1fr; }
+      .prodArt{ min-height: 140px; border-left:none; border-top:1px solid rgba(255,255,255,.10); }
+      .navlinks{ display:none; }
+    }
+  </style>
 </head>
 
 <body>
+  <!-- Age Gate -->
+  <div id="ageGate" class="gate" role="dialog" aria-modal="true" aria-label="Age verification">
+    <div class="gateCard">
+      <div class="gateTop">
+        <div class="left">
+          <div class="mark" aria-hidden="true"></div>
+          Buckshot Brewing
+        </div>
+        <div class="hint">Please verify legal drinking age</div>
+      </div>
 
-<div id="ageGate" class="gate">
-  <div class="gate-card">
-    <h1>Are you 21+</h1>
-    <p>You must be of legal drinking age to enter Buckshot Brewing.</p>
-    <div>
-      <button class="btn enter" id="yesBtn" type="button">Yes, Enter</button>
-      <a class="btn leave" href="https://www.responsibility.org/" target="_blank" rel="noreferrer" style="text-decoration:none; display:inline-block;">No, Leave</a>
+      <h2>Are you 21+?</h2>
+      <p>You must be of legal drinking age to enter this site.</p>
+
+      <div class="gateActions">
+        <button class="btn primary" id="yesBtn" type="button">Yes, Enter</button>
+        <a class="btn leave" href="https://www.responsibility.org/" target="_blank" rel="noreferrer">No, Leave</a>
+      </div>
     </div>
   </div>
-</div>
 
-<div id="transition" class="transition" aria-hidden="true">
-  <div class="loading" id="loadingText">Loading intro…</div>
-  <video id="blastVideo" preload="auto" playsinline muted>
-    <source src="buckshot_intro_v17_full_logo.MP4" type="video/mp4">
-  </video>
-</div>
+  <!-- Topbar -->
+  <div class="topbar">
+    <div class="wrap">
+      <div class="nav">
+        <div class="brand">
+          <div class="mark" aria-hidden="true"></div>
+          <span>Buckshot Brewing</span>
+        </div>
 
-<div id="site" class="site blur">
-  <div class="hero">
-    <h1>Buckshot Brewing</h1>
-    <p>Built for the outdoors. Party ready.</p>
+        <div class="navlinks">
+          <a href="#beer">Beer</a>
+          <a href="#story">Story</a>
+          <a href="#where">Where to Buy</a>
+          <a href="#contact">Contact</a>
+        </div>
+
+        <div class="navcta">
+          <a class="btn ghost" href="#where">Find it</a>
+          <a class="btn primary" href="#contact">Get updates</a>
+        </div>
+      </div>
+    </div>
   </div>
 
-  <div class="stats">
-    <div class="stat">
-      <b id="stat1">0</b>
-      <span>early supporters</span>
+  <!-- Hero -->
+  <header class="hero">
+    <div class="wrap">
+      <div class="heroGrid">
+        <div class="heroCard">
+          <div class="kicker"><span class="dot" aria-hidden="true"></span> Built for the outdoors. Party ready.</div>
+          <h1>Beer that hits clean, looks elite, and sells.</h1>
+          <p class="sub">
+            Buckshot Brewing is a bold, outdoors-first brand built to win at retail. Simple lineup, high velocity packaging, and a clear plan to scale.
+          </p>
+
+          <div class="heroActions">
+            <a class="btn primary" href="#beer">Explore the lineup</a>
+            <a class="btn ghost" href="#where">Where to buy</a>
+          </div>
+
+          <div class="miniGrid" aria-label="Key stats">
+            <div class="mini">
+              <div class="big" id="stat1">1,287</div>
+              <div class="label">early supporters</div>
+            </div>
+            <div class="mini">
+              <div class="big" id="stat2">215</div>
+              <div class="label">stores targeted</div>
+            </div>
+          </div>
+        </div>
+
+        <aside class="sideCard">
+          <div class="sideTitle">What we stand for</div>
+          <div class="pillRow">
+            <div class="pill">Outdoors culture</div>
+            <div class="pill">Crisp, crowd-pleasing beer</div>
+            <div class="pill">Premium can presence</div>
+            <div class="pill">Retail first mindset</div>
+            <div class="pill">Community + giving back</div>
+          </div>
+          <div class="sideNote">
+            Want this to feel more “Gozzer Ranch meets gunmetal and brass”? We can tune the colors, typography, and imagery next.
+          </div>
+        </aside>
+      </div>
     </div>
-    <div class="stat">
-      <b id="stat2">0</b>
-      <span>stores targeted</span>
+  </header>
+
+  <!-- Beer -->
+  <section id="beer">
+    <div class="wrap">
+      <div class="sectionHead">
+        <div>
+          <h2>Core lineup</h2>
+          <p>Start with the winners. Build repeat purchases. Expand later.</p>
+        </div>
+      </div>
+
+      <div class="products">
+        <div class="prod">
+          <div class="prodInfo">
+            <span class="tag"><span class="icon" aria-hidden="true"></span> Flagship</span>
+            <div class="name">Buckshot Lager</div>
+            <p class="desc">Clean, crisp, and built for volume. The one you bring to the cabin, the tailgate, and the bonfire.</p>
+          </div>
+          <div class="prodArt" aria-hidden="true"><div class="shell"></div></div>
+        </div>
+
+        <div class="prod">
+          <div class="prodInfo">
+            <span class="tag"><span class="icon" aria-hidden="true"></span> Seasonal</span>
+            <div class="name">OktoberPheas Amber</div>
+            <p class="desc">Smooth amber with a fall vibe. Designed to pop on shelf and move fast when the weather turns.</p>
+          </div>
+          <div class="prodArt" aria-hidden="true"><div class="shell"></div></div>
+        </div>
+
+        <div class="prod">
+          <div class="prodInfo">
+            <span class="tag"><span class="icon" aria-hidden="true"></span> Draft hero</span>
+            <div class="name">Buckshot Kegs</div>
+            <p class="desc">Simple handles, simple margins, fast turns. Built to win in bars that need dependable sellers.</p>
+          </div>
+          <div class="prodArt" aria-hidden="true"><div class="shell"></div></div>
+        </div>
+
+        <div class="prod">
+          <div class="prodInfo">
+            <span class="tag"><span class="icon" aria-hidden="true"></span> Limited</span>
+            <div class="name">Special releases</div>
+            <p class="desc">Rotating drops to keep attention high. We’ll build these once the core lineup is everywhere.</p>
+          </div>
+          <div class="prodArt" aria-hidden="true"><div class="shell"></div></div>
+        </div>
+      </div>
     </div>
-  </div>
-</div>
+  </section>
 
-<script>
-  const STORAGE_KEY = "buckshot_age_verified_v1";
+  <!-- Story -->
+  <section id="story">
+    <div class="wrap">
+      <div class="sectionHead">
+        <div>
+          <h2>Why Buckshot wins</h2>
+          <p>Most beer brands compete on taste alone. You’re building a brand that competes on shelf, story, and repeat buys.</p>
+        </div>
+      </div>
 
-  const gate = document.getElementById("ageGate");
-  const site = document.getElementById("site");
-  const transition = document.getElementById("transition");
-  const loadingText = document.getElementById("loadingText");
-  const video = document.getElementById("blastVideo");
-  const yesBtn = document.getElementById("yesBtn");
+      <div class="grid3">
+        <div class="card">
+          <span class="tag"><span class="icon" aria-hidden="true"></span> Shelf impact</span>
+          <h3>Packaging that stops the scroll</h3>
+          <p>Gunmetal, brass, and bold marks. Clean type. Clear SKU names. No confusion from ten feet away.</p>
+        </div>
 
-  function markVerified(){
-    try { localStorage.setItem(STORAGE_KEY, "true"); } catch(e) {}
-  }
-  function isVerified(){
-    try { return localStorage.getItem(STORAGE_KEY) === "true"; } catch(e) { return false; }
-  }
+        <div class="card">
+          <span class="tag"><span class="icon" aria-hidden="true"></span> Retail first</span>
+          <h3>Built for stores, not taprooms</h3>
+          <p>Pricing and formats designed for velocity. Simple lineup. Easy for distributors and retailers to say yes.</p>
+        </div>
 
-  function enterWithoutVideo(){
-    transition.classList.remove("isPlaying");
-    transition.setAttribute("aria-hidden", "true");
-    gate.style.display = "none";
-    site.classList.remove("blur");
-    markVerified();
-    try { video.pause(); } catch(e) {}
-  }
+        <div class="card">
+          <span class="tag"><span class="icon" aria-hidden="true"></span> Community</span>
+          <h3>Culture-forward brand</h3>
+          <p>Outdoors, dogs, camaraderie, and real moments. Not fake “craft vibes.” It’s authentic and fun.</p>
+        </div>
+      </div>
+    </div>
+  </section>
 
-  async function playBlastThenEnter(){
-    transition.classList.add("isPlaying");
-    transition.setAttribute("aria-hidden", "false");
-    loadingText.textContent = "Loading intro…";
+  <!-- Where to buy -->
+  <section id="where">
+    <div class="wrap">
+      <div class="sectionHead">
+        <div>
+          <h2>Where to buy</h2>
+          <p>For now, we’ll keep this simple. When you’re ready, we’ll add an interactive store locator map.</p>
+        </div>
+      </div>
 
-    // Make sure browser actually loads it
-    try { video.load(); } catch(e) {}
+      <div class="grid3">
+        <div class="card">
+          <h3>Minnesota</h3>
+          <p>Launch focus. West metro heavy presence and fast retail learnings.</p>
+        </div>
+        <div class="card">
+          <h3>Upper Midwest</h3>
+          <p>WI, ND, SD, IA. Expand with the right distribution partner and a clean playbook.</p>
+        </div>
+        <div class="card">
+          <h3>National</h3>
+          <p>Scale with proven SKU velocity and repeatable go-to-market.</p>
+        </div>
+      </div>
+    </div>
+  </section>
 
-    // Hard fallback: if we are stuck in black screen, skip
-    const hardTimeout = setTimeout(() => {
-      loadingText.textContent = "Intro skipped.";
-      enterWithoutVideo();
-    }, 2500);
+  <!-- Contact / updates -->
+  <section id="contact">
+    <div class="wrap">
+      <div class="signup">
+        <div class="copy">
+          <h3>Get launch updates</h3>
+          <p>Drop your email and we’ll send release dates, store drops, and new can reveals. No spam.</p>
+        </div>
 
-    const cleanup = () => {
-      clearTimeout(hardTimeout);
-      video.removeEventListener("ended", onEnd);
-      video.removeEventListener("error", onErr);
-      video.removeEventListener("stalled", onStall);
-    };
+        <!-- This is a placeholder. When you're ready, we’ll wire it to Mailchimp/ConvertKit. -->
+        <form onsubmit="event.preventDefault(); alert('Got it. We will add a real email signup next.');">
+          <input type="email" required placeholder="Email address" />
+          <button class="btn primary" type="submit">Notify me</button>
+        </form>
+      </div>
+    </div>
+  </section>
 
-    const onEnd = () => {
-      cleanup();
-      enterWithoutVideo();
-    };
+  <footer>
+    <div class="wrap">
+      <div class="footRow">
+        <div>© <span id="year"></span> Buckshot Brewing. Please drink responsibly.</div>
+        <div class="footLinks">
+          <a href="#beer">Beer</a>
+          <a href="#story">Story</a>
+          <a href="#where">Where to Buy</a>
+          <a href="https://www.responsibility.org/" target="_blank" rel="noreferrer">Responsibility.org</a>
+        </div>
+      </div>
+    </div>
+  </footer>
 
-    const onErr = () => {
-      cleanup();
-      enterWithoutVideo();
-    };
+  <script>
+    // Age gate
+    const STORAGE_KEY = "buckshot_age_verified_v1";
+    const gate = document.getElementById("ageGate");
+    const yesBtn = document.getElementById("yesBtn");
 
-    const onStall = () => {
-      // If it stalls, skip quickly instead of showing black forever
-      cleanup();
-      enterWithoutVideo();
-    };
-
-    video.addEventListener("ended", onEnd);
-    video.addEventListener("error", onErr);
-    video.addEventListener("stalled", onStall);
-
-    try{
-      video.currentTime = 0;
-      const p = video.play();
-      if (p && typeof p.then === "function") await p;
-      loadingText.textContent = "";
-    } catch(e){
-      cleanup();
-      enterWithoutVideo();
+    function isVerified(){
+      try { return localStorage.getItem(STORAGE_KEY) === "true"; }
+      catch(e){ return false; }
     }
-  }
-
-  // If already verified, do not show gate
-  if (isVerified()){
-    gate.style.display = "none";
-    site.classList.remove("blur");
-  }
-
-  yesBtn.addEventListener("click", () => {
-    playBlastThenEnter();
-  });
-
-  // Simple animated counters (runs after gate is dismissed)
-  function animate(el,to){
-    let startTime = null;
-    const duration = 900;
-
-    function step(ts){
-      if (!startTime) startTime = ts;
-      const t = Math.min(1, (ts - startTime) / duration);
-      const eased = 1 - Math.pow(1 - t, 3);
-      el.textContent = Math.floor(eased * to).toLocaleString();
-      if (t < 1) requestAnimationFrame(step);
+    function markVerified(){
+      try { localStorage.setItem(STORAGE_KEY, "true"); } catch(e){}
     }
-    requestAnimationFrame(step);
-  }
+    function enterSite(){
+      gate.style.display = "none";
+    }
 
-  animate(document.getElementById("stat1"), 1287);
-  animate(document.getElementById("stat2"), 215);
-</script>
+    if (isVerified()) enterSite();
 
+    yesBtn.addEventListener("click", () => {
+      markVerified();
+      enterSite();
+    });
+
+    // Nice touch: year
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    // Optional: animate your two stats quickly on load
+    function animate(el, to){
+      const start = 0;
+      const duration = 650;
+      const startTime = performance.now();
+      const step = (now) => {
+        const t = Math.min(1, (now - startTime) / duration);
+        const eased = 1 - Math.pow(1 - t, 3);
+        const val = Math.floor(start + (to - start) * eased);
+        el.textContent = val.toLocaleString();
+        if (t < 1) requestAnimationFrame(step);
+      };
+      requestAnimationFrame(step);
+    }
+
+    const s1 = document.getElementById("stat1");
+    const s2 = document.getElementById("stat2");
+    // These can be changed anytime
+    animate(s1, 1287);
+    animate(s2, 215);
+  </script>
 </body>
 </html>
