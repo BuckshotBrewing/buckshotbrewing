@@ -1,1 +1,116 @@
- 
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Privacy Policy | Buckshot Brewing</title>
+  <meta name="robots" content="index,follow" />
+  <style>
+    :root{
+      --forest:#0c2f23;
+      --cream:#fbf7ee;
+      --cream2:#f3ecdd;
+      --gold:#c7b06a;
+      --ink:#101214;
+      --muted:rgba(16,18,20,.70);
+      --line:rgba(16,18,20,.12);
+      --max:980px;
+    }
+    *{ box-sizing:border-box; }
+    body{
+      margin:0;
+      color:var(--ink);
+      background: linear-gradient(180deg, var(--cream), var(--cream2));
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial;
+    }
+    a{ color:inherit; text-decoration:none; border-bottom:1px solid rgba(199,176,106,.7); }
+    .wrap{ max-width:var(--max); margin:0 auto; padding:26px 18px 54px; }
+    .top{
+      display:flex; align-items:center; justify-content:space-between; gap:14px;
+      padding: 14px 0 18px;
+      border-bottom:1px solid var(--line);
+    }
+    .brand{
+      display:flex; align-items:center; gap:10px; font-weight:900; letter-spacing:.02em;
+    }
+    .dot{
+      width:10px; height:10px; border-radius:999px;
+      background:var(--gold); box-shadow:0 0 0 6px rgba(199,176,106,.18);
+    }
+    h1{ margin:20px 0 10px; font-size:32px; letter-spacing:-.02em; }
+    p, li{ color:rgba(16,18,20,.78); line-height:1.7; }
+    .meta{ color:var(--muted); font-size:14px; }
+    .card{
+      margin-top:18px;
+      background: rgba(255,255,255,.72);
+      border:1px solid var(--line);
+      border-radius: 18px;
+      padding:18px;
+    }
+    h2{ margin:18px 0 8px; font-size:18px; letter-spacing:-.01em; }
+    ul{ margin:10px 0 0; padding-left:18px; }
+    .footer{
+      margin-top:22px;
+      padding-top:14px;
+      border-top:1px solid var(--line);
+      color:var(--muted);
+      font-size:13px;
+    }
+    .btn{
+      display:inline-flex; align-items:center; gap:10px;
+      padding:10px 14px; border-radius:999px;
+      border:1px solid rgba(16,18,20,.14);
+      background: rgba(255,255,255,.74);
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="top">
+      <div class="brand"><span class="dot"></span> Buckshot Brewing</div>
+      <a class="btn" href="/">Back to site</a>
+    </div>
+
+    <h1>Privacy Policy</h1>
+    <div class="meta">Effective date: <span id="d"></span></div>
+
+    <div class="card">
+      <h2>What we collect</h2>
+      <ul>
+        <li>When you join the list: your email address, and optionally your first name.</li>
+        <li>When you contact us: your name, email, company, and message content.</li>
+      </ul>
+
+      <h2>Where your information goes today</h2>
+      <ul>
+        <li><strong>Join the list:</strong> if we have not connected an email provider yet, your entry may be stored only in your browser on this device (local storage) and not sent to Buckshot Brewing.</li>
+        <li><strong>Contact:</strong> the contact form may open your email app and send to sales@buckshotbrewing.com. The site does not store that message.</li>
+      </ul>
+
+      <h2>How we use information</h2>
+      <ul>
+        <li>To share launch updates and announcements once an email provider is connected.</li>
+        <li>To respond to retail, distributor, and media inquiries.</li>
+        <li>To improve the site experience.</li>
+      </ul>
+
+      <h2>Sharing</h2>
+      <p>We do not sell personal information. If we connect an email platform later (for example Mailchimp or ConvertKit), your email will be stored with that provider so we can send updates.</p>
+
+      <h2>Unsubscribe</h2>
+      <p>Once an email provider is connected, each email will include an unsubscribe link.</p>
+
+      <h2>Contact</h2>
+      <p>Questions: <a href="mailto:sales@buckshotbrewing.com?subject=Privacy%20Policy%20Question">sales@buckshotbrewing.com</a></p>
+    </div>
+
+    <div class="footer">
+      Must be 21+. Please drink responsibly. No alcoholic beverages are available for sale. No orders or preorders accepted.
+    </div>
+  </div>
+
+  <script>
+    document.getElementById("d").textContent = new Date().toLocaleDateString();
+  </script>
+</body>
+</html> 
