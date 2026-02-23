@@ -167,13 +167,7 @@
   </div>
 </div>
 
-<div id="transition" class="transition" aria-hidden="true">
-  <div class="loading" id="loadingText">Loading intro…</div>
-  <video id="blastVideo" preload="auto" playsinline muted>
-<source src="https://7be3fcdin3mtyulo.public.blob.vercel-storage.com/buckshot_intro_v17_full_logo.mp4" type="video/mp4">
-  </video>
-</div>
-
+<div id="transition" class="transition" aria-hidden="true"></div>  
 <div id="site" class="site blur">
   <div class="hero">
     <h1>Buckshot Brewing</h1>
@@ -199,7 +193,7 @@
   const site = document.getElementById("site");
   const transition = document.getElementById("transition");
   const loadingText = document.getElementById("loadingText");
-  const video = document.getElementById("blastVideo");
+  
   const yesBtn = document.getElementById("yesBtn");
 
   function markVerified(){
@@ -255,19 +249,9 @@ const hardTimeout = setTimeout(() => {
       enterWithoutVideo();
     };
 
-    video.addEventListener("ended", onEnd);
-    video.addEventListener("error", onErr);
-    video.addEventListener("stalled", onStall);
-
-    try{
-      video.currentTime = 0;
-      const p = video.play();
-      if (p && typeof p.then === "function") await p;
-      loadingText.textContent = "";
-    } catch(e){
-      cleanup();
-      enterWithoutVideo();
-    }
+// Skip intro video and go straight in
+enterWithoutVideo();
+return; 
   }
 
   // If already verified, do not show gate
