@@ -3,1056 +3,860 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Buckshot Brewing | Coming Soon</title>
-  <meta name="description" content="Buckshot Brewing is an outdoors forward beer brand in development. No alcoholic beverages are available for sale." />
+  <title>Buckshot Brewing</title>
+  <meta name="description" content="Buckshot Brewing. American beer built for early mornings and long stories. Join the list for launch updates." />
   <meta name="robots" content="index,follow" />
-  <section style="height:100vh; display:flex; align-items:center; justify-content:center; background:#0b0b0b;">
-  <img src="assets/buckshot-logo.png" style="width:320px;">
-</section><img src="assets/buckshot-logo.png" style="width:300px;">  <style>
+
+  <style>
     :root{
-      --bg:#050706;
-      --bg2:#07110e;
-      --ink:#f2f5f3;
-      --muted:rgba(242,245,243,.72);
-      --line:rgba(242,245,243,.12);
+      --bg:#070708;
+      --bg2:#0b0c0f;
+      --ink:#f2f3f5;
+      --muted:rgba(242,243,245,.72);
+      --line:rgba(242,243,245,.14);
       --card:rgba(255,255,255,.06);
-      --card2:rgba(255,255,255,.08);
-      --shadow: 0 20px 80px rgba(0,0,0,.55);
-      --accent:#c7b06a; /* brass vibe */
-      --accent2:#1aa37a; /* deep outdoors green */
-      --radius: 18px;
-      --radius2: 28px;
-      --max: 1160px;
+      --card2:rgba(255,255,255,.09);
+
+      --accent:#c7b06a;   /* brass */
+      --accent2:#1aa37a;  /* deep outdoor green */
+      --shadow:0 18px 60px rgba(0,0,0,.55);
+
+      --radius:18px;
+      --radius2:28px;
+      --max:1120px;
     }
 
     *{ box-sizing:border-box; }
     html,body{ height:100%; }
     body{
       margin:0;
-      font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Arial, "Noto Sans", "Apple Color Emoji","Segoe UI Emoji";
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Apple Color Emoji", "Segoe UI Emoji";
       color:var(--ink);
-      background: radial-gradient(1200px 700px at 20% 0%, rgba(199,176,106,.22), transparent 55%),
-                  radial-gradient(1000px 700px at 80% 10%, rgba(26,163,122,.18), transparent 60%),
-                  radial-gradient(900px 700px at 50% 80%, rgba(255,255,255,.06), transparent 60%),
-                  linear-gradient(180deg, var(--bg), var(--bg2));
+      background:
+        radial-gradient(1200px 700px at 18% 8%, rgba(199,176,106,.18), transparent 55%),
+        radial-gradient(900px 600px at 82% 12%, rgba(26,163,122,.16), transparent 60%),
+        linear-gradient(180deg, var(--bg), var(--bg2));
       overflow-x:hidden;
     }
 
     a{ color:inherit; text-decoration:none; }
-    button{ font-family:inherit; }
+    button, input{ font:inherit; }
 
-    /* subtle grain */
-    .grain:before{
-      content:"";
+    .topNav{
       position:fixed;
-      inset:0;
-      pointer-events:none;
-      background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='220' height='220' filter='url(%23n)' opacity='.14'/%3E%3C/svg%3E");
-      mix-blend-mode:overlay;
-      opacity:.22;
-      z-index:0;
-    }
-
-    /* layout helpers */
-    .wrap{ width:min(var(--max), calc(100% - 48px)); margin:0 auto; position:relative; z-index:2; }
-    .row{ display:flex; gap:18px; align-items:center; }
-    .stack{ display:grid; gap:16px; }
-    .spacer{ height:18px; }
-    .divider{ height:1px; background:var(--line); margin:28px 0; }
-
-    /* top nav */
-    .topbar{
-      position:sticky;
       top:0;
+      left:0;
+      right:0;
       z-index:50;
-      backdrop-filter: blur(14px);
-      background: linear-gradient(180deg, rgba(5,7,6,.78), rgba(5,7,6,.35));
-      border-bottom:1px solid rgba(255,255,255,.08);
+      backdrop-filter:saturate(140%) blur(10px);
+      background: linear-gradient(180deg, rgba(7,7,8,.78), rgba(7,7,8,.35));
+      border-bottom:1px solid rgba(242,243,245,.08);
     }
-    .nav{
+
+    .topNavInner{
+      max-width:var(--max);
+      margin:0 auto;
+      padding:14px 18px;
       display:flex;
       align-items:center;
       justify-content:space-between;
-      padding:14px 0;
-      gap:16px;
-    }
-    .brandmark{
-      display:flex;
-      align-items:center;
-      gap:12px;
-      min-width: 220px;
-    }
-    .brandmark img{
-      width:34px;
-      height:34px;
-      object-fit:contain;
-      filter: drop-shadow(0 10px 30px rgba(0,0,0,.35));
-    }
-    .brandmark .word{
-      display:flex;
-      flex-direction:column;
-      line-height:1.05;
-    }
-    .brandmark .word strong{ font-weight:800; letter-spacing:.2px; }
-    .brandmark .word span{ font-size:12px; color:var(--muted); margin-top:2px; }
-
-    .navlinks{
-      display:flex;
-      gap:18px;
-      align-items:center;
-      justify-content:center;
-      flex:1;
-    }
-    .navlinks a{
-      font-size:13px;
-      color:rgba(242,245,243,.78);
-      padding:10px 10px;
-      border-radius: 12px;
-      transition: background .15s ease, color .15s ease;
-    }
-    .navlinks a:hover{
-      background:rgba(255,255,255,.06);
-      color:rgba(242,245,243,.95);
+      gap:14px;
     }
 
-    .navcta{
+    .brandMark{
       display:flex;
+      align-items:center;
       gap:10px;
-      justify-content:flex-end;
-      min-width:220px;
+      min-width:180px;
+    }
+
+    .brandMark img{
+      height:26px;
+      width:auto;
+      display:block;
+      opacity:.92;
+    }
+
+    .navLinks{
+      display:flex;
+      align-items:center;
+      gap:16px;
+      color:rgba(242,243,245,.84);
+      font-size:14px;
+    }
+
+    .navLinks a{
+      padding:8px 10px;
+      border-radius:12px;
+      border:1px solid transparent;
+      transition: all .2s ease;
+    }
+    .navLinks a:hover{
+      border-color:rgba(242,243,245,.12);
+      background:rgba(255,255,255,.04);
+    }
+
+    .navCtas{
+      display:flex;
+      align-items:center;
+      gap:10px;
     }
 
     .btn{
+      border:1px solid rgba(242,243,245,.14);
+      background:rgba(255,255,255,.04);
+      color:var(--ink);
+      padding:10px 14px;
+      border-radius:14px;
+      cursor:pointer;
+      transition: transform .15s ease, background .2s ease, border-color .2s ease;
       display:inline-flex;
       align-items:center;
-      justify-content:center;
       gap:10px;
-      padding:12px 14px;
-      border-radius:14px;
-      border:1px solid rgba(255,255,255,.14);
-      background: rgba(255,255,255,.06);
-      color: rgba(242,245,243,.94);
-      cursor:pointer;
-      transition: transform .12s ease, background .12s ease, border-color .12s ease;
-      user-select:none;
-      white-space:nowrap;
-      font-size:13px;
+      box-shadow:none;
     }
-    .btn:hover{ transform: translateY(-1px); background: rgba(255,255,255,.08); border-color: rgba(255,255,255,.22); }
-    .btn.primary{
-      background: linear-gradient(135deg, rgba(199,176,106,.26), rgba(26,163,122,.18));
-      border-color: rgba(199,176,106,.35);
-    }
-    .btn.primary:hover{ border-color: rgba(199,176,106,.55); }
 
-    /* hero */
-    .hero{
-      padding:56px 0 28px;
+    .btn:hover{
+      background:rgba(255,255,255,.07);
+      border-color:rgba(242,243,245,.20);
+      transform: translateY(-1px);
     }
-    .heroGrid{
+
+    .btnPrimary{
+      border-color:rgba(199,176,106,.35);
+      background: linear-gradient(180deg, rgba(199,176,106,.20), rgba(199,176,106,.10));
+    }
+    .btnPrimary:hover{
+      border-color:rgba(199,176,106,.55);
+      background: linear-gradient(180deg, rgba(199,176,106,.26), rgba(199,176,106,.14));
+    }
+
+    .shellDot{
+      width:8px;
+      height:8px;
+      border-radius:999px;
+      background:var(--accent);
+      box-shadow:0 0 0 6px rgba(199,176,106,.12);
+    }
+
+    .page{
+      scroll-snap-type:y mandatory;
+      height:100vh;
+      overflow-y:auto;
+      overflow-x:hidden;
+      scroll-behavior:smooth;
+    }
+
+    .section{
+      scroll-snap-align:start;
+      min-height:100vh;
+      padding:92px 18px 40px;
+      display:flex;
+      align-items:center;
+      position:relative;
+    }
+
+    .container{
+      max-width:var(--max);
+      width:100%;
+      margin:0 auto;
+    }
+
+    .gridTwo{
       display:grid;
-      grid-template-columns: 1.35fr .65fr;
-      gap:26px;
-      align-items:stretch;
-    }
-    .heroCard{
-      border-radius: var(--radius2);
-      background: linear-gradient(180deg, rgba(255,255,255,.07), rgba(255,255,255,.03));
-      border: 1px solid rgba(255,255,255,.12);
-      box-shadow: var(--shadow);
-      overflow:hidden;
-      position:relative;
-    }
-
-    .heroCard:before{
-      content:"";
-      position:absolute;
-      inset:-1px;
-      background:
-        radial-gradient(900px 500px at 12% 0%, rgba(199,176,106,.18), transparent 55%),
-        radial-gradient(900px 500px at 82% 20%, rgba(26,163,122,.14), transparent 58%),
-        radial-gradient(600px 500px at 40% 110%, rgba(255,255,255,.08), transparent 60%);
-      z-index:0;
-    }
-
-    .heroInner{
-      position:relative;
-      z-index:1;
-      padding:34px 34px 28px;
+      grid-template-columns: 1.05fr .95fr;
+      gap:28px;
+      align-items:center;
     }
 
     .kicker{
-      display:inline-flex;
+      font-size:12px;
+      letter-spacing:.14em;
+      text-transform:uppercase;
+      color:rgba(242,243,245,.70);
+      display:flex;
       align-items:center;
       gap:10px;
-      font-size:12px;
-      color:rgba(242,245,243,.78);
-      padding:10px 12px;
-      border-radius: 999px;
-      background: rgba(255,255,255,.06);
-      border: 1px solid rgba(255,255,255,.12);
-      width: fit-content;
-    }
-    .dot{
-      width:8px; height:8px; border-radius:999px;
-      background: rgba(199,176,106,.95);
-      box-shadow: 0 0 0 6px rgba(199,176,106,.10);
     }
 
-    h1{
-      margin:16px 0 10px;
-      font-size: clamp(38px, 5vw, 56px);
+    .h1{
+      font-size: clamp(36px, 5vw, 56px);
       line-height:1.05;
-      letter-spacing:-.6px;
-    }
-    .subhead{
-      margin:0;
-      font-size:15px;
-      line-height:1.65;
-      color:rgba(242,245,243,.78);
-      max-width: 60ch;
+      margin:14px 0 10px;
+      letter-spacing:-.02em;
     }
 
-    .legalNotice{
-      margin-top:18px;
-      padding:12px 14px;
-      border-radius: 14px;
-      border: 1px solid rgba(255,255,255,.12);
-      background: rgba(0,0,0,.25);
-      color: rgba(242,245,243,.70);
-      font-size: 12.5px;
+    .lead{
+      font-size:18px;
+      line-height:1.6;
+      color:rgba(242,243,245,.78);
+      max-width: 58ch;
+      margin:0 0 18px;
+    }
+
+    .micro{
+      font-size:13px;
+      line-height:1.5;
+      color:rgba(242,243,245,.62);
+      margin:14px 0 0;
+    }
+
+    .card{
+      border:1px solid rgba(242,243,245,.12);
+      background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03));
+      border-radius: var(--radius2);
+      box-shadow: var(--shadow);
+      overflow:hidden;
+    }
+
+    .heroCard{
+      padding:26px;
+      position:relative;
+    }
+
+    .heroLogo{
+      width:min(520px, 80vw);
+      height:auto;
+      display:block;
+      margin: 0 0 14px;
+      opacity:.96;
+      filter: drop-shadow(0 16px 46px rgba(0,0,0,.45));
+    }
+
+    .heroAccentLine{
+      height:1px;
+      background: linear-gradient(90deg, rgba(199,176,106,.0), rgba(199,176,106,.55), rgba(26,163,122,.35), rgba(199,176,106,.0));
+      margin: 18px 0 16px;
+    }
+
+    .pillRow{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      margin-top:16px;
+    }
+
+    .pill{
+      border:1px solid rgba(242,243,245,.14);
+      background:rgba(255,255,255,.04);
+      padding:9px 12px;
+      border-radius:999px;
+      font-size:13px;
+      color:rgba(242,243,245,.82);
+    }
+
+    .visual{
+      border-radius: var(--radius2);
+      border:1px solid rgba(242,243,245,.12);
+      background:
+        radial-gradient(900px 540px at 50% 30%, rgba(199,176,106,.14), transparent 55%),
+        radial-gradient(700px 460px at 55% 65%, rgba(26,163,122,.12), transparent 60%),
+        linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03));
+      min-height: 420px;
+      position:relative;
+      overflow:hidden;
+      box-shadow: var(--shadow);
+    }
+
+    .visualOverlay{
+      position:absolute;
+      inset:0;
+      background:
+        linear-gradient(180deg, rgba(0,0,0,.18), rgba(0,0,0,.45));
+      pointer-events:none;
+    }
+
+    .visualStamp{
+      position:absolute;
+      left:22px;
+      bottom:22px;
+      right:22px;
+      border:1px solid rgba(242,243,245,.14);
+      background:rgba(0,0,0,.22);
+      border-radius:18px;
+      padding:14px 14px;
+    }
+
+    .visualStampTitle{
+      font-weight:650;
+      letter-spacing:.01em;
+    }
+
+    .visualStampText{
+      margin-top:6px;
+      color:rgba(242,243,245,.72);
+      font-size:14px;
       line-height:1.5;
     }
 
-    .heroActions{
+    .sectionTitle{
+      font-size: clamp(28px, 3.8vw, 42px);
+      line-height:1.12;
+      margin:12px 0 10px;
+      letter-spacing:-.02em;
+    }
+
+    .splitList{
+      margin:18px 0 0;
+      padding:0;
+      list-style:none;
+      display:grid;
+      gap:10px;
+      max-width: 64ch;
+    }
+
+    .splitList li{
+      display:flex;
+      gap:10px;
+      align-items:flex-start;
+      color:rgba(242,243,245,.76);
+      line-height:1.55;
+    }
+
+    .tick{
+      margin-top:6px;
+      width:10px;
+      height:10px;
+      border-radius:999px;
+      background:rgba(199,176,106,.95);
+      box-shadow:0 0 0 6px rgba(199,176,106,.10);
+      flex:0 0 auto;
+    }
+
+    .ctaBand{
       margin-top:18px;
       display:flex;
-      flex-wrap:wrap;
       gap:10px;
+      flex-wrap:wrap;
       align-items:center;
     }
 
-    .miniLogos{
-      margin-top:22px;
+    .footer{
+      padding:26px 18px 36px;
+      border-top:1px solid rgba(242,243,245,.10);
+      background:rgba(0,0,0,.20);
+    }
+
+    .footerInner{
+      max-width:var(--max);
+      margin:0 auto;
       display:flex;
+      flex-wrap:wrap;
+      gap:14px 18px;
       align-items:center;
+      justify-content:space-between;
+      color:rgba(242,243,245,.72);
+      font-size:14px;
+    }
+
+    .footerLinks{
+      display:flex;
       gap:14px;
-      color:rgba(242,245,243,.62);
-      font-size:12px;
-    }
-    .miniLogos img{
-      width:18px; height:18px; object-fit:contain;
-      opacity:.85;
-      filter: drop-shadow(0 10px 30px rgba(0,0,0,.35));
+      flex-wrap:wrap;
+      align-items:center;
     }
 
-    /* right side hero panel */
-    .sideCard{
-      border-radius: var(--radius2);
-      background: rgba(255,255,255,.05);
-      border: 1px solid rgba(255,255,255,.12);
-      box-shadow: var(--shadow);
-      overflow:hidden;
-      position:relative;
+    .footerLinks a{
+      border-bottom:1px solid rgba(199,176,106,.0);
+      transition:border-color .2s ease, color .2s ease;
     }
-    .sideInner{
-      padding:22px;
-      position:relative;
-      z-index:1;
+    .footerLinks a:hover{
+      color:rgba(242,243,245,.92);
+      border-color:rgba(199,176,106,.55);
     }
-    .sideCard:before{
-      content:"";
-      position:absolute;
+
+    /* reveal animations */
+    .reveal{
+      opacity:0;
+      transform: translateY(16px);
+      transition: opacity .7s ease, transform .7s ease;
+      will-change:opacity,transform;
+    }
+    .reveal.isVisible{
+      opacity:1;
+      transform: translateY(0);
+    }
+
+    /* modal */
+    .modalBackdrop{
+      position:fixed;
       inset:0;
-      background:
-        linear-gradient(180deg, rgba(0,0,0,.05), rgba(0,0,0,.35)),
-        radial-gradient(600px 420px at 60% -10%, rgba(26,163,122,.18), transparent 60%),
-        radial-gradient(700px 420px at 10% 10%, rgba(199,176,106,.16), transparent 62%);
-      z-index:0;
+      background:rgba(0,0,0,.62);
+      display:none;
+      align-items:center;
+      justify-content:center;
+      padding:18px;
+      z-index:120;
+    }
+    .modalBackdrop.open{ display:flex; }
+
+    .modal{
+      width:min(560px, 100%);
+      border-radius: var(--radius2);
+      border:1px solid rgba(242,243,245,.14);
+      background: linear-gradient(180deg, rgba(16,16,18,.96), rgba(10,10,11,.96));
+      box-shadow: 0 30px 90px rgba(0,0,0,.70);
+      overflow:hidden;
     }
 
-    .metricGrid{
-      display:grid;
+    .modalHeader{
+      padding:18px 18px 12px;
+      display:flex;
+      align-items:flex-start;
+      justify-content:space-between;
       gap:12px;
+      border-bottom:1px solid rgba(242,243,245,.10);
+    }
+
+    .modalTitle{
+      font-weight:700;
+      font-size:18px;
+      margin:0;
+    }
+
+    .modalClose{
+      border:1px solid rgba(242,243,245,.14);
+      background:rgba(255,255,255,.04);
+      color:var(--ink);
+      border-radius:12px;
+      padding:8px 10px;
+      cursor:pointer;
+    }
+
+    .modalBody{ padding:16px 18px 18px; }
+
+    .formRow{
+      display:grid;
+      gap:10px;
       margin-top:10px;
     }
-    .metric{
-      padding:14px;
-      border-radius: 16px;
-      background: rgba(0,0,0,.22);
-      border: 1px solid rgba(255,255,255,.10);
+
+    .input{
+      width:100%;
+      border-radius:14px;
+      border:1px solid rgba(242,243,245,.14);
+      background:rgba(255,255,255,.04);
+      color:var(--ink);
+      padding:12px 12px;
+      outline:none;
     }
-    .metric b{
-      display:block;
-      font-size:20px;
-      letter-spacing:-.2px;
+    .input:focus{
+      border-color:rgba(199,176,106,.55);
+      box-shadow:0 0 0 4px rgba(199,176,106,.12);
     }
-    .metric span{
-      display:block;
-      margin-top:6px;
-      color:rgba(242,245,243,.70);
+
+    .finePrint{
+      margin-top:10px;
       font-size:12px;
-      line-height:1.35;
+      color:rgba(242,243,245,.62);
+      line-height:1.45;
     }
 
-    /* scrolling graphic sections */
-    .section{
-      padding: 46px 0;
-    }
-
-    .sectionHead{
-      display:flex;
-      align-items:flex-end;
-      justify-content:space-between;
-      gap:18px;
-      margin-bottom:18px;
-    }
-    .sectionHead h2{
-      margin:0;
-      font-size: 22px;
-      letter-spacing:-.2px;
-    }
-    .sectionHead p{
-      margin:0;
-      color:rgba(242,245,243,.70);
-      font-size:13.5px;
-      line-height:1.6;
-      max-width: 70ch;
-    }
-
-    .cards3{
-      display:grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap:16px;
-    }
-    .card{
-      padding:18px;
-      border-radius: var(--radius);
-      background: rgba(255,255,255,.05);
-      border: 1px solid rgba(255,255,255,.12);
-      box-shadow: 0 18px 65px rgba(0,0,0,.35);
-      position:relative;
-      overflow:hidden;
-      min-height: 150px;
-    }
-    .card:before{
-      content:"";
-      position:absolute;
-      inset:-1px;
-      background:
-        radial-gradient(520px 280px at 20% 0%, rgba(199,176,106,.12), transparent 60%),
-        radial-gradient(520px 280px at 90% 10%, rgba(26,163,122,.10), transparent 62%);
-      opacity:.9;
-      z-index:0;
-    }
-    .card > *{ position:relative; z-index:1; }
-    .card h3{ margin:0 0 8px; font-size:15px; letter-spacing:-.1px; }
-    .card p{ margin:0; color:rgba(242,245,243,.72); font-size:13px; line-height:1.6; }
-    .pill{
-      display:inline-flex;
-      align-items:center;
-      gap:8px;
-      font-size:12px;
-      color:rgba(242,245,243,.70);
-      padding:9px 11px;
-      border-radius: 999px;
-      background: rgba(255,255,255,.05);
-      border: 1px solid rgba(255,255,255,.10);
-      width:fit-content;
-      margin-top: 14px;
-    }
-    .pill i{
-      width:7px; height:7px; border-radius:99px;
-      background: rgba(26,163,122,.85);
-      box-shadow: 0 0 0 6px rgba(26,163,122,.10);
-    }
-
-    /* feature strip with parallax feel */
-    .parallaxBand{
-      margin-top: 12px;
-      border-radius: var(--radius2);
-      border: 1px solid rgba(255,255,255,.12);
-      overflow:hidden;
-      background:
-        radial-gradient(900px 520px at 18% 10%, rgba(199,176,106,.16), transparent 55%),
-        radial-gradient(900px 520px at 78% 20%, rgba(26,163,122,.14), transparent 58%),
-        linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03));
-      box-shadow: var(--shadow);
-      position:relative;
-    }
-
-    .parallaxInner{
-      display:grid;
-      grid-template-columns: 1.1fr .9fr;
-      gap: 18px;
-      padding: 22px;
-      align-items:center;
-    }
-
-    .ghostGraphic{
-      border-radius: 22px;
-      border: 1px solid rgba(255,255,255,.12);
-      background: rgba(0,0,0,.25);
-      padding: 18px;
-      position:relative;
-      overflow:hidden;
-      min-height: 210px;
-    }
-    .ghostGraphic:before{
-      content:"";
-      position:absolute;
-      inset:-2px;
-      background:
-        radial-gradient(520px 260px at 22% 20%, rgba(199,176,106,.20), transparent 60%),
-        radial-gradient(520px 260px at 82% 20%, rgba(26,163,122,.18), transparent 62%);
-      opacity:.85;
-      z-index:0;
-      transform: translateY(var(--parY, 0px));
-      transition: transform .08s linear;
-    }
-    .ghostGraphic > *{ position:relative; z-index:1; }
-    .ghostTop{
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:12px;
-      margin-bottom: 10px;
-      color: rgba(242,245,243,.70);
-      font-size:12px;
-    }
-    .ghostLogo{
-      display:flex;
-      align-items:center;
-      gap:10px;
-    }
-    .ghostLogo img{ width:22px; height:22px; object-fit:contain; opacity:.9; }
-    .ghostLines{
-      margin-top: 12px;
-      display:grid;
-      gap:10px;
-    }
-    .line{
-      height:10px;
-      border-radius: 999px;
-      background: rgba(255,255,255,.08);
-      border: 1px solid rgba(255,255,255,.10);
-      overflow:hidden;
-      position:relative;
-    }
-    .line:after{
-      content:"";
-      position:absolute;
-      left:-30%;
-      top:0;
-      height:100%;
-      width:40%;
-      background: linear-gradient(90deg, transparent, rgba(199,176,106,.30), transparent);
-      animation: shimmer 3.8s ease-in-out infinite;
-      opacity:.7;
-    }
-    @keyframes shimmer{
-      0%{ transform:translateX(0); }
-      50%{ transform:translateX(280%); }
-      100%{ transform:translateX(280%); }
-    }
-
-    /* pages */
-    .page{
-      display:none;
-      padding: 30px 0 54px;
-    }
-    .page.active{ display:block; }
-    .pageCard{
-      border-radius: var(--radius2);
-      border: 1px solid rgba(255,255,255,.12);
-      background: rgba(255,255,255,.04);
-      box-shadow: var(--shadow);
-      padding: 26px;
-    }
-    .pageCard h2{ margin:0 0 8px; font-size:22px; letter-spacing:-.2px; }
-    .pageCard p{ margin:0; color: rgba(242,245,243,.74); line-height:1.7; font-size:14px; }
-    .pageCard ul{ margin:12px 0 0; color: rgba(242,245,243,.74); line-height:1.8; font-size:14px; padding-left: 18px; }
-
-    /* footer */
-    footer{
-      padding: 34px 0 50px;
-      border-top: 1px solid rgba(255,255,255,.10);
-      background: linear-gradient(180deg, rgba(0,0,0,.0), rgba(0,0,0,.30));
-    }
-    .footGrid{
-      display:grid;
-      grid-template-columns: 1.2fr .8fr;
-      gap: 18px;
-      align-items:start;
-    }
-    .fineprint{
-      color: rgba(242,245,243,.62);
-      font-size: 12.5px;
-      line-height: 1.6;
-    }
-    .footLinks{
-      display:flex;
-      gap: 14px;
-      justify-content:flex-end;
-      flex-wrap:wrap;
-    }
-    .footLinks a{
-      color: rgba(242,245,243,.68);
-      font-size: 12.5px;
-      padding: 8px 10px;
-      border-radius: 12px;
-      border: 1px solid rgba(255,255,255,.10);
-      background: rgba(255,255,255,.04);
-    }
-    .footLinks a:hover{ border-color: rgba(255,255,255,.18); }
-
-    /* age gate */
-    .gate{
+    .toast{
       position:fixed;
-      inset:0;
-      z-index:100;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      padding: 26px;
-      background:
-        radial-gradient(1000px 600px at 20% 0%, rgba(199,176,106,.18), transparent 55%),
-        radial-gradient(900px 600px at 80% 10%, rgba(26,163,122,.16), transparent 60%),
-        linear-gradient(180deg, rgba(5,7,6,.96), rgba(5,7,6,.94));
-      backdrop-filter: blur(12px);
-    }
-    .gateCard{
-      width: min(540px, 100%);
-      border-radius: var(--radius2);
-      border: 1px solid rgba(255,255,255,.14);
-      background: rgba(255,255,255,.05);
-      box-shadow: var(--shadow);
-      padding: 22px;
-      position:relative;
-      overflow:hidden;
-    }
-    .gateCard:before{
-      content:"";
-      position:absolute;
-      inset:-1px;
-      background:
-        radial-gradient(700px 380px at 20% 10%, rgba(199,176,106,.14), transparent 60%),
-        radial-gradient(700px 380px at 85% 20%, rgba(26,163,122,.12), transparent 62%);
-      opacity:.9;
-      z-index:0;
-    }
-    .gateCard > *{ position:relative; z-index:1; }
-    .gateTop{
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:14px;
-      margin-bottom: 12px;
-    }
-    .gateLogo{
-      display:flex;
-      align-items:center;
-      gap:12px;
-    }
-    .gateLogo img{ width:34px; height:34px; object-fit:contain; }
-    .gateLogo strong{ font-weight:800; letter-spacing:.2px; }
-    .gateCard h2{
-      margin: 6px 0 8px;
-      font-size: 20px;
-      letter-spacing:-.2px;
-    }
-    .gateCard p{
-      margin:0;
-      color: rgba(242,245,243,.72);
-      font-size: 13.5px;
-      line-height: 1.6;
-    }
-    .gateActions{
-      margin-top: 16px;
-      display:flex;
-      gap:10px;
-      flex-wrap:wrap;
-    }
-
-    /* logo pop after gate */
-    .logoSplash{
-      position:fixed;
-      inset:0;
-      z-index:90;
+      left:50%;
+      bottom:18px;
+      transform:translateX(-50%);
+      padding:12px 14px;
+      border-radius:999px;
+      border:1px solid rgba(242,243,245,.14);
+      background:rgba(0,0,0,.55);
+      color:rgba(242,243,245,.88);
       display:none;
-      align-items:center;
-      justify-content:center;
-      pointer-events:none;
-      background: radial-gradient(900px 600px at 50% 45%, rgba(0,0,0,.55), transparent 70%);
-      backdrop-filter: blur(8px);
+      z-index:200;
+      box-shadow: 0 20px 60px rgba(0,0,0,.55);
+      font-size:14px;
     }
-    .logoSplash.show{ display:flex; }
-    .logoSplash img{
-      width: min(210px, 40vw);
-      height:auto;
-      object-fit:contain;
-      filter: drop-shadow(0 28px 90px rgba(0,0,0,.65));
-      transform: scale(.86);
-      opacity:0;
-      animation: pop 1.15s ease forwards;
-    }
-    @keyframes pop{
-      0%{ opacity:0; transform: scale(.82); }
-      35%{ opacity:1; transform: scale(1.02); }
-      70%{ opacity:.95; transform: scale(.98); }
-      100%{ opacity:0; transform: scale(.92); }
+    .toast.show{ display:block; }
+
+    @media (max-width: 920px){
+      .gridTwo{ grid-template-columns: 1fr; }
+      .brandMark{ min-width:auto; }
+      .navLinks{ display:none; }
+      .visual{ min-height: 360px; }
+      .section{ padding-top:86px; }
     }
 
-    /* responsive */
-    @media (max-width: 980px){
-      .heroGrid{ grid-template-columns: 1fr; }
-      .navlinks{ display:none; }
-      .navcta{ min-width:auto; }
-      .brandmark{ min-width:auto; }
-      .cards3{ grid-template-columns: 1fr; }
-      .parallaxInner{ grid-template-columns: 1fr; }
-      .footGrid{ grid-template-columns: 1fr; }
-      .footLinks{ justify-content:flex-start; }
+    @media (prefers-reduced-motion: reduce){
+      .page{ scroll-behavior:auto; }
+      .reveal{ transition:none; transform:none; }
+      .btn{ transition:none; }
     }
   </style>
 </head>
 
-<body class="grain">
-  <!-- Age gate -->
-  <div id="ageGate" class="gate" role="dialog" aria-modal="true" aria-label="Age verification">
-    <div class="gateCard">
-      <div class="gateTop">
-        <div class="gateLogo">
-          <img alt="Buckshot logo" src="BB%20logo_FULL%20blk.png" />
-          <strong>Buckshot Brewing</strong>
-        </div>
-        <span class="kicker"><span class="dot"></span>Brand in development</span>
+<body>
+  <header class="topNav">
+    <div class="topNavInner">
+      <a class="brandMark" href="#top" aria-label="Buckshot Brewing home">
+        <img src="assets/buckshot-logo-white.png" alt="Buckshot Brewing" />
+      </a>
+
+      <nav class="navLinks" aria-label="Site">
+        <a href="#story">Story</a>
+        <a href="#beer">Beer</a>
+        <a href="#community">Community</a>
+        <a href="#contact">Contact</a>
+      </nav>
+
+      <div class="navCtas">
+        <button class="btn" type="button" id="industryBtn">Industry</button>
+        <button class="btn btnPrimary" type="button" id="joinBtn">
+          <span class="shellDot" aria-hidden="true"></span>
+          Join the list
+        </button>
       </div>
-
-      <h2>Are you 21 or older?</h2>
-      <p>
-        Buckshot Brewing is a concept stage brand. No alcoholic beverages are available for sale at this time.
-      </p>
-
-      <div class="gateActions">
-        <button class="btn primary" id="yesBtn" type="button">Yes, enter</button>
-        <a class="btn" href="https://www.responsibility.org/" target="_blank" rel="noreferrer">No, leave</a>
-      </div>
-
-      <div class="divider"></div>
-      <p class="fineprint">
-        By entering, you confirm you are of legal drinking age in your location.
-      </p>
     </div>
-  </div>
+  </header>
 
-  <!-- Logo pop -->
-  <div id="logoSplash" class="logoSplash" aria-hidden="true">
-    <img alt="Buckshot logo splash" src="BB%20logo_FULL%20blk.png" />
-  </div>
+  <main class="page" id="top">
+    <!-- HERO -->
+    <section class="section" aria-label="Hero">
+      <div class="container">
+        <div class="gridTwo">
+          <div class="heroCard card reveal">
+            <img class="heroLogo" src="assets/buckshot-logo-white.png" alt="Buckshot Brewing" />
+            <div class="kicker"><span class="shellDot" aria-hidden="true"></span> Coming soon</div>
+            <h1 class="h1">American beer built for early mornings and long stories.</h1>
+            <p class="lead">
+              Buckshot Brewing is getting ready to launch. Join the list and you will be first to hear where it lands.
+            </p>
 
-  <!-- Top navigation -->
-  <div class="topbar">
-    <div class="wrap">
-      <div class="nav">
-        <a class="brandmark" href="#home" data-route>
-          <img alt="Buckshot logo" src="BB%20logo_FULL%20blk.png" />
-          <div class="word">
-            <strong>Buckshot Brewing</strong>
-            <span>Coming soon, brand in development</span>
+            <div class="ctaBand">
+              <button class="btn btnPrimary" type="button" id="joinBtn2">
+                <span class="shellDot" aria-hidden="true"></span>
+                Join the list
+              </button>
+              <a class="btn" href="#beer">See what we are building</a>
+            </div>
+
+            <div class="heroAccentLine"></div>
+
+            <div class="pillRow" aria-label="Highlights">
+              <div class="pill">Clean American Lager</div>
+              <div class="pill">Seasonal drops</div>
+              <div class="pill">Built in Minnesota</div>
+              <div class="pill">Made for the outdoors</div>
+            </div>
+
+            <p class="micro">
+              Industry and retail inquiries are welcome, they just live quietly in the footer.
+            </p>
           </div>
-        </a>
 
-        <nav class="navlinks" aria-label="Primary navigation">
-          <a href="#home" data-route>Home</a>
-          <a href="#about" data-route>About</a>
-          <a href="#concepts" data-route>Concept lineup</a>
-          <a href="#roadmap" data-route>Roadmap</a>
-          <a href="#contact" data-route>Contact</a>
-        </nav>
-
-        <div class="navcta">
-          <button class="btn" id="openContact" type="button">Contact</button>
-          <button class="btn primary" id="joinListTop" type="button">Join founders list</button>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- HOME PAGE -->
-  <main id="home" class="page active" aria-label="Home page">
-    <section class="hero">
-      <div class="wrap">
-        <div class="heroGrid">
-          <div class="heroCard">
-            <div class="heroInner">
-              <div class="kicker"><span class="dot"></span>Outdoors forward. Investor ready. Built correctly.</div>
-              <h1>Built for the outdoors.<br/>Currently in development.</h1>
-              <p class="subhead">
-                Buckshot Brewing is developing a premium, outdoors first beer brand. We are currently in early stage brand and packaging development. No alcoholic beverages are available for sale at this time.
-              </p>
-
-              <div class="heroActions">
-                <button class="btn primary" id="joinListHero" type="button">Join founders list</button>
-                <a class="btn" href="#about" data-route>View the plan</a>
-                <a class="btn" href="#concepts" data-route>Planned lineup concepts</a>
-              </div>
-
-              <div class="legalNotice">
-                Important: Buckshot Brewing is not currently licensed to manufacture, distribute, or sell alcoholic beverages. All product names, packaging designs, and brand elements are conceptual and subject to regulatory approval.
-              </div>
-
-              <div class="miniLogos">
-                <img alt="Buckshot logo" src="BB%20logo_FULL%20blk.png" />
-                <span>Concept stage brand. Compliance first. Building the right way.</span>
+          <div class="visual reveal" aria-hidden="true">
+            <div class="visualOverlay"></div>
+            <div class="visualStamp">
+              <div class="visualStampTitle">A brand that feels real.</div>
+              <div class="visualStampText">
+                Less hype. More tradition. A modern look with a classic backbone.
               </div>
             </div>
           </div>
-
-          <aside class="sideCard" aria-label="Highlights">
-            <div class="sideInner">
-              <div class="stack">
-                <div>
-                  <div class="kicker"><span class="dot"></span>Status snapshot</div>
-                  <div class="spacer"></div>
-                  <div class="metricGrid">
-                    <div class="metric">
-                      <b>Coming soon</b>
-                      <span>Brand and packaging development in progress. Nothing for sale.</span>
-                    </div>
-                    <div class="metric">
-                      <b>Compliance first</b>
-                      <span>No claims about availability, ABV, distribution, or launch dates until approved.</span>
-                    </div>
-                    <div class="metric">
-                      <b>Investor polish</b>
-                      <span>Clean narrative, clear positioning, and a tight digital presence.</span>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="divider"></div>
-
-                <div class="stack">
-                  <div class="kicker"><span class="dot"></span>Quick links</div>
-                  <div class="row" style="flex-wrap:wrap;">
-                    <a class="btn" href="#roadmap" data-route>Roadmap</a>
-                    <a class="btn" href="#contact" data-route>Media and partners</a>
-                    <a class="btn" href="#concepts" data-route>Concept lineup</a>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </aside>
         </div>
       </div>
     </section>
 
-    <section class="section">
-      <div class="wrap">
-        <div class="sectionHead">
-          <div>
-            <h2>High level story</h2>
-            <p>Three ideas, said clearly. This keeps you investor credible and regulator safe.</p>
-          </div>
-        </div>
+    <!-- STORY -->
+    <section class="section" id="story" aria-label="Story">
+      <div class="container">
+        <div class="gridTwo">
+          <div class="reveal">
+            <div class="kicker"><span class="shellDot" aria-hidden="true"></span> The idea</div>
+            <h2 class="sectionTitle">This isn’t hype beer.</h2>
+            <p class="lead">
+              Buckshot is for the people who like their beer cold, their stories long, and their mornings early.
+              It’s built to show up anywhere, campfires, tailgates, cabins, and the back patio after a full day outside.
+            </p>
 
-        <div class="cards3">
-          <div class="card">
-            <h3>Premium outdoors identity</h3>
-            <p>A refined hunting and outdoors aesthetic that reads premium, not novelty. Built to scale across formats and channels later.</p>
-            <div class="pill"><i></i>Brand architecture</div>
-          </div>
-          <div class="card">
-            <h3>Compliance from day one</h3>
-            <p>No availability language. No ABV. No retailer mentions. No preorder. All concepts remain subject to approval.</p>
-            <div class="pill"><i></i>Regulatory safe</div>
-          </div>
-          <div class="card">
-            <h3>Efficient go to market</h3>
-            <p>Build interest and credibility first. Line up production and approvals next. Execute when the paperwork is clean.</p>
-            <div class="pill"><i></i>Investor ready</div>
-          </div>
-        </div>
+            <ul class="splitList">
+              <li><span class="tick" aria-hidden="true"></span> Crisp and easy to drink, without trying to be clever.</li>
+              <li><span class="tick" aria-hidden="true"></span> A look that stands out, but still feels classic.</li>
+              <li><span class="tick" aria-hidden="true"></span> A brand that is proud of where it comes from.</li>
+            </ul>
 
-        <div class="parallaxBand" style="margin-top:18px;">
-          <div class="parallaxInner">
-            <div class="stack">
-              <h2 style="margin:0; font-size:20px; letter-spacing:-.2px;">The Buckshot system</h2>
-              <p style="margin:0; color:rgba(242,245,243,.72); line-height:1.7; font-size:14px;">
-                A clean website that sets expectations, builds trust, and keeps you out of trouble. This is a coming soon brand presence, not a product sales site.
-              </p>
-              <div class="row" style="flex-wrap:wrap; margin-top:10px;">
-                <a class="btn" href="#about" data-route>Read the positioning</a>
-                <a class="btn primary" href="#contact" data-route>Talk partnership</a>
-              </div>
+            <div class="ctaBand">
+              <button class="btn btnPrimary" type="button" id="joinBtn3">
+                <span class="shellDot" aria-hidden="true"></span>
+                Get launch updates
+              </button>
+              <a class="btn" href="#contact">Contact</a>
             </div>
+          </div>
 
-            <div class="ghostGraphic" id="ghostGraphic">
-              <div class="ghostTop">
-                <div class="ghostLogo">
-                  <img alt="Buckshot logo" src="BB%20logo_FULL%20blk.png" />
-                  <span>Scroll graphics</span>
-                </div>
-                <span style="color:rgba(242,245,243,.60);">Concept preview</span>
-              </div>
+          <div class="card reveal" style="padding:22px;">
+            <div class="kicker"><span class="shellDot" aria-hidden="true"></span> What to expect</div>
+            <h3 style="margin:12px 0 8px; font-size:22px;">Simple. Clean. Consistent.</h3>
+            <p style="margin:0; color:rgba(242,243,245,.76); line-height:1.6;">
+              We are starting with a flagship lager and building from there.
+              Seasonal releases will follow, with the same standard: drinkability first.
+            </p>
 
-              <div class="ghostLines">
-                <div class="line"></div>
-                <div class="line" style="width:82%;"></div>
-                <div class="line" style="width:92%;"></div>
-                <div class="line" style="width:70%;"></div>
-                <div class="line" style="width:86%;"></div>
-              </div>
+            <div class="heroAccentLine" style="margin:16px 0 14px;"></div>
 
-              <div class="pill" style="margin-top:16px;"><i></i>Looks expensive, stays simple</div>
+            <div class="pillRow">
+              <div class="pill">Launch list only</div>
+              <div class="pill">Limited early drops</div>
+              <div class="pill">Retail first</div>
+              <div class="pill">Draft where it fits</div>
             </div>
           </div>
         </div>
-
       </div>
     </section>
+
+    <!-- BEER -->
+    <section class="section" id="beer" aria-label="Beer">
+      <div class="container">
+        <div class="gridTwo">
+          <div class="reveal">
+            <div class="kicker"><span class="shellDot" aria-hidden="true"></span> The beer</div>
+            <h2 class="sectionTitle">A lager that earns a second one.</h2>
+            <p class="lead">
+              The flagship is a clean American Lager. Crisp. Refreshing. Built for repeat pours.
+            </p>
+
+            <ul class="splitList">
+              <li><span class="tick" aria-hidden="true"></span> Balanced and bright, not sweet.</li>
+              <li><span class="tick" aria-hidden="true"></span> Clean finish, no fatigue.</li>
+              <li><span class="tick" aria-hidden="true"></span> Works in a can, works on draft.</li>
+            </ul>
+
+            <p class="micro">
+              Seasonal releases are coming too, including OktoberPheas Amber, Stout, and a Hazy IPA drop.
+            </p>
+          </div>
+
+          <div class="visual reveal" aria-hidden="true">
+            <div class="visualOverlay"></div>
+            <div class="visualStamp">
+              <div class="visualStampTitle">Cans that feel premium.</div>
+              <div class="visualStampText">
+                Modern, bold, and built to pop on shelf without looking gimmicky.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- COMMUNITY -->
+    <section class="section" id="community" aria-label="Community">
+      <div class="container">
+        <div class="gridTwo">
+          <div class="card reveal" style="padding:22px;">
+            <div class="kicker"><span class="shellDot" aria-hidden="true"></span> Community</div>
+            <h3 style="margin:12px 0 8px; font-size:22px;">Built for people, not algorithms.</h3>
+            <p style="margin:0; color:rgba(242,243,245,.76); line-height:1.6;">
+              Buckshot is rooted in family, friends, and time outside. We will show up in the places that matter.
+            </p>
+            <div class="heroAccentLine" style="margin:16px 0 14px;"></div>
+            <p style="margin:0; color:rgba(242,243,245,.72); line-height:1.6;">
+              We also plan to support Type 1 Diabetes research as we grow.
+              It will stay real and it will stay consistent.
+            </p>
+          </div>
+
+          <div class="reveal">
+            <h2 class="sectionTitle">Want to be first?</h2>
+            <p class="lead">
+              Join the list. We will email you when Buckshot is on shelves and on draft.
+              No spam. No noise.
+            </p>
+            <div class="ctaBand">
+              <button class="btn btnPrimary" type="button" id="joinBtn4">
+                <span class="shellDot" aria-hidden="true"></span>
+                Join the list
+              </button>
+              <a class="btn" href="#contact">Industry contact</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section class="section" id="contact" aria-label="Contact">
+      <div class="container">
+        <div class="gridTwo">
+          <div class="reveal">
+            <div class="kicker"><span class="shellDot" aria-hidden="true"></span> Contact</div>
+            <h2 class="sectionTitle">Questions. Partners. Placements.</h2>
+            <p class="lead">
+              For distributor and retail inquiries, email us here:
+            </p>
+
+            <div class="ctaBand">
+              <a class="btn btnPrimary" href="mailto:sales@buckshotbrewing.com?subject=Buckshot%20Brewing%20Inquiry">
+                <span class="shellDot" aria-hidden="true"></span>
+                sales@buckshotbrewing.com
+              </a>
+              <button class="btn" type="button" id="joinBtn5">Join the list</button>
+            </div>
+
+            <p class="micro">
+              Investor interest is appreciated, but this page is built for the people who will drink it first.
+            </p>
+          </div>
+
+          <div class="card reveal" style="padding:22px;">
+            <div class="kicker"><span class="shellDot" aria-hidden="true"></span> Industry</div>
+            <h3 style="margin:12px 0 8px; font-size:22px;">Distributor and retail buyers</h3>
+            <p style="margin:0; color:rgba(242,243,245,.76); line-height:1.6;">
+              Send a note with your market, your placement goals, and the best number to reach you.
+            </p>
+            <div class="heroAccentLine" style="margin:16px 0 14px;"></div>
+            <p style="margin:0; color:rgba(242,243,245,.72); line-height:1.6;">
+              Email: <a href="mailto:sales@buckshotbrewing.com?subject=Buckshot%20Brewing%20Placement" style="border-bottom:1px solid rgba(199,176,106,.55);">sales@buckshotbrewing.com</a>
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer" aria-label="Footer">
+      <div class="footerInner">
+        <div>© <span id="year"></span> Buckshot Brewing</div>
+        <div class="footerLinks">
+          <a href="#top">Top</a>
+          <a href="mailto:sales@buckshotbrewing.com?subject=Buckshot%20Brewing%20Distributor%20Inquiry">Distributor</a>
+          <a href="mailto:sales@buckshotbrewing.com?subject=Buckshot%20Brewing%20Retail%20Inquiry">Retail</a>
+        </div>
+      </div>
+    </footer>
   </main>
 
-  <!-- ABOUT PAGE -->
-  <section id="about" class="page" aria-label="About page">
-    <div class="wrap">
-      <div class="pageCard">
-        <h2>About Buckshot Brewing</h2>
-        <p>
-          Buckshot Brewing is an outdoors forward beer brand currently in development. This site exists to present the brand concept and establish a professional presence while we work through the correct regulatory steps.
-        </p>
-
-        <div class="divider"></div>
-
-        <p><strong>Current status</strong></p>
-        <ul>
-          <li>No alcohol is available for sale.</li>
-          <li>No manufacturer, wholesaler, or retailer operations are active.</li>
-          <li>All names, visuals, and packaging concepts are subject to change and regulatory approval.</li>
-        </ul>
-
-        <div class="divider"></div>
-
-        <p class="fineprint">
-          We will not promote availability, ABV, distribution, or launch timelines until all required approvals and licensing are in place.
-        </p>
-      </div>
-    </div>
-  </section>
-
-  <!-- CONCEPTS PAGE -->
-  <section id="concepts" class="page" aria-label="Concept lineup page">
-    <div class="wrap">
-      <div class="pageCard">
-        <h2>Concept lineup</h2>
-        <p>
-          These are early concept directions for brand planning only. Nothing listed here is approved or available for sale.
-        </p>
-
-        <div class="divider"></div>
-
-        <div class="cards3" style="grid-template-columns: repeat(3, 1fr);">
-          <div class="card">
-            <h3>Core lager concept</h3>
-            <p>Clean, approachable, outdoors forward positioning. Final recipe, ABV, and labels will be determined later.</p>
-            <div class="pill"><i></i>Concept only</div>
-          </div>
-          <div class="card">
-            <h3>Seasonal concept</h3>
-            <p>Rotating seasonal story arcs built around outdoor seasons. No release dates, no availability language.</p>
-            <div class="pill"><i></i>Concept only</div>
-          </div>
-          <div class="card">
-            <h3>Limited concept</h3>
-            <p>Special projects that make sense only after production and approvals are in place.</p>
-            <div class="pill"><i></i>Concept only</div>
-          </div>
-        </div>
-
-        <div class="divider"></div>
-
-        <p class="fineprint">
-          We intentionally omit ABV, health claims, distribution claims, and any purchase language.
-        </p>
-      </div>
-    </div>
-  </section>
-
-  <!-- ROADMAP PAGE -->
-  <section id="roadmap" class="page" aria-label="Roadmap page">
-    <div class="wrap">
-      <div class="pageCard">
-        <h2>Roadmap</h2>
-        <p>
-          A clean, compliance first path from concept to launch. We keep this high level until approvals are in place.
-        </p>
-
-        <div class="divider"></div>
-
-        <div class="cards3" style="grid-template-columns: repeat(3, 1fr);">
-          <div class="card">
-            <h3>Phase 1</h3>
-            <p>Brand identity, packaging direction, and partner discovery.</p>
-            <div class="pill"><i></i>In progress</div>
-          </div>
-          <div class="card">
-            <h3>Phase 2</h3>
-            <p>Licensing strategy, compliance plan, production planning.</p>
-            <div class="pill"><i></i>Next</div>
-          </div>
-          <div class="card">
-            <h3>Phase 3</h3>
-            <p>Launch only after approvals. Then and only then, we talk availability.</p>
-            <div class="pill"><i></i>Later</div>
-          </div>
-        </div>
-
-        <div class="divider"></div>
-
-        <p class="fineprint">
-          This site will remain “coming soon” until Buckshot Brewing is properly licensed and any required label approvals are in place.
-        </p>
-      </div>
-    </div>
-  </section>
-
-  <!-- CONTACT PAGE -->
-  <section id="contact" class="page" aria-label="Contact page">
-    <div class="wrap">
-      <div class="pageCard">
-        <h2>Contact</h2>
-        <p>
-          Interested in partnership, media, or investor discussion? Send a note. This is not a sales channel.
-        </p>
-
-        <div class="divider"></div>
-
-        <div class="card" style="min-height:auto;">
-          <h3>Email</h3>
-          <p>
-            Add your email here once you are ready:
-            <br/>
-            <span style="color:rgba(242,245,243,.60);">example: hello@buckshotbrewing.com</span>
+  <!-- Email capture modal -->
+  <div class="modalBackdrop" id="modalBackdrop" role="dialog" aria-modal="true" aria-label="Join the list">
+    <div class="modal" role="document">
+      <div class="modalHeader">
+        <div>
+          <p class="modalTitle">Join the Buckshot launch list</p>
+          <p style="margin:6px 0 0; color:rgba(242,243,245,.70); font-size:14px; line-height:1.45;">
+            Get a note when we launch and when we hit shelves.
           </p>
-          <div class="pill"><i></i>Replace with real email</div>
         </div>
+        <button class="modalClose" type="button" id="modalCloseBtn" aria-label="Close">Close</button>
+      </div>
 
-        <div class="divider"></div>
+      <div class="modalBody">
+        <!--
+          IMPORTANT:
+          This form is set up as a front end only capture.
+          To actually collect emails, connect it to a provider.
 
-        <p class="fineprint">
-          Buckshot Brewing is currently in development. No alcoholic beverages are available for sale. All brand elements are conceptual and subject to regulatory approval.
-        </p>
+          Easiest options:
+          1) Mailchimp embedded form (replace action URL)
+          2) ConvertKit form endpoint
+          3) A simple serverless endpoint on Vercel
+
+          For now it stores locally in the browser and shows a success toast.
+        -->
+        <form id="joinForm">
+          <div class="formRow">
+            <input class="input" type="text" name="firstName" placeholder="First name (optional)" autocomplete="given-name" />
+            <input class="input" type="email" name="email" placeholder="Email address" autocomplete="email" required />
+          </div>
+
+          <div class="ctaBand" style="margin-top:14px;">
+            <button class="btn btnPrimary" type="submit">
+              <span class="shellDot" aria-hidden="true"></span>
+              Join
+            </button>
+            <button class="btn" type="button" id="modalCloseBtn2">Not now</button>
+          </div>
+
+          <div class="finePrint">
+            By joining, you agree to receive launch updates from Buckshot Brewing. You can unsubscribe anytime.
+          </div>
+        </form>
       </div>
     </div>
-  </section>
+  </div>
 
-  <footer>
-    <div class="wrap">
-      <div class="footGrid">
-        <div class="fineprint">
-          <strong>Buckshot Brewing</strong><br/>
-          Buckshot Brewing is currently in development. No alcoholic beverages are available for sale. We are not currently licensed to manufacture, distribute, or sell alcohol. All product names, packaging designs, and brand elements are conceptual and subject to regulatory approval.
-        </div>
-
-        <div class="footLinks">
-          <a href="#about" data-route>About</a>
-          <a href="#concepts" data-route>Concepts</a>
-          <a href="#roadmap" data-route>Roadmap</a>
-          <a href="#contact" data-route>Contact</a>
-        </div>
-      </div>
-    </div>
-  </footer>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
   <script>
-    const STORAGE_KEY = "buckshot_age_verified_v2";
+    // year
+    document.getElementById("year").textContent = new Date().getFullYear();
 
-    const gate = document.getElementById("ageGate");
-    const yesBtn = document.getElementById("yesBtn");
-    const logoSplash = document.getElementById("logoSplash");
+    // reveal on scroll
+    const revealEls = Array.from(document.querySelectorAll(".reveal"));
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((e) => {
+        if (e.isIntersecting) e.target.classList.add("isVisible");
+      });
+    }, { threshold: 0.18 });
 
-    const joinListTop = document.getElementById("joinListTop");
-    const joinListHero = document.getElementById("joinListHero");
-    const openContact = document.getElementById("openContact");
+    revealEls.forEach(el => io.observe(el));
 
-    const ghostGraphic = document.getElementById("ghostGraphic");
+    // modal controls
+    const modalBackdrop = document.getElementById("modalBackdrop");
+    const joinButtons = ["joinBtn","joinBtn2","joinBtn3","joinBtn4","joinBtn5"].map(id => document.getElementById(id)).filter(Boolean);
+    const closeButtons = ["modalCloseBtn","modalCloseBtn2"].map(id => document.getElementById(id)).filter(Boolean);
 
-    function isVerified(){
-      try { return localStorage.getItem(STORAGE_KEY) === "true"; }
-      catch(e){ return false; }
+    function openModal(){
+      modalBackdrop.classList.add("open");
+      const emailInput = modalBackdrop.querySelector('input[type="email"]');
+      setTimeout(() => emailInput && emailInput.focus(), 60);
+    }
+    function closeModal(){
+      modalBackdrop.classList.remove("open");
     }
 
-    function markVerified(){
-      try { localStorage.setItem(STORAGE_KEY, "true"); } catch(e){}
-    }
-
-    function showLogoPop(){
-      logoSplash.classList.add("show");
-      window.setTimeout(() => logoSplash.classList.remove("show"), 1150);
-    }
-
-    function enterSite(){
-      gate.style.display = "none";
-      showLogoPop();
-    }
-
-    if (isVerified()){
-      gate.style.display = "none";
-    }
-
-    yesBtn.addEventListener("click", () => {
-      markVerified();
-      enterSite();
+    joinButtons.forEach(btn => btn.addEventListener("click", openModal));
+    closeButtons.forEach(btn => btn.addEventListener("click", closeModal));
+    modalBackdrop.addEventListener("click", (e) => {
+      if (e.target === modalBackdrop) closeModal();
+    });
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape" && modalBackdrop.classList.contains("open")) closeModal();
     });
 
-    // simple page router using hash
-    const pages = Array.from(document.querySelectorAll(".page"));
-    const routes = new Set(pages.map(p => "#" + p.id));
-
-    function setActive(hash){
-      const target = routes.has(hash) ? hash.substring(1) : "home";
-      pages.forEach(p => p.classList.toggle("active", p.id === target));
-      window.scrollTo({ top: 0, behavior: "smooth" });
+    // industry button scrolls to contact and highlights email
+    const industryBtn = document.getElementById("industryBtn");
+    if (industryBtn){
+      industryBtn.addEventListener("click", () => {
+        const el = document.getElementById("contact");
+        if (el) el.scrollIntoView({ behavior:"smooth", block:"start" });
+      });
     }
 
-    document.addEventListener("click", (e) => {
-      const a = e.target.closest("[data-route]");
-      if (!a) return;
-      const href = a.getAttribute("href");
-      if (!href || !href.startsWith("#")) return;
+    // lightweight email capture for now (localStorage)
+    const joinForm = document.getElementById("joinForm");
+    const toast = document.getElementById("toast");
+
+    function showToast(msg){
+      toast.textContent = msg;
+      toast.classList.add("show");
+      setTimeout(() => toast.classList.remove("show"), 2600);
+    }
+
+    joinForm.addEventListener("submit", (e) => {
       e.preventDefault();
-      history.pushState({}, "", href);
-      setActive(href);
+      const fd = new FormData(joinForm);
+      const email = String(fd.get("email") || "").trim().toLowerCase();
+      const firstName = String(fd.get("firstName") || "").trim();
+
+      if (!email) {
+        showToast("Please enter an email.");
+        return;
+      }
+
+      const key = "buckshotLaunchList";
+      const existing = JSON.parse(localStorage.getItem(key) || "[]");
+      const already = existing.some(x => x.email === email);
+
+      if (!already){
+        existing.push({ email, firstName, ts: Date.now() });
+        localStorage.setItem(key, JSON.stringify(existing));
+      }
+
+      joinForm.reset();
+      closeModal();
+      showToast(already ? "You are already on the list." : "You are on the list. Welcome.");
     });
-
-    window.addEventListener("popstate", () => setActive(location.hash || "#home"));
-    setActive(location.hash || "#home");
-
-    // CTA buttons
-    function openFoundersList(){
-      // Replace this later with a real form link (Typeform, Mailchimp, etc)
-      alert("Founders list coming soon. Add a signup form when ready.");
-    }
-    joinListTop.addEventListener("click", openFoundersList);
-    joinListHero.addEventListener("click", openFoundersList);
-    openContact.addEventListener("click", () => {
-      history.pushState({}, "", "#contact");
-      setActive("#contact");
-    });
-
-    // Scroll based graphic movement (SoFi style subtle motion)
-    function onScroll(){
-      if (!ghostGraphic) return;
-      const rect = ghostGraphic.getBoundingClientRect();
-      const vh = window.innerHeight || 1;
-      const center = rect.top + rect.height / 2;
-      const t = (center - vh/2) / (vh/2);
-      const y = Math.max(-18, Math.min(18, t * 18));
-      ghostGraphic.style.setProperty("--parY", y + "px");
-    }
-    window.addEventListener("scroll", onScroll, { passive: true });
-    onScroll();
   </script>
 </body>
 </html>
