@@ -20,11 +20,11 @@
       --ink:#101214;
       --muted:rgba(16,18,20,.70);
       --line:rgba(16,18,20,.12);
-      --soft:rgba(16,18,20,.06);
 
       --max:1180px;
-      --shadow: 0 18px 70px rgba(16,18,20,.14);
+      --shadow: 0 18px 70px rgba(16,18,20,.12);
       --shadow2: 0 10px 34px rgba(16,18,20,.10);
+      --radius: 18px;
     }
 
     *{ box-sizing:border-box; }
@@ -39,7 +39,6 @@
       font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Apple Color Emoji", "Segoe UI Emoji";
       overflow-x:hidden;
     }
-
     a{ color:inherit; text-decoration:none; }
     button, input, select, textarea{ font:inherit; }
 
@@ -50,7 +49,7 @@
       position:sticky;
       top:0;
       z-index:60;
-      background: rgba(251,247,238,.82);
+      background: rgba(251,247,238,.86);
       backdrop-filter: blur(10px) saturate(140%);
       border-bottom:1px solid rgba(16,18,20,.10);
     }
@@ -61,7 +60,6 @@
       gap:14px;
       padding:14px 0;
     }
-
     .brand{
       display:flex;
       align-items:center;
@@ -114,7 +112,7 @@
       padding:10px 14px;
       border-radius:999px;
       cursor:pointer;
-      font-weight:750;
+      font-weight:780;
       display:inline-flex;
       align-items:center;
       gap:10px;
@@ -131,7 +129,7 @@
       background: linear-gradient(180deg, var(--forest), var(--forest2));
       border-color: rgba(12,47,35,.25);
       color:#fff;
-      box-shadow: 0 20px 55px rgba(12,47,35,.22);
+      box-shadow: 0 20px 55px rgba(12,47,35,.18);
     }
     .btnDark:hover{
       border-color: rgba(12,47,35,.32);
@@ -148,59 +146,59 @@
       background: linear-gradient(180deg, rgba(199,176,106,.44), rgba(199,176,106,.22));
     }
 
-    /* Hero */
+    /* Hero (NO black box) */
     .hero{
       position:relative;
-      min-height: calc(100vh - 70px);
+      padding: 26px 0 18px;
+    }
+    .heroFrame{
+      position:relative;
+      width:100%;
+      min-height: 74vh;
+      border-radius: 26px;
+      overflow:hidden;
+      box-shadow: var(--shadow);
+      border: 1px solid rgba(16,18,20,.10);
+      background: #111; /* only seen while image loads */
+    }
+    .heroBg{
+      position:absolute;
+      inset:0;
+      /* Use two possible filenames to avoid breaking if you used Feild vs Field */
+      background-image:
+        url("assets/Hunting-Field-Dog-Lager.png"),
+        url("assets/Hunting-Feild-Dog-Lager.png");
+      background-size: cover;
+      background-position: center;
+      transform: scale(1.02);
+    }
+    .heroShade{
+      position:absolute;
+      inset:0;
+      background:
+        radial-gradient(900px 520px at 14% 18%, rgba(199,176,106,.22), transparent 58%),
+        radial-gradient(900px 520px at 68% 30%, rgba(12,47,35,.26), transparent 62%),
+        linear-gradient(180deg, rgba(0,0,0,.10), rgba(12,47,35,.70));
+    }
+    .heroInner{
+      position:relative;
+      z-index:2;
+      min-height: 74vh;
       display:flex;
       align-items:flex-end;
-      padding: 22px 0 26px;
+      padding: 34px 28px;
     }
-   /* HERO FRAME */
-.heroFrame{
-  position:relative;
-  width:100%;
-  border-radius: 26px;
-  overflow:hidden;
-  border:1px solid rgba(16,18,20,.10);
-  box-shadow: var(--shadow);
-  background: transparent; /* removed black box */
-  min-height: 680px;
-}
-
-/* HERO OVERLAY — forest glass instead of black slab */
-.heroShade{
-  position:absolute;
-  inset:0;
-  background:
-    radial-gradient(900px 520px at 18% 18%, rgba(199,176,106,.20), transparent 58%),
-    radial-gradient(900px 520px at 70% 35%, rgba(12,47,35,.35), transparent 62%),
-    linear-gradient(180deg, rgba(12,47,35,.25), rgba(12,47,35,.72));
-}
-
-/* HERO CONTENT — subtle glass panel */
-.heroContent{
-  position:relative;
-  z-index:2;
-  padding: 34px 28px;
-  max-width: 860px;
-  color:#fff;
-
-  background: rgba(12,47,35,.22);
-  border: 1px solid rgba(255,255,255,.10);
-  border-radius: 22px;
-  backdrop-filter: blur(10px) saturate(140%);
-  box-shadow: 0 18px 70px rgba(0,0,0,.22);
-}
-
-/* Slightly stronger logo depth */
-.heroLogo{
-  width: min(340px, 84%);
-  height:auto;
-  display:block;
-  margin: 0 0 18px;
-  filter: drop-shadow(0 18px 60px rgba(0,0,0,.45));
-}
+    .heroContent{
+      max-width: 860px;
+      color:#fff;
+    }
+    .heroLogo{
+      width: min(320px, 86%);
+      height:auto;
+      display:block;
+      margin: 0 0 16px;
+      filter: drop-shadow(0 18px 60px rgba(0,0,0,.45));
+    }
     .kicker{
       display:inline-flex;
       align-items:center;
@@ -208,7 +206,7 @@
       font-size:12px;
       letter-spacing:.14em;
       text-transform:uppercase;
-      color: rgba(255,255,255,.82);
+      color: rgba(255,255,255,.85);
       margin-bottom: 10px;
     }
     .kicker .dot{
@@ -216,45 +214,41 @@
       background: var(--gold);
       box-shadow:0 0 0 6px rgba(199,176,106,.18);
     }
-
     h1{
       margin: 0 0 12px;
-      font-size: clamp(34px, 4.8vw, 58px);
+      font-size: clamp(34px, 4.6vw, 58px);
       line-height: 1.05;
       letter-spacing: -.02em;
     }
     .heroLead{
       margin:0;
-      max-width: 62ch;
-      color: rgba(255,255,255,.86);
+      max-width: 66ch;
+      color: rgba(255,255,255,.88);
       font-size: 18px;
       line-height: 1.65;
     }
-
     .heroActions{
       display:flex;
       gap:12px;
       flex-wrap:wrap;
       margin-top: 18px;
     }
-
     .heroNote{
       margin-top: 12px;
       font-size: 13px;
       line-height: 1.55;
-      color: rgba(255,255,255,.72);
-      max-width: 72ch;
+      color: rgba(255,255,255,.74);
+      max-width: 74ch;
     }
     .heroNote a{
       color:#fff;
       border-bottom: 1px solid rgba(199,176,106,.60);
-      font-weight: 800;
+      font-weight: 850;
     }
 
-    /* Section base */
-    .section{
-      padding: 64px 0;
-    }
+    /* Sections */
+    .section{ padding: 60px 0; }
+    .divider{ height:1px; background: rgba(16,18,20,.10); width:100%; }
 
     .sectionHead{
       display:flex;
@@ -271,28 +265,8 @@
     .sectionHead p{
       margin:0;
       color: rgba(16,18,20,.70);
-      max-width: 72ch;
+      max-width: 78ch;
       line-height: 1.6;
-    }
-
-    /* Minimal dividers */
-    .divider{
-      height:1px;
-      background: rgba(16,18,20,.10);
-      width:100%;
-    }
-
-    /* Beer lineup */
-    .beerGrid{
-      display:grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 36px;
-      align-items:center;
-      padding: 22px 0 0;
-    }
-
-    .beerText{
-      padding-right: 10px;
     }
 
     .pill{
@@ -302,19 +276,26 @@
       padding:8px 12px;
       border-radius:999px;
       border:1px solid rgba(16,18,20,.12);
-      background: rgba(255,255,255,.70);
+      background: rgba(255,255,255,.64);
       color: rgba(16,18,20,.78);
       font-size: 12px;
       letter-spacing:.12em;
       text-transform: uppercase;
-      box-shadow: 0 10px 26px rgba(16,18,20,.08);
     }
     .pill .dot{
       width:9px; height:9px; border-radius:999px;
       background: var(--gold);
-      box-shadow:0 0 0 6px rgba(199,176,106,.18);
+      box-shadow:0 0 0 6px rgba(199,176,106,.16);
     }
 
+    /* Beer lineup (NO can boxes) */
+    .beerGrid{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 42px;
+      align-items:center;
+      padding-top: 26px;
+    }
     .beerText h3{
       margin: 14px 0 10px;
       font-size: 34px;
@@ -325,72 +306,74 @@
       color: rgba(16,18,20,.72);
       line-height: 1.7;
       font-size: 16px;
-      max-width: 60ch;
+      max-width: 66ch;
     }
 
-    .beerMedia{
+    .canWrap{
       display:flex;
       justify-content:center;
       align-items:center;
-      gap:18px;
+    }
+    .canImg{
+      width: min(360px, 92%);
+      height:auto;
+      display:block;
+      filter: drop-shadow(0 30px 70px rgba(16,18,20,.18));
+      transform: translateY(-2px);
     }
 
-  .canFrame{
-  width: min(360px, 92%);
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  position:relative;
-
-  padding: 26px 18px;
-  border-radius: 26px;
-
-  /* soft product spotlight */
-  background:
-    radial-gradient(240px 240px at 50% 18%, rgba(199,176,106,.22), transparent 60%),
-    radial-gradient(360px 320px at 50% 55%, rgba(12,47,35,.10), transparent 68%),
-    linear-gradient(180deg, rgba(255,255,255,.70), rgba(255,255,255,.35));
-  border: 1px solid rgba(16,18,20,.10);
-  box-shadow: 0 18px 70px rgba(16,18,20,.10);
-}
-
-.canFrame img{
-  width: 100%;
-  height:auto;
-  display:block;
-  filter: drop-shadow(0 26px 80px rgba(16,18,20,.22));
-}
-    /* Photo band */
+    /* Image band */
     .photoBand{
-      margin-top: 26px;
+      margin-top: 28px;
       display:grid;
-      grid-template-columns: 1.2fr .8fr;
-      gap: 14px;
+      grid-template-columns: 1.35fr .65fr;
+      gap: 16px;
+      align-items:stretch;
     }
     .photo{
       border-radius: 22px;
       overflow:hidden;
       border:1px solid rgba(16,18,20,.10);
       box-shadow: var(--shadow2);
-      background:#ddd;
-      min-height: 320px;
       position:relative;
-    }
-    .photo.full{
-      min-height: 360px;
+      background:#ddd;
+      min-height: 340px;
     }
     .photo img{
       width:100%;
       height:100%;
       object-fit: cover;
       display:block;
-      transform: scale(1.01);
     }
     .photoShade{
       position:absolute;
       inset:0;
-      background: linear-gradient(180deg, rgba(0,0,0,.08), rgba(0,0,0,.26));
+      background: linear-gradient(180deg, rgba(0,0,0,.06), rgba(0,0,0,.22));
       pointer-events:none;
+    }
+    .callout{
+      border-radius: 22px;
+      border:1px solid rgba(16,18,20,.10);
+      box-shadow: var(--shadow2);
+      background:
+        radial-gradient(520px 360px at 30% 0%, rgba(199,176,106,.22), transparent 60%),
+        radial-gradient(520px 360px at 70% 40%, rgba(12,47,35,.10), transparent 60%),
+        linear-gradient(180deg, rgba(255,255,255,.72), rgba(255,255,255,.48));
+      padding: 18px;
+      display:flex;
+      flex-direction:column;
+      justify-content:flex-end;
+      min-height: 340px;
+    }
+    .callout h4{
+      margin: 10px 0 8px;
+      font-size: 22px;
+      letter-spacing: -.01em;
+    }
+    .callout p{
+      margin:0;
+      color: rgba(16,18,20,.72);
+      line-height: 1.6;
     }
 
     /* Values */
@@ -401,7 +384,7 @@
       padding-top: 22px;
     }
     .value{
-      padding: 8px 0;
+      padding: 10px 0;
       border-top: 1px solid rgba(16,18,20,.10);
     }
     .value h4{
@@ -414,7 +397,7 @@
       color: rgba(16,18,20,.70);
       line-height: 1.65;
       font-size: 14px;
-      max-width: 52ch;
+      max-width: 58ch;
     }
 
     /* Contact */
@@ -425,25 +408,16 @@
       align-items:start;
       padding-top: 22px;
     }
-
     .contactCard{
-      background: rgba(255,255,255,.72);
+      background: rgba(255,255,255,.70);
       border: 1px solid rgba(16,18,20,.10);
       border-radius: 22px;
       box-shadow: var(--shadow2);
       overflow:hidden;
     }
+    .contactInner{ padding: 18px; }
 
-    .contactInner{
-      padding: 18px;
-    }
-
-    .formGrid{
-      display:grid;
-      gap: 10px;
-      margin-top: 12px;
-    }
-
+    .formGrid{ display:grid; gap: 10px; margin-top: 12px; }
     label{
       font-size: 12px;
       letter-spacing: .10em;
@@ -451,7 +425,6 @@
       color: rgba(16,18,20,.68);
       font-weight: 800;
     }
-
     .input, .select, textarea{
       width:100%;
       border-radius: 16px;
@@ -461,15 +434,11 @@
       outline:none;
       color: var(--ink);
     }
-    textarea{
-      min-height: 120px;
-      resize: vertical;
-    }
+    textarea{ min-height: 120px; resize: vertical; }
     .input:focus, .select:focus, textarea:focus{
       border-color: rgba(12,47,35,.34);
       box-shadow: 0 0 0 4px rgba(12,47,35,.10);
     }
-
     .fine{
       color: rgba(16,18,20,.62);
       font-size: 13px;
@@ -534,11 +503,7 @@
       background: linear-gradient(180deg, var(--cream), var(--cream2));
       border-bottom: 1px solid rgba(16,18,20,.10);
     }
-    .modalTitle{
-      margin:0;
-      font-size: 18px;
-      font-weight: 950;
-    }
+    .modalTitle{ margin:0; font-size: 18px; font-weight: 950; }
     .modalSub{
       margin: 6px 0 0;
       color: rgba(16,18,20,.70);
@@ -659,15 +624,13 @@
     /* Responsive */
     @media (max-width: 980px){
       .nav{ display:none; }
-      .heroContent{ padding: 28px 18px; }
-      .heroFrame{ min-height: 640px; }
-      .beerGrid{ grid-template-columns: 1fr; gap: 20px; }
+      .heroInner{ padding: 28px 18px; }
+      .beerGrid{ grid-template-columns: 1fr; gap: 22px; }
       .photoBand{ grid-template-columns: 1fr; }
       .values{ grid-template-columns: 1fr; }
       .contactGrid{ grid-template-columns: 1fr; }
       .beerText h3{ font-size: 30px; }
     }
-
     @media (prefers-reduced-motion: reduce){
       *{ transition:none !important; scroll-behavior:auto !important; }
     }
@@ -737,35 +700,42 @@
   <main id="top">
     <!-- HERO -->
     <section class="hero">
-      <div class="wrap" style="width:100%;">
+      <div class="wrap">
         <div class="heroFrame">
           <div class="heroBg" aria-hidden="true"></div>
           <div class="heroShade" aria-hidden="true"></div>
 
-          <div class="heroContent">
-            <img class="heroLogo" src="assets/buckshot-logo-white.png" alt="Buckshot Brewing logo" />
+          <div class="heroInner">
+            <div class="heroContent">
+              <img class="heroLogo" src="assets/buckshot-logo-white.png" alt="Buckshot Brewing logo" />
 
-            <div class="kicker">
-              <span class="dot" aria-hidden="true"></span>
-              Coming soon
-            </div>
+              <div class="kicker">
+                <span class="dot" aria-hidden="true"></span>
+                Coming soon
+              </div>
 
-            <h1>Premium beer for the outdoors.</h1>
+              <h1>Premium beer for the outdoors.</h1>
 
-            <p class="heroLead">
-              Buckshot Brewing is in development. No alcoholic beverages are available for sale. Join the list and you will be first to hear where it lands.
-            </p>
+              <p class="heroLead">
+                Buckshot Brewing is in development. No alcoholic beverages are available for sale. Join the list and you will be first to hear where it lands.
+              </p>
 
-            <div class="heroActions">
-              <button class="btn btnDark" type="button" id="openJoinHero">
-                <span class="brandDot" aria-hidden="true"></span>
-                Join the list
-              </button>
-              <a class="btn" href="#beer">Explore the beer</a>
-            </div>
+              <div class="heroActions">
+                <button class="btn btnDark" type="button" id="openJoinHero">
+                  <span class="brandDot" aria-hidden="true"></span>
+                  Join the list
+                </button>
+                <a class="btn" href="#beer">Explore the beer</a>
+              </div>
 
-            <div class="heroNote">
-              Retail and distributor inquiries: <a href="mailto:sales@buckshotbrewing.com?subject=Buckshot%20Brewing%20Inquiry">sales@buckshotbrewing.com</a>
+              <div class="heroNote">
+                Retail and distributor inquiries:
+                <a href="mailto:sales@buckshotbrewing.com?subject=Buckshot%20Brewing%20Inquiry">sales@buckshotbrewing.com</a>
+              </div>
+
+              <div class="heroNote" style="color:rgba(255,255,255,.62); font-size:12px; margin-top:10px;">
+                Coming soon brand. Mock-ups only. No product available. We will launch only when permitted.
+              </div>
             </div>
           </div>
         </div>
@@ -777,9 +747,9 @@
       <div class="wrap">
         <div class="sectionHead">
           <div>
-            <h2>Premium outdoors, brewed with purpose.</h2>
+            <h2>Built to belong outside.</h2>
             <p>
-              Buckshot is built to feel at home in the field, at the cabin, or on the tailgate. Clean recipes, consistent quality, and a look that belongs in your fridge.
+              Buckshot is consumer first. Clean recipes, consistent quality, and a look that belongs in your fridge. We’re building the brand before we ever try to look “big.”
             </p>
           </div>
         </div>
@@ -790,19 +760,19 @@
           <div class="value">
             <div class="pill"><span class="dot" aria-hidden="true"></span> Drinkability</div>
             <h4>Crisp and repeatable</h4>
-            <p>A beer you can come back to. No palate fatigue. Built for the second one.</p>
+            <p>Simple, clean, and easy to come back to. Built for the second one.</p>
           </div>
 
           <div class="value">
-            <div class="pill"><span class="dot" aria-hidden="true"></span> Premium presence</div>
-            <h4>Clean Design. Clear Identity</h4>
-            <p>We're built for the outdoors.</p>
+            <div class="pill"><span class="dot" aria-hidden="true"></span> Identity</div>
+            <h4>Clear, not loud</h4>
+            <p>Outdoor-first branding with a premium feel. No gimmicks.</p>
           </div>
 
           <div class="value">
-            <div class="pill"><span class="dot" aria-hidden="true"></span> Community</div>
-            <h4>Community Impact</h4>
-            <p>We plan to support Type 1 Diabetes research as the brand grows. This is somethign very important to us.</p>
+            <div class="pill"><span class="dot" aria-hidden="true"></span> Quiet cause</div>
+            <h4>Type 1 Diabetes support</h4>
+            <p>We plan to support Type 1 Diabetes research as we grow, consistently and quietly.</p>
           </div>
         </div>
       </div>
@@ -815,20 +785,20 @@
           <div>
             <h2>The lineup starts simple.</h2>
             <p>
-              A clean flagship lager and seasonal drops that earn their place. Same standard, every time. *These are just mock-up designs for potential cans*
+              A clean flagship lager and seasonal drops that earn their place. Same standard, every time. These are mock-up can designs only.
             </p>
           </div>
         </div>
 
         <div class="divider"></div>
 
-        <div class="beerGrid" style="padding-top:26px;">
+        <div class="beerGrid">
           <div class="beerText">
             <div class="pill"><span class="dot" aria-hidden="true"></span> Flagship</div>
             <h3>Buckshot Lager</h3>
             <p>
               Clean American lager. Crisp finish. Built for long weekends and shared stories.
-              Plan is to be packaged in 16 oz cans.
+              Planned packaging: 16 oz cans.
             </p>
             <div style="margin-top:16px;">
               <button class="btn btnDark" type="button" id="openJoinBeer1">
@@ -838,26 +808,32 @@
             </div>
           </div>
 
-          <div class="beerMedia">
-            <div class="canFrame">
-              <img src="assets/Buckshot-Lager.png" alt="Buckshot Lager can" />
-            </div>
+          <div class="canWrap">
+            <img
+              class="canImg"
+              src="assets/Buckshot-Lager.png"
+              alt="Buckshot Lager can"
+              loading="lazy"
+            />
           </div>
         </div>
 
         <div class="beerGrid" style="padding-top:54px;">
-          <div class="beerMedia">
-            <div class="canFrame">
-              <img src="assets/Buckshot-OktoberPheas.png" alt="Buckshot OktoberPheas can" />
-            </div>
+          <div class="canWrap">
+            <img
+              class="canImg"
+              src="assets/Buckshot-OktoberPheas.png"
+              alt="Buckshot OktoberPheas can"
+              loading="lazy"
+            />
           </div>
 
           <div class="beerText">
             <div class="pill"><span class="dot" aria-hidden="true"></span> Seasonal</div>
             <h3>OktoberPheas Amber</h3>
             <p>
-              Seasonal amber built for pheasant season. Hunting, Bonfires, football, and cold nights outside.
-              Drinkability first. This is the legacy of Rudy and Rex's 1100.
+              Seasonal amber built for pheasant season. Bonfires, football, and cold nights outside.
+              Drinkability first.
             </p>
             <div style="margin-top:16px;">
               <a class="btn" href="#contact">Retail or distributor inquiry</a>
@@ -865,27 +841,29 @@
           </div>
         </div>
 
-        <!-- Photo band, uses your hero image plus a second optional image -->
         <div class="photoBand">
-          <div class="photo full">
-            <img src="assets/Hunting-Field-Dog-Lager.png" alt="Field scene at sunset" />
+          <div class="photo">
+            <img
+              src="assets/Hunting-Field-Dog-Lager.png"
+              alt="Field scene at sunset"
+              loading="lazy"
+              onerror="this.onerror=null;this.src='assets/Hunting-Feild-Dog-Lager.png';"
+            />
             <div class="photoShade" aria-hidden="true"></div>
           </div>
-          <div class="photo" style="background: linear-gradient(180deg, rgba(12,47,35,.10), rgba(199,176,106,.10));">
-            <div style="padding:18px; height:100%; display:flex; flex-direction:column; justify-content:flex-end;">
-              <div class="pill" style="box-shadow:none; width:max-content;"><span class="dot" aria-hidden="true"></span> Coming soon</div>
-              <div style="margin-top:10px; font-size:22px; font-weight:950; letter-spacing:-.01em;">
-                Get launch updates.
-              </div>
-              <div style="margin-top:8px; color:rgba(16,18,20,.70); line-height:1.6;">
-                New placements, first drops, and eventually where to find Buckshot.
-              </div>
-              <div style="margin-top:14px;">
-                <button class="btn btnDark" type="button" id="openJoinBand">
-                  <span class="brandDot" aria-hidden="true"></span>
-                  Join the list
-                </button>
-              </div>
+
+          <div class="callout">
+            <div class="pill" style="width:max-content;"><span class="dot" aria-hidden="true"></span> Launch list</div>
+            <h4>Be first to know.</h4>
+            <p>We’ll email you at launch and when Buckshot hits shelves.</p>
+            <div style="margin-top:14px;">
+              <button class="btn btnDark" type="button" id="openJoinBand">
+                <span class="brandDot" aria-hidden="true"></span>
+                Join the list
+              </button>
+            </div>
+            <div class="fine" style="margin-top:10px;">
+              Unsubscribe anytime.
             </div>
           </div>
         </div>
@@ -898,9 +876,9 @@
       <div class="wrap">
         <div class="sectionHead">
           <div>
-            <h2>Built for the outdoors.</h2>
+            <h2>Consumer first. Always.</h2>
             <p>
-              Buckshot is consumer first. We want the brand to feel real before it ever feels big.
+              This site is here to build presence, not hype. No product is available for sale. We’re building the brand the right way.
             </p>
           </div>
         </div>
@@ -910,15 +888,15 @@
         <div class="values" style="padding-top:22px;">
           <div class="value">
             <h4>Cabin and tailgate</h4>
-            <p>Simple, premium, and familiar. The kind of beer that belongs wherever people gather.</p>
+            <p>Simple, premium, and familiar. A beer that belongs wherever people gather.</p>
           </div>
           <div class="value">
-            <h4>Retail first</h4>
-            <p>We are building shelf presence and brand recognition before anything else.</p>
+            <h4>Retail focused</h4>
+            <p>We’re building shelf presence and recognition before anything else.</p>
           </div>
           <div class="value">
             <h4>Respect the rules</h4>
-            <p>We are coming soon. No product is available for sale. We will launch only when permitted.</p>
+            <p>Coming soon means coming soon. We launch only when permitted and properly licensed.</p>
           </div>
         </div>
       </div>
@@ -930,9 +908,7 @@
         <div class="sectionHead">
           <div>
             <h2>Contact</h2>
-            <p>
-              Retail buyers and distributors, reach us directly.
-            </p>
+            <p>Retail buyers and distributors, reach us directly.</p>
           </div>
         </div>
 
@@ -985,7 +961,7 @@
                 </div>
 
                 <div class="fine">
-                  This sends via email. If you want real form submissions stored to a list, we can wire it to ConvertKit, Mailchimp, or a Google Sheet.
+                  This opens your email client (mailto). If you want form submissions to actually be saved to a list, wire this to ConvertKit, Mailchimp, or a simple form backend.
                 </div>
               </form>
             </div>
@@ -995,10 +971,10 @@
             <div class="contactInner">
               <div class="pill"><span class="dot" aria-hidden="true"></span> Customer list</div>
               <div style="margin-top:12px; font-size:26px; font-weight:950; letter-spacing:-.01em;">
-                Be first to know.
+                Get launch updates.
               </div>
               <div style="margin-top:10px; color:rgba(16,18,20,.72); line-height:1.65;">
-                We will email you at launch and when Buckshot hits shelves.
+                New placements, first drops, and where to find Buckshot.
               </div>
 
               <div style="margin-top:16px;">
@@ -1013,9 +989,9 @@
               </div>
 
               <div style="margin-top:18px; border-top:1px solid rgba(16,18,20,.10); padding-top:14px;">
-                <div class="pill" style="box-shadow:none;"><span class="dot" aria-hidden="true"></span> Note</div>
+                <div class="pill" style="box-shadow:none; width:max-content;"><span class="dot" aria-hidden="true"></span> Coming soon</div>
                 <div class="fine" style="margin-top:10px;">
-                  Buckshot Brewing is a coming soon brand. No alcoholic beverages are available for sale.
+                  Buckshot Brewing is a coming soon brand. No alcoholic beverages are available for sale. Mock-ups only.
                 </div>
               </div>
             </div>
@@ -1075,7 +1051,7 @@
           </div>
 
           <div class="fine" style="margin-top:10px;">
-            By joining, you agree to receive launch updates from Buckshot Brewing. You can unsubscribe anytime.
+            This is a placeholder: submissions are saved only in your browser (local storage) until we connect a real email platform.
           </div>
         </form>
       </div>
