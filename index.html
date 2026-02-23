@@ -9,16 +9,23 @@
 
   <style>
     :root{
-      --bg:#070708;
-      --panel:#0d0f12;
-      --ink:#f3f4f6;
-      --muted:rgba(243,244,246,.72);
-      --line:rgba(243,244,246,.12);
-      --soft:rgba(243,244,246,.06);
+      /* Dessert Holdings-ish: bright, warm, premium */
+      --bg: #fbfaf7;
+      --bg2:#f5f2ea;
+      --ink:#121316;
+      --muted: rgba(18,19,22,.70);
+      --line: rgba(18,19,22,.12);
+      --soft: rgba(18,19,22,.06);
 
-      --accent:#c7b06a; /* brass */
+      --brand:#0c2f23;        /* deep outdoor green */
+      --accent:#c7b06a;       /* brass */
+      --accent2:#2a6f5a;      /* secondary green */
+      --card:#ffffff;
+
       --radius:18px;
-      --max:1160px;
+      --radius2:24px;
+      --shadow: 0 18px 60px rgba(18,19,22,.10);
+      --max: 1160px;
     }
 
     *{ box-sizing:border-box; }
@@ -27,27 +34,27 @@
       margin:0;
       color:var(--ink);
       background:
-        radial-gradient(900px 520px at 12% 6%, rgba(199,176,106,.16), transparent 55%),
-        radial-gradient(900px 520px at 86% 18%, rgba(255,255,255,.06), transparent 55%),
-        linear-gradient(180deg, var(--bg), #050506);
+        radial-gradient(1000px 650px at 15% 0%, rgba(199,176,106,.18), transparent 55%),
+        radial-gradient(900px 520px at 80% 10%, rgba(12,47,35,.10), transparent 55%),
+        linear-gradient(180deg, var(--bg), var(--bg2));
       font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Apple Color Emoji", "Segoe UI Emoji";
       overflow-x:hidden;
     }
 
     a{ color:inherit; text-decoration:none; }
+    button, input, select, textarea{ font:inherit; }
     .wrap{ max-width:var(--max); margin:0 auto; padding:0 18px; }
 
-    /* Top nav like Dessert Holdings */
+    /* Top Nav */
     .topbar{
       position:sticky;
       top:0;
-      z-index:50;
-      background: rgba(7,7,8,.72);
-      backdrop-filter: blur(12px) saturate(140%);
-      border-bottom:1px solid rgba(243,244,246,.08);
+      z-index:60;
+      background: rgba(251,250,247,.78);
+      backdrop-filter: blur(10px) saturate(140%);
+      border-bottom: 1px solid rgba(18,19,22,.10);
     }
-
-    .topbar-inner{
+    .topbarInner{
       display:flex;
       align-items:center;
       justify-content:space-between;
@@ -55,54 +62,57 @@
       padding:14px 0;
     }
 
-    .brand{
+    .navLeft{
+      display:flex;
+      align-items:center;
+      gap:12px;
+      min-width:220px;
+    }
+
+    .miniBadge{
+      width:10px;
+      height:10px;
+      border-radius:999px;
+      background:var(--accent);
+      box-shadow:0 0 0 6px rgba(199,176,106,.22);
+      flex:0 0 auto;
+    }
+
+    .wordmark{
+      font-weight:800;
+      letter-spacing:.02em;
+    }
+
+    .navLinks{
       display:flex;
       align-items:center;
       gap:10px;
-      min-width:180px;
-    }
-
-    .brand img{
-      height:26px;
-      width:auto;
-      display:block;
-      opacity:.95;
-    }
-
-    .nav{
-      display:flex;
-      align-items:center;
-      gap:16px;
       font-size:13px;
-      letter-spacing:.08em;
+      letter-spacing:.10em;
       text-transform:uppercase;
-      color:rgba(243,244,246,.80);
-      overflow:auto;
-      scrollbar-width:none;
+      color:rgba(18,19,22,.76);
     }
-    .nav::-webkit-scrollbar{ display:none; }
-
-    .nav a{
-      padding:10px 10px;
+    .navLinks a{
+      padding:10px 12px;
       border-radius:999px;
       border:1px solid transparent;
-      white-space:nowrap;
       transition: background .2s ease, border-color .2s ease;
+      white-space:nowrap;
     }
-    .nav a:hover{
-      background:rgba(243,244,246,.05);
-      border-color:rgba(243,244,246,.10);
+    .navLinks a:hover{
+      background: rgba(18,19,22,.04);
+      border-color: rgba(18,19,22,.10);
     }
 
-    .cta{
+    .navCtas{
       display:flex;
       align-items:center;
       gap:10px;
     }
 
     .btn{
-      border:1px solid rgba(243,244,246,.14);
-      background:rgba(243,244,246,.04);
+      border:1px solid rgba(18,19,22,.14);
+      background: rgba(255,255,255,.72);
       color:var(--ink);
       padding:10px 14px;
       border-radius:999px;
@@ -111,297 +121,496 @@
       display:inline-flex;
       align-items:center;
       gap:10px;
-      font-weight:600;
+      font-weight:650;
+      box-shadow: 0 10px 26px rgba(18,19,22,.08);
     }
     .btn:hover{
-      background:rgba(243,244,246,.07);
-      border-color:rgba(243,244,246,.20);
       transform: translateY(-1px);
+      background:#fff;
+      border-color: rgba(18,19,22,.18);
     }
 
     .btnPrimary{
-      border-color: rgba(199,176,106,.38);
-      background: linear-gradient(180deg, rgba(199,176,106,.20), rgba(199,176,106,.10));
+      border-color: rgba(12,47,35,.22);
+      background: linear-gradient(180deg, rgba(12,47,35,.12), rgba(199,176,106,.10));
     }
     .btnPrimary:hover{
-      border-color: rgba(199,176,106,.58);
-      background: linear-gradient(180deg, rgba(199,176,106,.26), rgba(199,176,106,.14));
+      border-color: rgba(12,47,35,.30);
+      background: linear-gradient(180deg, rgba(12,47,35,.16), rgba(199,176,106,.12));
     }
 
-    .dot{
-      width:8px; height:8px; border-radius:999px;
-      background:var(--accent);
-      box-shadow:0 0 0 6px rgba(199,176,106,.12);
+    .btnDark{
+      border-color: rgba(12,47,35,.30);
+      background: var(--brand);
+      color:#fff;
+      box-shadow: 0 18px 40px rgba(12,47,35,.18);
+    }
+    .btnDark:hover{
+      background:#0a271d;
+      border-color: rgba(12,47,35,.40);
     }
 
     /* Hero */
     .hero{
-      padding:56px 0 22px;
+      padding:46px 0 24px;
     }
 
-    .hero-grid{
+    .heroGrid{
       display:grid;
-      grid-template-columns: 1.1fr .9fr;
-      gap:22px;
+      grid-template-columns: 1.05fr .95fr;
+      gap:18px;
       align-items:stretch;
     }
 
-    .panel{
-      border:1px solid rgba(243,244,246,.12);
-      background: linear-gradient(180deg, rgba(243,244,246,.06), rgba(243,244,246,.03));
-      border-radius: var(--radius);
+    .card{
+      background: rgba(255,255,255,.78);
+      border:1px solid rgba(18,19,22,.10);
+      border-radius: var(--radius2);
+      box-shadow: var(--shadow);
       overflow:hidden;
     }
 
-    .hero-copy{
-      padding:26px;
+    .heroLeft{
+      padding:26px 26px 22px;
+      position:relative;
+    }
+
+    .logoStage{
+      background: radial-gradient(850px 520px at 50% 25%, rgba(12,47,35,.30), rgba(12,47,35,.94));
+      border-radius: 22px;
+      padding: 22px 18px;
+      border:1px solid rgba(255,255,255,.16);
+      box-shadow: 0 18px 60px rgba(12,47,35,.22);
+    }
+
+    .heroLogo{
+      display:block;
+      width:min(520px, 88%);
+      height:auto;
+      margin: 0 auto;
+      filter: drop-shadow(0 18px 44px rgba(0,0,0,.30));
     }
 
     .kicker{
-      display:flex; align-items:center; gap:10px;
+      margin-top:18px;
+      display:flex;
+      align-items:center;
+      gap:10px;
       font-size:12px;
       letter-spacing:.14em;
       text-transform:uppercase;
-      color:rgba(243,244,246,.70);
+      color: rgba(18,19,22,.62);
     }
 
     h1{
       margin:14px 0 10px;
-      font-size: clamp(34px, 4.8vw, 54px);
-      line-height:1.04;
+      font-size: clamp(34px, 4.6vw, 54px);
+      line-height:1.05;
       letter-spacing:-.02em;
     }
 
     .lead{
       margin:0 0 16px;
-      color:rgba(243,244,246,.78);
+      color: rgba(18,19,22,.74);
       font-size:18px;
-      line-height:1.6;
-      max-width: 60ch;
+      line-height:1.65;
+      max-width: 64ch;
     }
 
-    .subtle{
-      color:rgba(243,244,246,.62);
-      font-size:13px;
-      line-height:1.5;
-      margin-top:12px;
-    }
-
-    .hero-actions{
+    .heroActions{
       display:flex;
       flex-wrap:wrap;
       gap:10px;
-      margin-top:18px;
+      margin-top:14px;
     }
 
-    .hero-media{
-      position:relative;
-      min-height: 340px;
-      background:
-        radial-gradient(900px 520px at 50% 30%, rgba(199,176,106,.16), transparent 55%),
-        linear-gradient(180deg, rgba(0,0,0,.10), rgba(0,0,0,.38));
-    }
-
-    .media-inner{
-      position:absolute;
-      inset:0;
-      display:flex;
-      align-items:flex-end;
-      padding:18px;
-    }
-
-    .media-card{
-      width:100%;
-      border:1px solid rgba(243,244,246,.12);
-      background:rgba(0,0,0,.24);
-      border-radius: 16px;
-      padding:14px 14px;
-    }
-
-    .media-title{ font-weight:700; }
-    .media-text{
-      margin-top:6px;
-      color:rgba(243,244,246,.72);
-      font-size:14px;
+    .fine{
+      margin-top:12px;
+      color: rgba(18,19,22,.58);
+      font-size:13px;
       line-height:1.5;
     }
 
-    /* Section pattern like Dessert Holdings blocks */
-    .section{
-      padding:34px 0;
-      border-top:1px solid rgba(243,244,246,.08);
+    .heroRight{
+      padding:18px;
+      display:flex;
+      flex-direction:column;
+      gap:12px;
     }
 
-    .section-head{
+    .tile{
+      background: rgba(255,255,255,.82);
+      border:1px solid rgba(18,19,22,.10);
+      border-radius: 20px;
+      padding:16px 16px;
+      box-shadow: 0 14px 38px rgba(18,19,22,.08);
+    }
+
+    .tileLabel{
+      font-size:12px;
+      letter-spacing:.12em;
+      text-transform:uppercase;
+      color: rgba(18,19,22,.60);
+      display:flex;
+      align-items:center;
+      gap:10px;
+    }
+
+    .tile h3{
+      margin:10px 0 6px;
+      font-size:18px;
+      letter-spacing:-.01em;
+    }
+    .tile p{
+      margin:0;
+      color: rgba(18,19,22,.70);
+      line-height:1.55;
+      font-size:14px;
+    }
+
+    /* Sections */
+    .section{
+      padding:34px 0;
+      border-top:1px solid rgba(18,19,22,.08);
+    }
+
+    .sectionHead{
       display:flex;
       align-items:flex-end;
       justify-content:space-between;
-      gap:14px;
-      margin-bottom:16px;
+      gap:16px;
+      margin-bottom:14px;
     }
 
-    .section-head h2{
+    .sectionHead h2{
       margin:0;
       font-size:26px;
       letter-spacing:-.01em;
     }
-
-    .section-head p{
+    .sectionHead p{
       margin:0;
-      color:rgba(243,244,246,.68);
-      max-width: 62ch;
-      line-height:1.55;
+      color: rgba(18,19,22,.66);
+      max-width: 68ch;
+      line-height:1.6;
     }
 
-    /* Tile grid */
-    .tiles{
+    .grid3{
       display:grid;
       grid-template-columns: repeat(3, 1fr);
       gap:14px;
     }
 
-    .tile{
-      border:1px solid rgba(243,244,246,.12);
-      background: linear-gradient(180deg, rgba(243,244,246,.06), rgba(243,244,246,.03));
-      border-radius: var(--radius);
-      padding:16px;
-      min-height: 170px;
-      position:relative;
-      overflow:hidden;
+    .bigCard{
+      background: rgba(255,255,255,.82);
+      border:1px solid rgba(18,19,22,.10);
+      border-radius: var(--radius2);
+      box-shadow: var(--shadow);
+      padding:18px;
     }
 
-    .tile .label{
-      font-size:12px;
-      letter-spacing:.12em;
-      text-transform:uppercase;
-      color:rgba(243,244,246,.70);
-      display:flex;
-      align-items:center;
-      gap:10px;
-    }
-    .tile h3{
-      margin:10px 0 6px;
+    .bigCard h3{
+      margin:0 0 8px;
       font-size:18px;
     }
-    .tile p{
+
+    .bigCard p{
       margin:0;
-      color:rgba(243,244,246,.72);
-      line-height:1.55;
+      color: rgba(18,19,22,.70);
+      line-height:1.6;
       font-size:14px;
     }
 
-    /* Feature rows */
-    .feature-grid{
-      display:grid;
-      grid-template-columns: 1fr 1fr;
-      gap:14px;
-    }
-
-    .feature{
-      border:1px solid rgba(243,244,246,.12);
-      background: rgba(243,244,246,.04);
-      border-radius: var(--radius);
-      padding:16px;
-    }
-    .feature h3{ margin:0 0 8px; font-size:18px; }
-    .feature p{ margin:0; color:rgba(243,244,246,.72); line-height:1.6; }
-
-    /* Contact form, like their bottom form placement */
-    .contact-grid{
+    /* Contact */
+    .contactGrid{
       display:grid;
       grid-template-columns: 1.05fr .95fr;
       gap:14px;
       align-items:start;
     }
 
-    .form{
-      padding:18px;
+    .formRow{
+      display:grid;
+      gap:10px;
+      margin-top:10px;
     }
 
-    .field{
-      display:grid;
-      gap:8px;
-      margin-top:10px;
+    label{
+      font-size:13px;
+      color: rgba(18,19,22,.66);
+      font-weight:650;
     }
 
     .input, .select, textarea{
       width:100%;
-      border-radius:14px;
-      border:1px solid rgba(243,244,246,.14);
-      background:rgba(243,244,246,.04);
+      border-radius:16px;
+      border:1px solid rgba(18,19,22,.14);
+      background: rgba(255,255,255,.88);
       color:var(--ink);
       padding:12px 12px;
       outline:none;
     }
-    textarea{ min-height:120px; resize:vertical; }
 
-    .input:focus, .select:focus, textarea:focus{
-      border-color: rgba(199,176,106,.55);
-      box-shadow:0 0 0 4px rgba(199,176,106,.12);
+    textarea{
+      min-height:120px;
+      resize:vertical;
     }
 
-    .fine{
-      color:rgba(243,244,246,.60);
-      font-size:12px;
-      line-height:1.45;
-      margin-top:10px;
+    .input:focus, .select:focus, textarea:focus{
+      border-color: rgba(12,47,35,.35);
+      box-shadow: 0 0 0 4px rgba(12,47,35,.10);
     }
 
     .footer{
       padding:22px 0 36px;
-      border-top:1px solid rgba(243,244,246,.10);
-      color:rgba(243,244,246,.72);
+      border-top:1px solid rgba(18,19,22,.10);
+      color: rgba(18,19,22,.65);
       font-size:14px;
     }
-
-    .footer-inner{
+    .footerInner{
       display:flex;
       flex-wrap:wrap;
       gap:12px 18px;
       align-items:center;
       justify-content:space-between;
     }
-
     .footer a{
       border-bottom:1px solid rgba(199,176,106,.0);
       transition: border-color .2s ease, color .2s ease;
     }
     .footer a:hover{
-      color:rgba(243,244,246,.92);
-      border-color:rgba(199,176,106,.55);
+      color: rgba(18,19,22,.85);
+      border-color: rgba(199,176,106,.70);
     }
 
-    /* Responsive */
+    /* Join modal */
+    .backdrop{
+      position:fixed;
+      inset:0;
+      background: rgba(18,19,22,.62);
+      display:none;
+      align-items:center;
+      justify-content:center;
+      padding:18px;
+      z-index:120;
+    }
+    .backdrop.open{ display:flex; }
+
+    .modal{
+      width:min(620px, 100%);
+      border-radius: 22px;
+      background: #ffffff;
+      border:1px solid rgba(18,19,22,.12);
+      box-shadow: 0 30px 90px rgba(18,19,22,.28);
+      overflow:hidden;
+    }
+
+    .modalHeader{
+      padding:16px 18px;
+      display:flex;
+      align-items:flex-start;
+      justify-content:space-between;
+      gap:12px;
+      border-bottom:1px solid rgba(18,19,22,.10);
+      background: linear-gradient(180deg, rgba(251,250,247,1), rgba(245,242,234,1));
+    }
+
+    .modalTitle{
+      font-weight:900;
+      font-size:18px;
+      margin:0;
+    }
+    .modalSub{
+      margin:6px 0 0;
+      color: rgba(18,19,22,.66);
+      font-size:14px;
+      line-height:1.45;
+    }
+
+    .modalBody{ padding:16px 18px 18px; }
+
+    .toast{
+      position:fixed;
+      left:50%;
+      bottom:18px;
+      transform: translateX(-50%);
+      display:none;
+      background: rgba(12,47,35,.92);
+      color:#fff;
+      padding:12px 14px;
+      border-radius:999px;
+      box-shadow: 0 20px 60px rgba(12,47,35,.22);
+      z-index:200;
+      font-size:14px;
+    }
+    .toast.show{ display:block; }
+
+    /* Age gate */
+    .ageGate{
+      position:fixed;
+      inset:0;
+      z-index:300;
+      display:none;
+      align-items:center;
+      justify-content:center;
+      padding:18px;
+      background:
+        radial-gradient(1000px 650px at 15% 0%, rgba(199,176,106,.22), transparent 55%),
+        radial-gradient(900px 520px at 80% 10%, rgba(12,47,35,.18), transparent 55%),
+        linear-gradient(180deg, #0b1411, #070a08);
+      color:#fff;
+    }
+    .ageGate.open{ display:flex; }
+
+    .ageCard{
+      width:min(720px, 100%);
+      border-radius: 26px;
+      border:1px solid rgba(255,255,255,.14);
+      background: rgba(255,255,255,.08);
+      backdrop-filter: blur(12px) saturate(140%);
+      box-shadow: 0 30px 100px rgba(0,0,0,.45);
+      overflow:hidden;
+    }
+
+    .ageTop{
+      padding:18px 18px 12px;
+      border-bottom: 1px solid rgba(255,255,255,.12);
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+    }
+
+    .ageLogo{
+      height:26px;
+      width:auto;
+      opacity:.98;
+      display:block;
+    }
+
+    .ageBody{
+      padding:18px;
+      display:grid;
+      gap:10px;
+    }
+
+    .ageTitle{
+      margin:0;
+      font-size:24px;
+      letter-spacing:-.01em;
+      line-height:1.15;
+      font-weight:900;
+    }
+
+    .ageText{
+      margin:0;
+      color: rgba(255,255,255,.78);
+      line-height:1.6;
+      font-size:14px;
+      max-width: 70ch;
+    }
+
+    .ageActions{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      margin-top:8px;
+    }
+
+    .ageBtn{
+      border:1px solid rgba(255,255,255,.18);
+      background: rgba(255,255,255,.10);
+      color:#fff;
+      padding:12px 14px;
+      border-radius:999px;
+      cursor:pointer;
+      font-weight:750;
+      transition: transform .15s ease, background .2s ease, border-color .2s ease;
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+    }
+    .ageBtn:hover{
+      transform: translateY(-1px);
+      background: rgba(255,255,255,.14);
+      border-color: rgba(255,255,255,.24);
+    }
+
+    .ageBtnPrimary{
+      background: linear-gradient(180deg, rgba(199,176,106,.26), rgba(199,176,106,.14));
+      border-color: rgba(199,176,106,.48);
+      color:#fff;
+    }
+    .ageBtnPrimary:hover{
+      background: linear-gradient(180deg, rgba(199,176,106,.30), rgba(199,176,106,.18));
+      border-color: rgba(199,176,106,.62);
+    }
+
     @media (max-width: 980px){
-      .hero-grid{ grid-template-columns: 1fr; }
-      .contact-grid{ grid-template-columns: 1fr; }
-      .tiles{ grid-template-columns: 1fr; }
-      .feature-grid{ grid-template-columns: 1fr; }
-      .nav{ display:none; }
-      .hero{ padding-top:34px; }
+      .heroGrid{ grid-template-columns: 1fr; }
+      .grid3{ grid-template-columns: 1fr; }
+      .contactGrid{ grid-template-columns: 1fr; }
+      .navLinks{ display:none; }
+      .navLeft{ min-width:auto; }
+    }
+
+    @media (prefers-reduced-motion: reduce){
+      *{ scroll-behavior:auto !important; transition:none !important; }
     }
   </style>
 </head>
 
 <body>
+  <!-- 21+ Age Gate -->
+  <div class="ageGate" id="ageGate" role="dialog" aria-modal="true" aria-label="Age verification">
+    <div class="ageCard" role="document">
+      <div class="ageTop">
+        <img class="ageLogo" src="assets/buckshot-logo-white.png" alt="Buckshot Brewing" />
+        <div style="font-size:12px; letter-spacing:.14em; text-transform:uppercase; color:rgba(255,255,255,.75);">
+          21+ required
+        </div>
+      </div>
+
+      <div class="ageBody">
+        <p class="ageTitle">Are you 21 or older?</p>
+        <p class="ageText">
+          Buckshot Brewing is intended for adults of legal drinking age. Please confirm to enter.
+        </p>
+
+        <div class="ageActions">
+          <button class="ageBtn ageBtnPrimary" type="button" id="ageYes">
+            <span style="width:8px;height:8px;border-radius:999px;background:var(--accent);box-shadow:0 0 0 6px rgba(199,176,106,.16);"></span>
+            Yes, I’m 21+
+          </button>
+          <button class="ageBtn" type="button" id="ageNo">No</button>
+        </div>
+
+        <p class="ageText" style="color:rgba(255,255,255,.68); font-size:12px;">
+          By entering you agree to our use of a cookie or local storage to remember your choice.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Top Nav -->
   <header class="topbar">
     <div class="wrap">
-      <div class="topbar-inner">
-        <a class="brand" href="#top" aria-label="Buckshot Brewing home">
-          <img src="assets/buckshot-logo-white.png" alt="Buckshot Brewing" />
+      <div class="topbarInner">
+        <a class="navLeft" href="#top" aria-label="Buckshot Brewing home">
+          <span class="miniBadge" aria-hidden="true"></span>
+          <span class="wordmark">Buckshot Brewing</span>
         </a>
 
-        <nav class="nav" aria-label="Primary">
+        <nav class="navLinks" aria-label="Primary">
           <a href="#about">About</a>
-          <a href="#beer">Our Beer</a>
-          <a href="#drops">Seasonals</a>
+          <a href="#beer">Beer</a>
+          <a href="#community">Community</a>
           <a href="#contact">Contact</a>
         </nav>
 
-        <div class="cta">
+        <div class="navCtas">
           <a class="btn" href="#contact">Industry</a>
           <button class="btn btnPrimary" type="button" id="openJoin">
-            <span class="dot" aria-hidden="true"></span>
+            <span class="miniBadge" aria-hidden="true"></span>
             Join the list
           </button>
         </div>
@@ -413,129 +622,146 @@
     <!-- HERO -->
     <section class="hero">
       <div class="wrap">
-        <div class="hero-grid">
-          <div class="panel hero-copy">
-            <div class="kicker"><span class="dot" aria-hidden="true"></span> Welcome to Buckshot Brewing</div>
-            <h1>Dessert makes the moment.<br/>Beer does too.</h1>
-            <p class="lead">
-              Buckshot Brewing is building a clean American Lager and seasonal drops with a premium look.
-              Join the list and you will be first to hear where it lands.
-            </p>
-
-            <div class="hero-actions">
-              <button class="btn btnPrimary" type="button" id="openJoin2">
-                <span class="dot" aria-hidden="true"></span>
-                Join the list
-              </button>
-              <a class="btn" href="mailto:sales@buckshotbrewing.com?subject=Buckshot%20Brewing%20Retail%20or%20Distributor%20Inquiry">
-                sales@buckshotbrewing.com
-              </a>
+        <div class="heroGrid">
+          <div class="card heroLeft">
+            <!-- BIG visible logo stage -->
+            <div class="logoStage">
+              <img class="heroLogo" src="assets/buckshot-logo-white.png" alt="Buckshot Brewing logo" />
             </div>
 
-            <div class="subtle">
-              Retail and distributor inquiries welcome. Investor interest is appreciated, but not the focus here.
+            <div class="kicker"><span class="miniBadge" aria-hidden="true"></span> Coming soon</div>
+            <h1>American beer built for early mornings and long stories.</h1>
+            <p class="lead">
+              Buckshot Brewing is getting ready to launch. Join the customer list and you will be first to hear where it lands.
+            </p>
+
+            <div class="heroActions">
+              <button class="btn btnDark" type="button" id="openJoin2">
+                <span class="miniBadge" aria-hidden="true"></span>
+                Join the list
+              </button>
+              <a class="btn" href="#beer">What we’re building</a>
+            </div>
+
+            <div class="fine">
+              Distributor and retail buyers, email <a href="mailto:sales@buckshotbrewing.com?subject=Buckshot%20Brewing%20Inquiry" style="border-bottom:1px solid rgba(12,47,35,.35); font-weight:700;">sales@buckshotbrewing.com</a>.
+              This site stays consumer first.
             </div>
           </div>
 
-          <div class="panel hero-media" aria-hidden="true">
-            <div class="media-inner">
-              <div class="media-card">
-                <div class="media-title">Premium branding. Easy drinking beer.</div>
-                <div class="media-text">
-                  Built in Minnesota. Made for cabins, tailgates, and long weekends.
-                </div>
-              </div>
+          <div class="card heroRight" aria-label="Highlights">
+            <div class="tile">
+              <div class="tileLabel"><span class="miniBadge" aria-hidden="true"></span> Flagship</div>
+              <h3>Buckshot Lager</h3>
+              <p>Clean American Lager. Crisp, refreshing, repeatable.</p>
+            </div>
+
+            <div class="tile">
+              <div class="tileLabel"><span class="miniBadge" aria-hidden="true"></span> Seasonal drops</div>
+              <h3>OktoberPheas Amber + more</h3>
+              <p>Seasonal releases will follow. Same standard. Drinkability first.</p>
+            </div>
+
+            <div class="tile">
+              <div class="tileLabel"><span class="miniBadge" aria-hidden="true"></span> Quiet cause</div>
+              <h3>Type 1 Diabetes support</h3>
+              <p>We plan to support Type 1 Diabetes research as we grow, consistently and quietly.</p>
             </div>
           </div>
         </div>
-      </div>  
+      </div>
     </section>
 
     <!-- ABOUT -->
     <section class="section" id="about">
       <div class="wrap">
-        <div class="section-head">
+        <div class="sectionHead">
           <div>
-            <h2>Transforming “outdoors beer” into something premium.</h2>
+            <h2>Simple. Clean. Premium.</h2>
             <p>
-              Buckshot is for the people who like their beer cold, their mornings early, and their stories long.
-              Simple recipe goals, consistent quality, and packaging that actually looks expensive.
+              Buckshot is for people who like their beer cold and their weekends outside. No gimmicks. No noise.
             </p>
           </div>
         </div>
 
-        <div class="feature-grid">
-          <div class="feature">
+        <div class="grid3">
+          <div class="bigCard">
             <h3>Drinkability first</h3>
-            <p>Crisp and clean. No palate fatigue. A lager that earns a second one.</p>
+            <p>Crisp, balanced, and easy to come back to. Built for the second one.</p>
           </div>
-          <div class="feature">
+          <div class="bigCard">
             <h3>Premium presence</h3>
-            <p>Bold, modern, and shelf ready without feeling like a gimmick.</p>
+            <p>Packaging that looks expensive on shelf, without trying too hard.</p>
+          </div>
+          <div class="bigCard">
+            <h3>Built in Minnesota</h3>
+            <p>Local roots. Bigger ambition. Launching retail first.</p>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- OUR BEER -->
+    <!-- BEER -->
     <section class="section" id="beer">
       <div class="wrap">
-        <div class="section-head">
+        <div class="sectionHead">
           <div>
-            <h2>Our beer</h2>
-            <p>Start with the flagship. Build the lineup with seasonal drops that still stay easy to drink.</p>
-          </div>
-        </div>
-
-        <div class="tiles">
-          <div class="tile">
-            <div class="label"><span class="dot" aria-hidden="true"></span> Flagship</div>
-            <h3>Buckshot Lager</h3>
-            <p>Clean American Lager. Crisp, refreshing, repeatable.</p>
-          </div>
-          <div class="tile">
-            <div class="label"><span class="dot" aria-hidden="true"></span> Seasonal</div>
-            <h3>OktoberPheas Amber</h3>
-            <p>Seasonal amber built for fall nights, bonfires, and football.</p>
-          </div>
-          <div class="tile">
-            <div class="label"><span class="dot" aria-hidden="true"></span> Seasonal</div>
-            <h3>Buckshot Hazy IPA</h3>
-            <p>Hazy drop with “Beware of the Phog” as a limited run concept.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- SEASONALS -->
-    <section class="section" id="drops">
-      <div class="wrap">
-        <div class="section-head">
-          <div>
-            <h2>Seasonal drops</h2>
+            <h2>The beer</h2>
             <p>
-              We will keep the lineup tight. Every release has to earn its place.
-              Join the list to get the first drop info.
+              The flagship is a clean American Lager. Seasonal drops will come next, with the same backbone.
             </p>
           </div>
         </div>
 
-        <div class="feature-grid">
-          <div class="feature">
-            <h3>Limited early drops</h3>
-            <p>Small runs. Fast placement. Tight feedback loop.</p>
+        <div class="grid3">
+          <div class="bigCard">
+            <h3>Buckshot Lager</h3>
+            <p>Bright, crisp finish. No palate fatigue. Made for repeat pours.</p>
           </div>
-          <div class="feature">
-            <h3>Cause, quietly</h3>
-            <p>We plan to support Type 1 Diabetes research as the brand grows.</p>
+          <div class="bigCard">
+            <h3>OktoberPheas Amber</h3>
+            <p>Fall drop built for bonfires, football, and cold nights outside.</p>
+          </div>
+          <div class="bigCard">
+            <h3>Hazy IPA drop</h3>
+            <p>Limited run concepts when it fits. Same focus on balance and drinkability.</p>
           </div>
         </div>
 
         <div style="margin-top:14px;">
-          <button class="btn btnPrimary" type="button" id="openJoin3">
-            <span class="dot" aria-hidden="true"></span>
+          <button class="btn btnDark" type="button" id="openJoin3">
+            <span class="miniBadge" aria-hidden="true"></span>
             Join the list
           </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- COMMUNITY -->
+    <section class="section" id="community">
+      <div class="wrap">
+        <div class="sectionHead">
+          <div>
+            <h2>Community</h2>
+            <p>
+              Built for friends, family, and time outside. We’ll show up where it matters.
+            </p>
+          </div>
+        </div>
+
+        <div class="grid3">
+          <div class="bigCard">
+            <h3>Cabins and tailgates</h3>
+            <p>The kind of beer that belongs wherever people gather.</p>
+          </div>
+          <div class="bigCard">
+            <h3>On shelf</h3>
+            <p>Retail first. Strong presence. Simple message.</p>
+          </div>
+          <div class="bigCard">
+            <h3>Quiet impact</h3>
+            <p>Supporting Type 1 Diabetes research as we grow, without making it performative.</p>
+          </div>
         </div>
       </div>
     </section>
@@ -543,56 +769,53 @@
     <!-- CONTACT -->
     <section class="section" id="contact">
       <div class="wrap">
-        <div class="section-head">
+        <div class="sectionHead">
           <div>
             <h2>Contact</h2>
             <p>
-              Retail buyers and distributors, use this form or email directly.
-              This page stays consumer first, but we make it easy to reach us. 
+              Retail buyers and distributors, email us directly or use the form. Either way goes to sales@buckshotbrewing.com.
             </p>
           </div>
         </div>
 
-        <div class="contact-grid">
-          <div class="panel form">
-            <!-- This is a front end form placeholder.
-                 If you want submissions to actually go somewhere, tell me your preference:
-                 Mailchimp, ConvertKit, or Google Sheets.
-            -->
+        <div class="contactGrid">
+          <div class="card" style="padding:18px;">
             <form id="contactForm">
-              <div class="field">
-                <label for="name">Name</label>
-                <input class="input" id="name" name="name" autocomplete="name" required />
-              </div>
+              <div class="formRow">
+                <div>
+                  <label for="name">Name</label>
+                  <input class="input" id="name" name="name" autocomplete="name" required />
+                </div>
 
-              <div class="field">
-                <label for="email">Email</label>
-                <input class="input" id="email" name="email" type="email" autocomplete="email" required />
-              </div>
+                <div>
+                  <label for="email">Email</label>
+                  <input class="input" id="email" name="email" type="email" autocomplete="email" required />
+                </div>
 
-              <div class="field">
-                <label for="company">Company</label>
-                <input class="input" id="company" name="company" autocomplete="organization" />
-              </div>
+                <div>
+                  <label for="company">Company</label>
+                  <input class="input" id="company" name="company" autocomplete="organization" />
+                </div>
 
-              <div class="field">
-                <label for="reason">Reason</label>
-                <select class="select" id="reason" name="reason">
-                  <option>Retail buyer inquiry</option>
-                  <option>Distributor inquiry</option>
-                  <option>Press or media</option>
-                  <option>Other</option>
-                </select>
-              </div>
+                <div>
+                  <label for="reason">Reason</label>
+                  <select class="select" id="reason" name="reason">
+                    <option>Retail buyer inquiry</option>
+                    <option>Distributor inquiry</option>
+                    <option>Press or media</option>
+                    <option>Other</option>
+                  </select>
+                </div>
 
-              <div class="field">
-                <label for="message">Message</label>
-                <textarea id="message" name="message" placeholder="Tell us your market and what you are looking for."></textarea>
+                <div>
+                  <label for="message">Message</label>
+                  <textarea id="message" name="message" placeholder="Market, placement goals, and best number to reach you."></textarea>
+                </div>
               </div>
 
               <div style="margin-top:14px; display:flex; gap:10px; flex-wrap:wrap;">
-                <button class="btn btnPrimary" type="submit">
-                  <span class="dot" aria-hidden="true"></span>
+                <button class="btn btnDark" type="submit">
+                  <span class="miniBadge" aria-hidden="true"></span>
                   Send
                 </button>
                 <a class="btn" href="mailto:sales@buckshotbrewing.com?subject=Buckshot%20Brewing%20Inquiry">
@@ -601,28 +824,28 @@
               </div>
 
               <div class="fine">
-                By sending, you are requesting a reply from Buckshot Brewing. No spam.
+                This form sends via email link for now. If you want true form submissions (to a list or Google Sheet), tell me which tool you want.
               </div>
             </form>
           </div>
 
-          <div class="panel" style="padding:18px;">
-            <div class="kicker"><span class="dot" aria-hidden="true"></span> Join the customer list</div>
-            <h3 style="margin:12px 0 8px; font-size:22px;">Be first to know.</h3>
-            <p style="margin:0; color:rgba(243,244,246,.72); line-height:1.6;">
-              We will email you at launch, and when Buckshot hits shelves.
+          <div class="card" style="padding:18px;">
+            <div style="font-size:12px; letter-spacing:.14em; text-transform:uppercase; color:rgba(18,19,22,.62); display:flex; align-items:center; gap:10px;">
+              <span class="miniBadge" aria-hidden="true"></span> Customer list
+            </div>
+            <h3 style="margin:10px 0 8px; font-size:22px;">Be first to know.</h3>
+            <p style="margin:0; color:rgba(18,19,22,.70); line-height:1.6;">
+              Get an email when we launch and when Buckshot hits shelves.
             </p>
 
-            <div style="margin-top:14px; display:flex; gap:10px; flex-wrap:wrap;">
-              <button class="btn btnPrimary" type="button" id="openJoin4">
-                <span class="dot" aria-hidden="true"></span>
+            <div style="margin-top:14px;">
+              <button class="btn btnDark" type="button" id="openJoin4">
+                <span class="miniBadge" aria-hidden="true"></span>
                 Join the list
               </button>
             </div>
 
-            <div class="fine" style="margin-top:10px;">
-              Unsubscribe anytime.
-            </div>
+            <div class="fine">Unsubscribe anytime.</div>
           </div>
         </div>
       </div>
@@ -630,7 +853,7 @@
 
     <footer class="footer">
       <div class="wrap">
-        <div class="footer-inner">
+        <div class="footerInner">
           <div>© <span id="year"></span> Buckshot Brewing</div>
           <div style="display:flex; gap:14px; flex-wrap:wrap;">
             <a href="#top">Top</a>
@@ -643,62 +866,89 @@
   </main>
 
   <!-- Join modal -->
-  <div id="joinBackdrop" style="position:fixed; inset:0; background:rgba(0,0,0,.62); display:none; align-items:center; justify-content:center; padding:18px; z-index:120;">
-    <div style="width:min(560px, 100%); border-radius:18px; border:1px solid rgba(243,244,246,.14); background:linear-gradient(180deg, rgba(16,16,18,.96), rgba(10,10,11,.96)); overflow:hidden;">
-      <div style="padding:16px 18px; display:flex; align-items:flex-start; justify-content:space-between; gap:12px; border-bottom:1px solid rgba(243,244,246,.10);">
+  <div class="backdrop" id="joinBackdrop" role="dialog" aria-modal="true" aria-label="Join the list">
+    <div class="modal" role="document">
+      <div class="modalHeader">
         <div>
-          <div style="font-weight:800; font-size:18px;">Join the Buckshot launch list</div>
-          <div style="margin-top:6px; color:rgba(243,244,246,.70); font-size:14px; line-height:1.45;">
-            Get a note at launch and when we hit shelves.
-          </div>
+          <p class="modalTitle">Join the Buckshot launch list</p>
+          <p class="modalSub">Get a note at launch and when we hit shelves.</p>
         </div>
-        <button id="joinClose" class="btn" type="button" style="padding:8px 12px;">Close</button>
+        <button class="btn" type="button" id="joinClose" style="box-shadow:none;">Close</button>
       </div>
 
-      <div style="padding:16px 18px 18px;">
+      <div class="modalBody">
+        <!-- This stores locally for now. We can wire it to Mailchimp/ConvertKit/Sheet next. -->
         <form id="joinForm">
-          <div style="display:grid; gap:10px;">
-            <input class="input" name="firstName" placeholder="First name (optional)" autocomplete="given-name" />
-            <input class="input" name="email" type="email" placeholder="Email address" autocomplete="email" required />
+          <div class="formRow">
+            <div>
+              <label for="firstName">First name (optional)</label>
+              <input class="input" id="firstName" name="firstName" autocomplete="given-name" />
+            </div>
+
+            <div>
+              <label for="joinEmail">Email</label>
+              <input class="input" id="joinEmail" name="email" type="email" autocomplete="email" required />
+            </div>
           </div>
 
           <div style="margin-top:14px; display:flex; gap:10px; flex-wrap:wrap;">
-            <button class="btn btnPrimary" type="submit">
-              <span class="dot" aria-hidden="true"></span>
+            <button class="btn btnDark" type="submit">
+              <span class="miniBadge" aria-hidden="true"></span>
               Join
             </button>
-            <button id="joinNotNow" class="btn" type="button">Not now</button>
+            <button class="btn" type="button" id="joinNotNow" style="box-shadow:none;">Not now</button>
           </div>
 
           <div class="fine" style="margin-top:10px;">
-            You can unsubscribe anytime.
+            By joining, you agree to receive launch updates from Buckshot Brewing. You can unsubscribe anytime.
           </div>
         </form>
       </div>
     </div>
   </div>
 
-  <div id="toast" style="position:fixed; left:50%; bottom:18px; transform:translateX(-50%); padding:12px 14px; border-radius:999px; border:1px solid rgba(243,244,246,.14); background:rgba(0,0,0,.55); color:rgba(243,244,246,.88); display:none; z-index:200; font-size:14px;"></div>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
   <script>
+    // year
     document.getElementById("year").textContent = new Date().getFullYear();
 
+    // age gate
+    const ageGate = document.getElementById("ageGate");
+    const AGE_KEY = "buckshotAgeVerified";
+
+    function openAgeGate(){ ageGate.classList.add("open"); }
+    function closeAgeGate(){ ageGate.classList.remove("open"); }
+
+    const verified = localStorage.getItem(AGE_KEY);
+    if (verified !== "yes") openAgeGate();
+
+    document.getElementById("ageYes").addEventListener("click", () => {
+      localStorage.setItem(AGE_KEY, "yes");
+      closeAgeGate();
+    });
+
+    document.getElementById("ageNo").addEventListener("click", () => {
+      // redirect to a neutral page
+      window.location.href = "https://www.responsibility.org/";
+    });
+
+    // join modal
     const joinBackdrop = document.getElementById("joinBackdrop");
     const toast = document.getElementById("toast");
 
     function showToast(msg){
       toast.textContent = msg;
-      toast.style.display = "block";
-      setTimeout(() => toast.style.display = "none", 2600);
+      toast.classList.add("show");
+      setTimeout(() => toast.classList.remove("show"), 2600);
     }
 
     function openJoin(){
-      joinBackdrop.style.display = "flex";
-      const emailInput = joinBackdrop.querySelector('input[name="email"]');
-      setTimeout(() => emailInput && emailInput.focus(), 60);
+      joinBackdrop.classList.add("open");
+      setTimeout(() => document.getElementById("joinEmail").focus(), 60);
     }
     function closeJoin(){
-      joinBackdrop.style.display = "none";
+      joinBackdrop.classList.remove("open");
     }
 
     ["openJoin","openJoin2","openJoin3","openJoin4"].forEach(id => {
@@ -709,9 +959,9 @@
     document.getElementById("joinClose").addEventListener("click", closeJoin);
     document.getElementById("joinNotNow").addEventListener("click", closeJoin);
     joinBackdrop.addEventListener("click", (e) => { if (e.target === joinBackdrop) closeJoin(); });
-    document.addEventListener("keydown", (e) => { if (e.key === "Escape") closeJoin(); });
+    document.addEventListener("keydown", (e) => { if (e.key === "Escape" && joinBackdrop.classList.contains("open")) closeJoin(); });
 
-    // Email capture placeholder (local only for now)
+    // email capture (localStorage placeholder)
     document.getElementById("joinForm").addEventListener("submit", (e) => {
       e.preventDefault();
       const fd = new FormData(e.target);
@@ -734,10 +984,25 @@
       showToast(already ? "You are already on the list." : "You are on the list. Welcome.");
     });
 
-    // Contact form placeholder (front end only)
+    // contact form: send via mailto (simple and reliable right now)
     document.getElementById("contactForm").addEventListener("submit", (e) => {
       e.preventDefault();
-      showToast("Thanks. We received it. For now this is a placeholder form.");
+
+      const name = encodeURIComponent(document.getElementById("name").value || "");
+      const email = encodeURIComponent(document.getElementById("email").value || "");
+      const company = encodeURIComponent(document.getElementById("company").value || "");
+      const reason = encodeURIComponent(document.getElementById("reason").value || "");
+      const message = encodeURIComponent(document.getElementById("message").value || "");
+
+      const subject = encodeURIComponent("Buckshot Brewing Inquiry: " + decodeURIComponent(reason));
+      const body =
+        "Name: " + decodeURIComponent(name) + "\n" +
+        "Email: " + decodeURIComponent(email) + "\n" +
+        "Company: " + decodeURIComponent(company) + "\n" +
+        "Reason: " + decodeURIComponent(reason) + "\n\n" +
+        decodeURIComponent(message);
+
+      window.location.href = "mailto:sales@buckshotbrewing.com?subject=" + subject + "&body=" + encodeURIComponent(body);
     });
   </script>
 </body>
