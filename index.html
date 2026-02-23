@@ -156,48 +156,51 @@
       align-items:flex-end;
       padding: 22px 0 26px;
     }
-    .heroFrame{
-      position:relative;
-      width:100%;
-      border-radius: 26px;
-      overflow:hidden;
-      border:1px solid rgba(16,18,20,.10);
-      box-shadow: var(--shadow);
-      background:#000;
-      min-height: 680px;
-    }
-    .heroBg{
-      position:absolute;
-      inset:0;
-      background-image: url("assets/Hunting-Feild-Dog-Lager.png");
-      background-size: cover;
-      background-position: center;
-      transform: scale(1.02);
-    }
-    .heroShade{
-      position:absolute;
-      inset:0;
-      background:
-        radial-gradient(900px 520px at 18% 18%, rgba(199,176,106,.18), transparent 55%),
-        linear-gradient(180deg, rgba(0,0,0,.10), rgba(0,0,0,.68));
-    }
+   /* HERO FRAME */
+.heroFrame{
+  position:relative;
+  width:100%;
+  border-radius: 26px;
+  overflow:hidden;
+  border:1px solid rgba(16,18,20,.10);
+  box-shadow: var(--shadow);
+  background: transparent; /* removed black box */
+  min-height: 680px;
+}
 
-    .heroContent{
-      position:relative;
-      z-index:2;
-      padding: 34px 28px;
-      max-width: 860px;
-      color:#fff;
-    }
+/* HERO OVERLAY — forest glass instead of black slab */
+.heroShade{
+  position:absolute;
+  inset:0;
+  background:
+    radial-gradient(900px 520px at 18% 18%, rgba(199,176,106,.20), transparent 58%),
+    radial-gradient(900px 520px at 70% 35%, rgba(12,47,35,.35), transparent 62%),
+    linear-gradient(180deg, rgba(12,47,35,.25), rgba(12,47,35,.72));
+}
 
-    .heroLogo{
-      width: min(340px, 84%);
-      height:auto;
-      display:block;
-      margin: 0 0 18px;
-      filter: drop-shadow(0 18px 60px rgba(0,0,0,.38));
-    }
+/* HERO CONTENT — subtle glass panel */
+.heroContent{
+  position:relative;
+  z-index:2;
+  padding: 34px 28px;
+  max-width: 860px;
+  color:#fff;
 
+  background: rgba(12,47,35,.22);
+  border: 1px solid rgba(255,255,255,.10);
+  border-radius: 22px;
+  backdrop-filter: blur(10px) saturate(140%);
+  box-shadow: 0 18px 70px rgba(0,0,0,.22);
+}
+
+/* Slightly stronger logo depth */
+.heroLogo{
+  width: min(340px, 84%);
+  height:auto;
+  display:block;
+  margin: 0 0 18px;
+  filter: drop-shadow(0 18px 60px rgba(0,0,0,.45));
+}
     .kicker{
       display:inline-flex;
       align-items:center;
