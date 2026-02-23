@@ -227,11 +227,11 @@
     try { video.load(); } catch(e) {}
 
     // Hard fallback: if we are stuck in black screen, skip
-    const hardTimeout = setTimeout(() => {
-      loadingText.textContent = "Intro skipped.";
-      enterWithoutVideo();
-    }, 2500);
-
+const hardTimeout = setTimeout(() => {
+  loadingText.textContent = "Still loading…";
+  // Do nothing — let the video finish
+}, 15000);
+    
     const cleanup = () => {
       clearTimeout(hardTimeout);
       video.removeEventListener("ended", onEnd);
