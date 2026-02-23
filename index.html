@@ -4,845 +4,721 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Buckshot Brewing</title>
-  <meta name="description" content="Buckshot Brewing. American beer built for early mornings and long stories. Join the list for launch updates." />
+  <meta name="description" content="Buckshot Brewing. Join the customer list for launch updates. Distributor and retail inquiries: sales@buckshotbrewing.com" />
   <meta name="robots" content="index,follow" />
 
   <style>
     :root{
       --bg:#070708;
-      --bg2:#0b0c0f;
-      --ink:#f2f3f5;
-      --muted:rgba(242,243,245,.72);
-      --line:rgba(242,243,245,.14);
-      --card:rgba(255,255,255,.06);
-      --card2:rgba(255,255,255,.09);
+      --panel:#0d0f12;
+      --ink:#f3f4f6;
+      --muted:rgba(243,244,246,.72);
+      --line:rgba(243,244,246,.12);
+      --soft:rgba(243,244,246,.06);
 
-      --accent:#c7b06a;   /* brass */
-      --accent2:#1aa37a;  /* deep outdoor green */
-      --shadow:0 18px 60px rgba(0,0,0,.55);
-
+      --accent:#c7b06a; /* brass */
       --radius:18px;
-      --radius2:28px;
-      --max:1120px;
+      --max:1160px;
     }
 
     *{ box-sizing:border-box; }
     html,body{ height:100%; }
     body{
       margin:0;
-      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Apple Color Emoji", "Segoe UI Emoji";
       color:var(--ink);
       background:
-        radial-gradient(1200px 700px at 18% 8%, rgba(199,176,106,.18), transparent 55%),
-        radial-gradient(900px 600px at 82% 12%, rgba(26,163,122,.16), transparent 60%),
-        linear-gradient(180deg, var(--bg), var(--bg2));
+        radial-gradient(900px 520px at 12% 6%, rgba(199,176,106,.16), transparent 55%),
+        radial-gradient(900px 520px at 86% 18%, rgba(255,255,255,.06), transparent 55%),
+        linear-gradient(180deg, var(--bg), #050506);
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Apple Color Emoji", "Segoe UI Emoji";
       overflow-x:hidden;
     }
 
     a{ color:inherit; text-decoration:none; }
-    button, input{ font:inherit; }
+    .wrap{ max-width:var(--max); margin:0 auto; padding:0 18px; }
 
-    .topNav{
-      position:fixed;
+    /* Top nav like Dessert Holdings */
+    .topbar{
+      position:sticky;
       top:0;
-      left:0;
-      right:0;
       z-index:50;
-      backdrop-filter:saturate(140%) blur(10px);
-      background: linear-gradient(180deg, rgba(7,7,8,.78), rgba(7,7,8,.35));
-      border-bottom:1px solid rgba(242,243,245,.08);
+      background: rgba(7,7,8,.72);
+      backdrop-filter: blur(12px) saturate(140%);
+      border-bottom:1px solid rgba(243,244,246,.08);
     }
 
-    .topNavInner{
-      max-width:var(--max);
-      margin:0 auto;
-      padding:14px 18px;
+    .topbar-inner{
       display:flex;
       align-items:center;
       justify-content:space-between;
       gap:14px;
+      padding:14px 0;
     }
 
-    .brandMark{
+    .brand{
       display:flex;
       align-items:center;
       gap:10px;
       min-width:180px;
     }
 
-    .brandMark img{
+    .brand img{
       height:26px;
       width:auto;
       display:block;
-      opacity:.92;
+      opacity:.95;
     }
 
-    .navLinks{
+    .nav{
       display:flex;
       align-items:center;
       gap:16px;
-      color:rgba(242,243,245,.84);
-      font-size:14px;
+      font-size:13px;
+      letter-spacing:.08em;
+      text-transform:uppercase;
+      color:rgba(243,244,246,.80);
+      overflow:auto;
+      scrollbar-width:none;
     }
+    .nav::-webkit-scrollbar{ display:none; }
 
-    .navLinks a{
-      padding:8px 10px;
-      border-radius:12px;
+    .nav a{
+      padding:10px 10px;
+      border-radius:999px;
       border:1px solid transparent;
-      transition: all .2s ease;
+      white-space:nowrap;
+      transition: background .2s ease, border-color .2s ease;
     }
-    .navLinks a:hover{
-      border-color:rgba(242,243,245,.12);
-      background:rgba(255,255,255,.04);
+    .nav a:hover{
+      background:rgba(243,244,246,.05);
+      border-color:rgba(243,244,246,.10);
     }
 
-    .navCtas{
+    .cta{
       display:flex;
       align-items:center;
       gap:10px;
     }
 
     .btn{
-      border:1px solid rgba(242,243,245,.14);
-      background:rgba(255,255,255,.04);
+      border:1px solid rgba(243,244,246,.14);
+      background:rgba(243,244,246,.04);
       color:var(--ink);
       padding:10px 14px;
-      border-radius:14px;
+      border-radius:999px;
       cursor:pointer;
       transition: transform .15s ease, background .2s ease, border-color .2s ease;
       display:inline-flex;
       align-items:center;
       gap:10px;
-      box-shadow:none;
+      font-weight:600;
     }
-
     .btn:hover{
-      background:rgba(255,255,255,.07);
-      border-color:rgba(242,243,245,.20);
+      background:rgba(243,244,246,.07);
+      border-color:rgba(243,244,246,.20);
       transform: translateY(-1px);
     }
 
     .btnPrimary{
-      border-color:rgba(199,176,106,.35);
+      border-color: rgba(199,176,106,.38);
       background: linear-gradient(180deg, rgba(199,176,106,.20), rgba(199,176,106,.10));
     }
     .btnPrimary:hover{
-      border-color:rgba(199,176,106,.55);
+      border-color: rgba(199,176,106,.58);
       background: linear-gradient(180deg, rgba(199,176,106,.26), rgba(199,176,106,.14));
     }
 
-    .shellDot{
-      width:8px;
-      height:8px;
-      border-radius:999px;
+    .dot{
+      width:8px; height:8px; border-radius:999px;
       background:var(--accent);
       box-shadow:0 0 0 6px rgba(199,176,106,.12);
     }
 
-    .page{
-      scroll-snap-type:y mandatory;
-      height:100vh;
-      overflow-y:auto;
-      overflow-x:hidden;
-      scroll-behavior:smooth;
+    /* Hero */
+    .hero{
+      padding:56px 0 22px;
     }
 
-    .section{
-      scroll-snap-align:start;
-      min-height:100vh;
-      padding:92px 18px 40px;
-      display:flex;
-      align-items:center;
-      position:relative;
-    }
-
-    .container{
-      max-width:var(--max);
-      width:100%;
-      margin:0 auto;
-    }
-
-    .gridTwo{
+    .hero-grid{
       display:grid;
-      grid-template-columns: 1.05fr .95fr;
-      gap:28px;
-      align-items:center;
+      grid-template-columns: 1.1fr .9fr;
+      gap:22px;
+      align-items:stretch;
+    }
+
+    .panel{
+      border:1px solid rgba(243,244,246,.12);
+      background: linear-gradient(180deg, rgba(243,244,246,.06), rgba(243,244,246,.03));
+      border-radius: var(--radius);
+      overflow:hidden;
+    }
+
+    .hero-copy{
+      padding:26px;
     }
 
     .kicker{
+      display:flex; align-items:center; gap:10px;
       font-size:12px;
       letter-spacing:.14em;
       text-transform:uppercase;
-      color:rgba(242,243,245,.70);
-      display:flex;
-      align-items:center;
-      gap:10px;
+      color:rgba(243,244,246,.70);
     }
 
-    .h1{
-      font-size: clamp(36px, 5vw, 56px);
-      line-height:1.05;
+    h1{
       margin:14px 0 10px;
+      font-size: clamp(34px, 4.8vw, 54px);
+      line-height:1.04;
       letter-spacing:-.02em;
     }
 
     .lead{
+      margin:0 0 16px;
+      color:rgba(243,244,246,.78);
       font-size:18px;
       line-height:1.6;
-      color:rgba(242,243,245,.78);
-      max-width: 58ch;
-      margin:0 0 18px;
+      max-width: 60ch;
     }
 
-    .micro{
+    .subtle{
+      color:rgba(243,244,246,.62);
       font-size:13px;
       line-height:1.5;
-      color:rgba(242,243,245,.62);
-      margin:14px 0 0;
+      margin-top:12px;
     }
 
-    .card{
-      border:1px solid rgba(242,243,245,.12);
-      background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03));
-      border-radius: var(--radius2);
-      box-shadow: var(--shadow);
-      overflow:hidden;
-    }
-
-    .heroCard{
-      padding:26px;
-      position:relative;
-    }
-
-    .heroLogo{
-      width:min(520px, 80vw);
-      height:auto;
-      display:block;
-      margin: 0 0 14px;
-      opacity:.96;
-      filter: drop-shadow(0 16px 46px rgba(0,0,0,.45));
-    }
-
-    .heroAccentLine{
-      height:1px;
-      background: linear-gradient(90deg, rgba(199,176,106,.0), rgba(199,176,106,.55), rgba(26,163,122,.35), rgba(199,176,106,.0));
-      margin: 18px 0 16px;
-    }
-
-    .pillRow{
+    .hero-actions{
       display:flex;
       flex-wrap:wrap;
       gap:10px;
-      margin-top:16px;
+      margin-top:18px;
     }
 
-    .pill{
-      border:1px solid rgba(242,243,245,.14);
-      background:rgba(255,255,255,.04);
-      padding:9px 12px;
-      border-radius:999px;
-      font-size:13px;
-      color:rgba(242,243,245,.82);
-    }
-
-    .visual{
-      border-radius: var(--radius2);
-      border:1px solid rgba(242,243,245,.12);
-      background:
-        radial-gradient(900px 540px at 50% 30%, rgba(199,176,106,.14), transparent 55%),
-        radial-gradient(700px 460px at 55% 65%, rgba(26,163,122,.12), transparent 60%),
-        linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03));
-      min-height: 420px;
+    .hero-media{
       position:relative;
-      overflow:hidden;
-      box-shadow: var(--shadow);
+      min-height: 340px;
+      background:
+        radial-gradient(900px 520px at 50% 30%, rgba(199,176,106,.16), transparent 55%),
+        linear-gradient(180deg, rgba(0,0,0,.10), rgba(0,0,0,.38));
     }
 
-    .visualOverlay{
+    .media-inner{
       position:absolute;
       inset:0;
-      background:
-        linear-gradient(180deg, rgba(0,0,0,.18), rgba(0,0,0,.45));
-      pointer-events:none;
+      display:flex;
+      align-items:flex-end;
+      padding:18px;
     }
 
-    .visualStamp{
-      position:absolute;
-      left:22px;
-      bottom:22px;
-      right:22px;
-      border:1px solid rgba(242,243,245,.14);
-      background:rgba(0,0,0,.22);
-      border-radius:18px;
+    .media-card{
+      width:100%;
+      border:1px solid rgba(243,244,246,.12);
+      background:rgba(0,0,0,.24);
+      border-radius: 16px;
       padding:14px 14px;
     }
 
-    .visualStampTitle{
-      font-weight:650;
-      letter-spacing:.01em;
-    }
-
-    .visualStampText{
+    .media-title{ font-weight:700; }
+    .media-text{
       margin-top:6px;
-      color:rgba(242,243,245,.72);
+      color:rgba(243,244,246,.72);
       font-size:14px;
       line-height:1.5;
     }
 
-    .sectionTitle{
-      font-size: clamp(28px, 3.8vw, 42px);
-      line-height:1.12;
-      margin:12px 0 10px;
-      letter-spacing:-.02em;
+    /* Section pattern like Dessert Holdings blocks */
+    .section{
+      padding:34px 0;
+      border-top:1px solid rgba(243,244,246,.08);
     }
 
-    .splitList{
-      margin:18px 0 0;
-      padding:0;
-      list-style:none;
-      display:grid;
-      gap:10px;
-      max-width: 64ch;
-    }
-
-    .splitList li{
+    .section-head{
       display:flex;
-      gap:10px;
-      align-items:flex-start;
-      color:rgba(242,243,245,.76);
+      align-items:flex-end;
+      justify-content:space-between;
+      gap:14px;
+      margin-bottom:16px;
+    }
+
+    .section-head h2{
+      margin:0;
+      font-size:26px;
+      letter-spacing:-.01em;
+    }
+
+    .section-head p{
+      margin:0;
+      color:rgba(243,244,246,.68);
+      max-width: 62ch;
       line-height:1.55;
     }
 
-    .tick{
-      margin-top:6px;
-      width:10px;
-      height:10px;
-      border-radius:999px;
-      background:rgba(199,176,106,.95);
-      box-shadow:0 0 0 6px rgba(199,176,106,.10);
-      flex:0 0 auto;
-    }
-
-    .ctaBand{
-      margin-top:18px;
-      display:flex;
-      gap:10px;
-      flex-wrap:wrap;
-      align-items:center;
-    }
-
-    .footer{
-      padding:26px 18px 36px;
-      border-top:1px solid rgba(242,243,245,.10);
-      background:rgba(0,0,0,.20);
-    }
-
-    .footerInner{
-      max-width:var(--max);
-      margin:0 auto;
-      display:flex;
-      flex-wrap:wrap;
-      gap:14px 18px;
-      align-items:center;
-      justify-content:space-between;
-      color:rgba(242,243,245,.72);
-      font-size:14px;
-    }
-
-    .footerLinks{
-      display:flex;
+    /* Tile grid */
+    .tiles{
+      display:grid;
+      grid-template-columns: repeat(3, 1fr);
       gap:14px;
-      flex-wrap:wrap;
-      align-items:center;
     }
 
-    .footerLinks a{
-      border-bottom:1px solid rgba(199,176,106,.0);
-      transition:border-color .2s ease, color .2s ease;
-    }
-    .footerLinks a:hover{
-      color:rgba(242,243,245,.92);
-      border-color:rgba(199,176,106,.55);
-    }
-
-    /* reveal animations */
-    .reveal{
-      opacity:0;
-      transform: translateY(16px);
-      transition: opacity .7s ease, transform .7s ease;
-      will-change:opacity,transform;
-    }
-    .reveal.isVisible{
-      opacity:1;
-      transform: translateY(0);
-    }
-
-    /* modal */
-    .modalBackdrop{
-      position:fixed;
-      inset:0;
-      background:rgba(0,0,0,.62);
-      display:none;
-      align-items:center;
-      justify-content:center;
-      padding:18px;
-      z-index:120;
-    }
-    .modalBackdrop.open{ display:flex; }
-
-    .modal{
-      width:min(560px, 100%);
-      border-radius: var(--radius2);
-      border:1px solid rgba(242,243,245,.14);
-      background: linear-gradient(180deg, rgba(16,16,18,.96), rgba(10,10,11,.96));
-      box-shadow: 0 30px 90px rgba(0,0,0,.70);
+    .tile{
+      border:1px solid rgba(243,244,246,.12);
+      background: linear-gradient(180deg, rgba(243,244,246,.06), rgba(243,244,246,.03));
+      border-radius: var(--radius);
+      padding:16px;
+      min-height: 170px;
+      position:relative;
       overflow:hidden;
     }
 
-    .modalHeader{
-      padding:18px 18px 12px;
+    .tile .label{
+      font-size:12px;
+      letter-spacing:.12em;
+      text-transform:uppercase;
+      color:rgba(243,244,246,.70);
       display:flex;
-      align-items:flex-start;
-      justify-content:space-between;
-      gap:12px;
-      border-bottom:1px solid rgba(242,243,245,.10);
-    }
-
-    .modalTitle{
-      font-weight:700;
-      font-size:18px;
-      margin:0;
-    }
-
-    .modalClose{
-      border:1px solid rgba(242,243,245,.14);
-      background:rgba(255,255,255,.04);
-      color:var(--ink);
-      border-radius:12px;
-      padding:8px 10px;
-      cursor:pointer;
-    }
-
-    .modalBody{ padding:16px 18px 18px; }
-
-    .formRow{
-      display:grid;
+      align-items:center;
       gap:10px;
+    }
+    .tile h3{
+      margin:10px 0 6px;
+      font-size:18px;
+    }
+    .tile p{
+      margin:0;
+      color:rgba(243,244,246,.72);
+      line-height:1.55;
+      font-size:14px;
+    }
+
+    /* Feature rows */
+    .feature-grid{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap:14px;
+    }
+
+    .feature{
+      border:1px solid rgba(243,244,246,.12);
+      background: rgba(243,244,246,.04);
+      border-radius: var(--radius);
+      padding:16px;
+    }
+    .feature h3{ margin:0 0 8px; font-size:18px; }
+    .feature p{ margin:0; color:rgba(243,244,246,.72); line-height:1.6; }
+
+    /* Contact form, like their bottom form placement */
+    .contact-grid{
+      display:grid;
+      grid-template-columns: 1.05fr .95fr;
+      gap:14px;
+      align-items:start;
+    }
+
+    .form{
+      padding:18px;
+    }
+
+    .field{
+      display:grid;
+      gap:8px;
       margin-top:10px;
     }
 
-    .input{
+    .input, .select, textarea{
       width:100%;
       border-radius:14px;
-      border:1px solid rgba(242,243,245,.14);
-      background:rgba(255,255,255,.04);
+      border:1px solid rgba(243,244,246,.14);
+      background:rgba(243,244,246,.04);
       color:var(--ink);
       padding:12px 12px;
       outline:none;
     }
-    .input:focus{
-      border-color:rgba(199,176,106,.55);
+    textarea{ min-height:120px; resize:vertical; }
+
+    .input:focus, .select:focus, textarea:focus{
+      border-color: rgba(199,176,106,.55);
       box-shadow:0 0 0 4px rgba(199,176,106,.12);
     }
 
-    .finePrint{
-      margin-top:10px;
+    .fine{
+      color:rgba(243,244,246,.60);
       font-size:12px;
-      color:rgba(242,243,245,.62);
       line-height:1.45;
+      margin-top:10px;
     }
 
-    .toast{
-      position:fixed;
-      left:50%;
-      bottom:18px;
-      transform:translateX(-50%);
-      padding:12px 14px;
-      border-radius:999px;
-      border:1px solid rgba(242,243,245,.14);
-      background:rgba(0,0,0,.55);
-      color:rgba(242,243,245,.88);
-      display:none;
-      z-index:200;
-      box-shadow: 0 20px 60px rgba(0,0,0,.55);
+    .footer{
+      padding:22px 0 36px;
+      border-top:1px solid rgba(243,244,246,.10);
+      color:rgba(243,244,246,.72);
       font-size:14px;
     }
-    .toast.show{ display:block; }
 
-    @media (max-width: 920px){
-      .gridTwo{ grid-template-columns: 1fr; }
-      .brandMark{ min-width:auto; }
-      .navLinks{ display:none; }
-      .visual{ min-height: 360px; }
-      .section{ padding-top:86px; }
+    .footer-inner{
+      display:flex;
+      flex-wrap:wrap;
+      gap:12px 18px;
+      align-items:center;
+      justify-content:space-between;
     }
 
-    @media (prefers-reduced-motion: reduce){
-      .page{ scroll-behavior:auto; }
-      .reveal{ transition:none; transform:none; }
-      .btn{ transition:none; }
+    .footer a{
+      border-bottom:1px solid rgba(199,176,106,.0);
+      transition: border-color .2s ease, color .2s ease;
+    }
+    .footer a:hover{
+      color:rgba(243,244,246,.92);
+      border-color:rgba(199,176,106,.55);
+    }
+
+    /* Responsive */
+    @media (max-width: 980px){
+      .hero-grid{ grid-template-columns: 1fr; }
+      .contact-grid{ grid-template-columns: 1fr; }
+      .tiles{ grid-template-columns: 1fr; }
+      .feature-grid{ grid-template-columns: 1fr; }
+      .nav{ display:none; }
+      .hero{ padding-top:34px; }
     }
   </style>
 </head>
 
 <body>
-  <header class="topNav">
-    <div class="topNavInner">
-      <a class="brandMark" href="#top" aria-label="Buckshot Brewing home">
-        <img src="assets/buckshot-logo-white.png" alt="Buckshot Brewing" />
-      </a>
+  <header class="topbar">
+    <div class="wrap">
+      <div class="topbar-inner">
+        <a class="brand" href="#top" aria-label="Buckshot Brewing home">
+          <img src="assets/buckshot-logo-white.png" alt="Buckshot Brewing" />
+        </a>
 
-      <nav class="navLinks" aria-label="Site">
-        <a href="#story">Story</a>
-        <a href="#beer">Beer</a>
-        <a href="#community">Community</a>
-        <a href="#contact">Contact</a>
-      </nav>
+        <nav class="nav" aria-label="Primary">
+          <a href="#about">About</a>
+          <a href="#beer">Our Beer</a>
+          <a href="#drops">Seasonals</a>
+          <a href="#contact">Contact</a>
+        </nav>
 
-      <div class="navCtas">
-        <button class="btn" type="button" id="industryBtn">Industry</button>
-        <button class="btn btnPrimary" type="button" id="joinBtn">
-          <span class="shellDot" aria-hidden="true"></span>
-          Join the list
-        </button>
+        <div class="cta">
+          <a class="btn" href="#contact">Industry</a>
+          <button class="btn btnPrimary" type="button" id="openJoin">
+            <span class="dot" aria-hidden="true"></span>
+            Join the list
+          </button>
+        </div>
       </div>
     </div>
   </header>
 
-  <main class="page" id="top">
+  <main id="top">
     <!-- HERO -->
-    <section class="section" aria-label="Hero">
-      <div class="container">
-        <div class="gridTwo">
-          <div class="heroCard card reveal">
-            <img class="heroLogo" src="assets/buckshot-logo-white.png" alt="Buckshot Brewing" />
-            <div class="kicker"><span class="shellDot" aria-hidden="true"></span> Coming soon</div>
-            <h1 class="h1">American beer built for early mornings and long stories.</h1>
+    <section class="hero">
+      <div class="wrap">
+        <div class="hero-grid">
+          <div class="panel hero-copy">
+            <div class="kicker"><span class="dot" aria-hidden="true"></span> Welcome to Buckshot Brewing</div>
+            <h1>Dessert makes the moment.<br/>Beer does too.</h1>
             <p class="lead">
-              Buckshot Brewing is getting ready to launch. Join the list and you will be first to hear where it lands.
+              Buckshot Brewing is building a clean American Lager and seasonal drops with a premium look.
+              Join the list and you will be first to hear where it lands.
             </p>
 
-            <div class="ctaBand">
-              <button class="btn btnPrimary" type="button" id="joinBtn2">
-                <span class="shellDot" aria-hidden="true"></span>
+            <div class="hero-actions">
+              <button class="btn btnPrimary" type="button" id="openJoin2">
+                <span class="dot" aria-hidden="true"></span>
                 Join the list
               </button>
-              <a class="btn" href="#beer">See what we are building</a>
+              <a class="btn" href="mailto:sales@buckshotbrewing.com?subject=Buckshot%20Brewing%20Retail%20or%20Distributor%20Inquiry">
+                sales@buckshotbrewing.com
+              </a>
             </div>
 
-            <div class="heroAccentLine"></div>
-
-            <div class="pillRow" aria-label="Highlights">
-              <div class="pill">Clean American Lager</div>
-              <div class="pill">Seasonal drops</div>
-              <div class="pill">Built in Minnesota</div>
-              <div class="pill">Made for the outdoors</div>
+            <div class="subtle">
+              Retail and distributor inquiries welcome. Investor interest is appreciated, but not the focus here.
             </div>
-
-            <p class="micro">
-              Industry and retail inquiries are welcome, they just live quietly in the footer.
-            </p>
           </div>
 
-          <div class="visual reveal" aria-hidden="true">
-            <div class="visualOverlay"></div>
-            <div class="visualStamp">
-              <div class="visualStampTitle">A brand that feels real.</div>
-              <div class="visualStampText">
-                Less hype. More tradition. A modern look with a classic backbone.
+          <div class="panel hero-media" aria-hidden="true">
+            <div class="media-inner">
+              <div class="media-card">
+                <div class="media-title">Premium branding. Easy drinking beer.</div>
+                <div class="media-text">
+                  Built in Minnesota. Made for cabins, tailgates, and long weekends.
+                </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
+      </div>  
     </section>
 
-    <!-- STORY -->
-    <section class="section" id="story" aria-label="Story">
-      <div class="container">
-        <div class="gridTwo">
-          <div class="reveal">
-            <div class="kicker"><span class="shellDot" aria-hidden="true"></span> The idea</div>
-            <h2 class="sectionTitle">This isn’t hype beer.</h2>
-            <p class="lead">
-              Buckshot is for the people who like their beer cold, their stories long, and their mornings early.
-              It’s built to show up anywhere, campfires, tailgates, cabins, and the back patio after a full day outside.
+    <!-- ABOUT -->
+    <section class="section" id="about">
+      <div class="wrap">
+        <div class="section-head">
+          <div>
+            <h2>Transforming “outdoors beer” into something premium.</h2>
+            <p>
+              Buckshot is for the people who like their beer cold, their mornings early, and their stories long.
+              Simple recipe goals, consistent quality, and packaging that actually looks expensive.
             </p>
-
-            <ul class="splitList">
-              <li><span class="tick" aria-hidden="true"></span> Crisp and easy to drink, without trying to be clever.</li>
-              <li><span class="tick" aria-hidden="true"></span> A look that stands out, but still feels classic.</li>
-              <li><span class="tick" aria-hidden="true"></span> A brand that is proud of where it comes from.</li>
-            </ul>
-
-            <div class="ctaBand">
-              <button class="btn btnPrimary" type="button" id="joinBtn3">
-                <span class="shellDot" aria-hidden="true"></span>
-                Get launch updates
-              </button>
-              <a class="btn" href="#contact">Contact</a>
-            </div>
           </div>
+        </div>
 
-          <div class="card reveal" style="padding:22px;">
-            <div class="kicker"><span class="shellDot" aria-hidden="true"></span> What to expect</div>
-            <h3 style="margin:12px 0 8px; font-size:22px;">Simple. Clean. Consistent.</h3>
-            <p style="margin:0; color:rgba(242,243,245,.76); line-height:1.6;">
-              We are starting with a flagship lager and building from there.
-              Seasonal releases will follow, with the same standard: drinkability first.
-            </p>
-
-            <div class="heroAccentLine" style="margin:16px 0 14px;"></div>
-
-            <div class="pillRow">
-              <div class="pill">Launch list only</div>
-              <div class="pill">Limited early drops</div>
-              <div class="pill">Retail first</div>
-              <div class="pill">Draft where it fits</div>
-            </div>
+        <div class="feature-grid">
+          <div class="feature">
+            <h3>Drinkability first</h3>
+            <p>Crisp and clean. No palate fatigue. A lager that earns a second one.</p>
+          </div>
+          <div class="feature">
+            <h3>Premium presence</h3>
+            <p>Bold, modern, and shelf ready without feeling like a gimmick.</p>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- BEER -->
-    <section class="section" id="beer" aria-label="Beer">
-      <div class="container">
-        <div class="gridTwo">
-          <div class="reveal">
-            <div class="kicker"><span class="shellDot" aria-hidden="true"></span> The beer</div>
-            <h2 class="sectionTitle">A lager that earns a second one.</h2>
-            <p class="lead">
-              The flagship is a clean American Lager. Crisp. Refreshing. Built for repeat pours.
-            </p>
-
-            <ul class="splitList">
-              <li><span class="tick" aria-hidden="true"></span> Balanced and bright, not sweet.</li>
-              <li><span class="tick" aria-hidden="true"></span> Clean finish, no fatigue.</li>
-              <li><span class="tick" aria-hidden="true"></span> Works in a can, works on draft.</li>
-            </ul>
-
-            <p class="micro">
-              Seasonal releases are coming too, including OktoberPheas Amber, Stout, and a Hazy IPA drop.
-            </p>
+    <!-- OUR BEER -->
+    <section class="section" id="beer">
+      <div class="wrap">
+        <div class="section-head">
+          <div>
+            <h2>Our beer</h2>
+            <p>Start with the flagship. Build the lineup with seasonal drops that still stay easy to drink.</p>
           </div>
+        </div>
 
-          <div class="visual reveal" aria-hidden="true">
-            <div class="visualOverlay"></div>
-            <div class="visualStamp">
-              <div class="visualStampTitle">Cans that feel premium.</div>
-              <div class="visualStampText">
-                Modern, bold, and built to pop on shelf without looking gimmicky.
-              </div>
-            </div>
+        <div class="tiles">
+          <div class="tile">
+            <div class="label"><span class="dot" aria-hidden="true"></span> Flagship</div>
+            <h3>Buckshot Lager</h3>
+            <p>Clean American Lager. Crisp, refreshing, repeatable.</p>
+          </div>
+          <div class="tile">
+            <div class="label"><span class="dot" aria-hidden="true"></span> Seasonal</div>
+            <h3>OktoberPheas Amber</h3>
+            <p>Seasonal amber built for fall nights, bonfires, and football.</p>
+          </div>
+          <div class="tile">
+            <div class="label"><span class="dot" aria-hidden="true"></span> Seasonal</div>
+            <h3>Buckshot Hazy IPA</h3>
+            <p>Hazy drop with “Beware of the Phog” as a limited run concept.</p>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- COMMUNITY -->
-    <section class="section" id="community" aria-label="Community">
-      <div class="container">
-        <div class="gridTwo">
-          <div class="card reveal" style="padding:22px;">
-            <div class="kicker"><span class="shellDot" aria-hidden="true"></span> Community</div>
-            <h3 style="margin:12px 0 8px; font-size:22px;">Built for people, not algorithms.</h3>
-            <p style="margin:0; color:rgba(242,243,245,.76); line-height:1.6;">
-              Buckshot is rooted in family, friends, and time outside. We will show up in the places that matter.
-            </p>
-            <div class="heroAccentLine" style="margin:16px 0 14px;"></div>
-            <p style="margin:0; color:rgba(242,243,245,.72); line-height:1.6;">
-              We also plan to support Type 1 Diabetes research as we grow.
-              It will stay real and it will stay consistent.
+    <!-- SEASONALS -->
+    <section class="section" id="drops">
+      <div class="wrap">
+        <div class="section-head">
+          <div>
+            <h2>Seasonal drops</h2>
+            <p>
+              We will keep the lineup tight. Every release has to earn its place.
+              Join the list to get the first drop info.
             </p>
           </div>
+        </div>
 
-          <div class="reveal">
-            <h2 class="sectionTitle">Want to be first?</h2>
-            <p class="lead">
-              Join the list. We will email you when Buckshot is on shelves and on draft.
-              No spam. No noise.
-            </p>
-            <div class="ctaBand">
-              <button class="btn btnPrimary" type="button" id="joinBtn4">
-                <span class="shellDot" aria-hidden="true"></span>
-                Join the list
-              </button>
-              <a class="btn" href="#contact">Industry contact</a>
-            </div>
+        <div class="feature-grid">
+          <div class="feature">
+            <h3>Limited early drops</h3>
+            <p>Small runs. Fast placement. Tight feedback loop.</p>
           </div>
+          <div class="feature">
+            <h3>Cause, quietly</h3>
+            <p>We plan to support Type 1 Diabetes research as the brand grows.</p>
+          </div>
+        </div>
+
+        <div style="margin-top:14px;">
+          <button class="btn btnPrimary" type="button" id="openJoin3">
+            <span class="dot" aria-hidden="true"></span>
+            Join the list
+          </button>
         </div>
       </div>
     </section>
 
     <!-- CONTACT -->
-    <section class="section" id="contact" aria-label="Contact">
-      <div class="container">
-        <div class="gridTwo">
-          <div class="reveal">
-            <div class="kicker"><span class="shellDot" aria-hidden="true"></span> Contact</div>
-            <h2 class="sectionTitle">Questions. Partners. Placements.</h2>
-            <p class="lead">
-              For distributor and retail inquiries, email us here:
-            </p>
-
-            <div class="ctaBand">
-              <a class="btn btnPrimary" href="mailto:sales@buckshotbrewing.com?subject=Buckshot%20Brewing%20Inquiry">
-                <span class="shellDot" aria-hidden="true"></span>
-                sales@buckshotbrewing.com
-              </a>
-              <button class="btn" type="button" id="joinBtn5">Join the list</button>
-            </div>
-
-            <p class="micro">
-              Investor interest is appreciated, but this page is built for the people who will drink it first.
+    <section class="section" id="contact">
+      <div class="wrap">
+        <div class="section-head">
+          <div>
+            <h2>Contact</h2>
+            <p>
+              Retail buyers and distributors, use this form or email directly.
+              This page stays consumer first, but we make it easy to reach us. 
             </p>
           </div>
+        </div>
 
-          <div class="card reveal" style="padding:22px;">
-            <div class="kicker"><span class="shellDot" aria-hidden="true"></span> Industry</div>
-            <h3 style="margin:12px 0 8px; font-size:22px;">Distributor and retail buyers</h3>
-            <p style="margin:0; color:rgba(242,243,245,.76); line-height:1.6;">
-              Send a note with your market, your placement goals, and the best number to reach you.
+        <div class="contact-grid">
+          <div class="panel form">
+            <!-- This is a front end form placeholder.
+                 If you want submissions to actually go somewhere, tell me your preference:
+                 Mailchimp, ConvertKit, or Google Sheets.
+            -->
+            <form id="contactForm">
+              <div class="field">
+                <label for="name">Name</label>
+                <input class="input" id="name" name="name" autocomplete="name" required />
+              </div>
+
+              <div class="field">
+                <label for="email">Email</label>
+                <input class="input" id="email" name="email" type="email" autocomplete="email" required />
+              </div>
+
+              <div class="field">
+                <label for="company">Company</label>
+                <input class="input" id="company" name="company" autocomplete="organization" />
+              </div>
+
+              <div class="field">
+                <label for="reason">Reason</label>
+                <select class="select" id="reason" name="reason">
+                  <option>Retail buyer inquiry</option>
+                  <option>Distributor inquiry</option>
+                  <option>Press or media</option>
+                  <option>Other</option>
+                </select>
+              </div>
+
+              <div class="field">
+                <label for="message">Message</label>
+                <textarea id="message" name="message" placeholder="Tell us your market and what you are looking for."></textarea>
+              </div>
+
+              <div style="margin-top:14px; display:flex; gap:10px; flex-wrap:wrap;">
+                <button class="btn btnPrimary" type="submit">
+                  <span class="dot" aria-hidden="true"></span>
+                  Send
+                </button>
+                <a class="btn" href="mailto:sales@buckshotbrewing.com?subject=Buckshot%20Brewing%20Inquiry">
+                  Email sales@buckshotbrewing.com
+                </a>
+              </div>
+
+              <div class="fine">
+                By sending, you are requesting a reply from Buckshot Brewing. No spam.
+              </div>
+            </form>
+          </div>
+
+          <div class="panel" style="padding:18px;">
+            <div class="kicker"><span class="dot" aria-hidden="true"></span> Join the customer list</div>
+            <h3 style="margin:12px 0 8px; font-size:22px;">Be first to know.</h3>
+            <p style="margin:0; color:rgba(243,244,246,.72); line-height:1.6;">
+              We will email you at launch, and when Buckshot hits shelves.
             </p>
-            <div class="heroAccentLine" style="margin:16px 0 14px;"></div>
-            <p style="margin:0; color:rgba(242,243,245,.72); line-height:1.6;">
-              Email: <a href="mailto:sales@buckshotbrewing.com?subject=Buckshot%20Brewing%20Placement" style="border-bottom:1px solid rgba(199,176,106,.55);">sales@buckshotbrewing.com</a>
-            </p>
+
+            <div style="margin-top:14px; display:flex; gap:10px; flex-wrap:wrap;">
+              <button class="btn btnPrimary" type="button" id="openJoin4">
+                <span class="dot" aria-hidden="true"></span>
+                Join the list
+              </button>
+            </div>
+
+            <div class="fine" style="margin-top:10px;">
+              Unsubscribe anytime.
+            </div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- FOOTER -->
-    <footer class="footer" aria-label="Footer">
-      <div class="footerInner">
-        <div>© <span id="year"></span> Buckshot Brewing</div>
-        <div class="footerLinks">
-          <a href="#top">Top</a>
-          <a href="mailto:sales@buckshotbrewing.com?subject=Buckshot%20Brewing%20Distributor%20Inquiry">Distributor</a>
-          <a href="mailto:sales@buckshotbrewing.com?subject=Buckshot%20Brewing%20Retail%20Inquiry">Retail</a>
+    <footer class="footer">
+      <div class="wrap">
+        <div class="footer-inner">
+          <div>© <span id="year"></span> Buckshot Brewing</div>
+          <div style="display:flex; gap:14px; flex-wrap:wrap;">
+            <a href="#top">Top</a>
+            <a href="mailto:sales@buckshotbrewing.com?subject=Buckshot%20Brewing%20Distributor%20Inquiry">Distributor</a>
+            <a href="mailto:sales@buckshotbrewing.com?subject=Buckshot%20Brewing%20Retail%20Inquiry">Retail</a>
+          </div>
         </div>
       </div>
     </footer>
   </main>
 
-  <!-- Email capture modal -->
-  <div class="modalBackdrop" id="modalBackdrop" role="dialog" aria-modal="true" aria-label="Join the list">
-    <div class="modal" role="document">
-      <div class="modalHeader">
+  <!-- Join modal -->
+  <div id="joinBackdrop" style="position:fixed; inset:0; background:rgba(0,0,0,.62); display:none; align-items:center; justify-content:center; padding:18px; z-index:120;">
+    <div style="width:min(560px, 100%); border-radius:18px; border:1px solid rgba(243,244,246,.14); background:linear-gradient(180deg, rgba(16,16,18,.96), rgba(10,10,11,.96)); overflow:hidden;">
+      <div style="padding:16px 18px; display:flex; align-items:flex-start; justify-content:space-between; gap:12px; border-bottom:1px solid rgba(243,244,246,.10);">
         <div>
-          <p class="modalTitle">Join the Buckshot launch list</p>
-          <p style="margin:6px 0 0; color:rgba(242,243,245,.70); font-size:14px; line-height:1.45;">
-            Get a note when we launch and when we hit shelves.
-          </p>
+          <div style="font-weight:800; font-size:18px;">Join the Buckshot launch list</div>
+          <div style="margin-top:6px; color:rgba(243,244,246,.70); font-size:14px; line-height:1.45;">
+            Get a note at launch and when we hit shelves.
+          </div>
         </div>
-        <button class="modalClose" type="button" id="modalCloseBtn" aria-label="Close">Close</button>
+        <button id="joinClose" class="btn" type="button" style="padding:8px 12px;">Close</button>
       </div>
 
-      <div class="modalBody">
-        <!--
-          IMPORTANT:
-          This form is set up as a front end only capture.
-          To actually collect emails, connect it to a provider.
-
-          Easiest options:
-          1) Mailchimp embedded form (replace action URL)
-          2) ConvertKit form endpoint
-          3) A simple serverless endpoint on Vercel
-
-          For now it stores locally in the browser and shows a success toast.
-        -->
+      <div style="padding:16px 18px 18px;">
         <form id="joinForm">
-          <div class="formRow">
-            <input class="input" type="text" name="firstName" placeholder="First name (optional)" autocomplete="given-name" />
-            <input class="input" type="email" name="email" placeholder="Email address" autocomplete="email" required />
+          <div style="display:grid; gap:10px;">
+            <input class="input" name="firstName" placeholder="First name (optional)" autocomplete="given-name" />
+            <input class="input" name="email" type="email" placeholder="Email address" autocomplete="email" required />
           </div>
 
-          <div class="ctaBand" style="margin-top:14px;">
+          <div style="margin-top:14px; display:flex; gap:10px; flex-wrap:wrap;">
             <button class="btn btnPrimary" type="submit">
-              <span class="shellDot" aria-hidden="true"></span>
+              <span class="dot" aria-hidden="true"></span>
               Join
             </button>
-            <button class="btn" type="button" id="modalCloseBtn2">Not now</button>
+            <button id="joinNotNow" class="btn" type="button">Not now</button>
           </div>
 
-          <div class="finePrint">
-            By joining, you agree to receive launch updates from Buckshot Brewing. You can unsubscribe anytime.
+          <div class="fine" style="margin-top:10px;">
+            You can unsubscribe anytime.
           </div>
         </form>
       </div>
     </div>
   </div>
 
-  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <div id="toast" style="position:fixed; left:50%; bottom:18px; transform:translateX(-50%); padding:12px 14px; border-radius:999px; border:1px solid rgba(243,244,246,.14); background:rgba(0,0,0,.55); color:rgba(243,244,246,.88); display:none; z-index:200; font-size:14px;"></div>
 
   <script>
-    // year
     document.getElementById("year").textContent = new Date().getFullYear();
 
-    // reveal on scroll
-    const revealEls = Array.from(document.querySelectorAll(".reveal"));
-    const io = new IntersectionObserver((entries) => {
-      entries.forEach((e) => {
-        if (e.isIntersecting) e.target.classList.add("isVisible");
-      });
-    }, { threshold: 0.18 });
-
-    revealEls.forEach(el => io.observe(el));
-
-    // modal controls
-    const modalBackdrop = document.getElementById("modalBackdrop");
-    const joinButtons = ["joinBtn","joinBtn2","joinBtn3","joinBtn4","joinBtn5"].map(id => document.getElementById(id)).filter(Boolean);
-    const closeButtons = ["modalCloseBtn","modalCloseBtn2"].map(id => document.getElementById(id)).filter(Boolean);
-
-    function openModal(){
-      modalBackdrop.classList.add("open");
-      const emailInput = modalBackdrop.querySelector('input[type="email"]');
-      setTimeout(() => emailInput && emailInput.focus(), 60);
-    }
-    function closeModal(){
-      modalBackdrop.classList.remove("open");
-    }
-
-    joinButtons.forEach(btn => btn.addEventListener("click", openModal));
-    closeButtons.forEach(btn => btn.addEventListener("click", closeModal));
-    modalBackdrop.addEventListener("click", (e) => {
-      if (e.target === modalBackdrop) closeModal();
-    });
-    document.addEventListener("keydown", (e) => {
-      if (e.key === "Escape" && modalBackdrop.classList.contains("open")) closeModal();
-    });
-
-    // industry button scrolls to contact and highlights email
-    const industryBtn = document.getElementById("industryBtn");
-    if (industryBtn){
-      industryBtn.addEventListener("click", () => {
-        const el = document.getElementById("contact");
-        if (el) el.scrollIntoView({ behavior:"smooth", block:"start" });
-      });
-    }
-
-    // lightweight email capture for now (localStorage)
-    const joinForm = document.getElementById("joinForm");
+    const joinBackdrop = document.getElementById("joinBackdrop");
     const toast = document.getElementById("toast");
 
     function showToast(msg){
       toast.textContent = msg;
-      toast.classList.add("show");
-      setTimeout(() => toast.classList.remove("show"), 2600);
+      toast.style.display = "block";
+      setTimeout(() => toast.style.display = "none", 2600);
     }
 
-    joinForm.addEventListener("submit", (e) => {
+    function openJoin(){
+      joinBackdrop.style.display = "flex";
+      const emailInput = joinBackdrop.querySelector('input[name="email"]');
+      setTimeout(() => emailInput && emailInput.focus(), 60);
+    }
+    function closeJoin(){
+      joinBackdrop.style.display = "none";
+    }
+
+    ["openJoin","openJoin2","openJoin3","openJoin4"].forEach(id => {
+      const el = document.getElementById(id);
+      if (el) el.addEventListener("click", openJoin);
+    });
+
+    document.getElementById("joinClose").addEventListener("click", closeJoin);
+    document.getElementById("joinNotNow").addEventListener("click", closeJoin);
+    joinBackdrop.addEventListener("click", (e) => { if (e.target === joinBackdrop) closeJoin(); });
+    document.addEventListener("keydown", (e) => { if (e.key === "Escape") closeJoin(); });
+
+    // Email capture placeholder (local only for now)
+    document.getElementById("joinForm").addEventListener("submit", (e) => {
       e.preventDefault();
-      const fd = new FormData(joinForm);
+      const fd = new FormData(e.target);
       const email = String(fd.get("email") || "").trim().toLowerCase();
       const firstName = String(fd.get("firstName") || "").trim();
 
-      if (!email) {
-        showToast("Please enter an email.");
-        return;
-      }
+      if (!email) return showToast("Please enter an email.");
 
       const key = "buckshotLaunchList";
       const existing = JSON.parse(localStorage.getItem(key) || "[]");
@@ -853,9 +729,15 @@
         localStorage.setItem(key, JSON.stringify(existing));
       }
 
-      joinForm.reset();
-      closeModal();
+      e.target.reset();
+      closeJoin();
       showToast(already ? "You are already on the list." : "You are on the list. Welcome.");
+    });
+
+    // Contact form placeholder (front end only)
+    document.getElementById("contactForm").addEventListener("submit", (e) => {
+      e.preventDefault();
+      showToast("Thanks. We received it. For now this is a placeholder form.");
     });
   </script>
 </body>
