@@ -991,7 +991,52 @@
       </div>
 
       <div class="modalBody">
-        <form id="joinForm">
+        <form id="joinForm" action="https://formspree.io/f/xpqjobab" method="POST">
+  <div class="formGrid">
+    <div>
+      <label for="firstName">First name (optional)</label>
+      <input class="input" id="firstName" name="firstName" autocomplete="given-name" />
+    </div>
+
+    <div>
+      <label for="joinEmail">Email</label>
+      <input class="input" id="joinEmail" name="email" type="email" autocomplete="email" required />
+    </div>
+
+    <div>
+      <label for="audience">I am a</label>
+      <select class="select" id="audience" name="audience" required>
+        <option value="" selected disabled>Select one</option>
+        <option>Consumer</option>
+        <option>Retail buyer</option>
+        <option>Distributor</option>
+        <option>Press or media</option>
+      </select>
+    </div>
+  </div>
+
+  <!-- Formspree extras -->
+  <input type="hidden" name="_subject" value="Buckshot Brewing: New signup" />
+  <input type="hidden" name="_format" value="plain" />
+  <input type="hidden" name="source" value="buckshotbrewing.com" />
+
+  <div style="margin-top:14px; display:flex; gap:10px; flex-wrap:wrap;">
+    <button class="btn btnDark" type="submit">
+      <span class="brandDot" aria-hidden="true"></span>
+      Join
+    </button>
+    <button class="btn" type="button" id="joinNotNow" style="box-shadow:none;">Not now</button>
+  </div>
+
+  <div class="fine" style="margin-top:10px;">
+    By joining, you confirm you are 21+. Launch updates only. No product for sale. No preorders.
+    <span style="display:inline-block; margin-left:6px;">
+      <a href="/privacy.html">Privacy</a>
+      <span style="opacity:.65;"> | </span>
+      <a href="/terms.html">Terms</a>
+    </span>
+  </div>
+</form>
           <div class="formGrid">
             <div>
               <label for="firstName">First name (optional)</label>
@@ -1071,8 +1116,37 @@
     joinBackdrop.addEventListener("click", (e) => { if (e.target === joinBackdrop) closeJoin(); });
 
     // Local signup placeholder (device only)
-    document.getElementById("joinForm").addEventListener("submit", (e) => {
-      e.preventDefault();
+ // Formspree submit (real list)
+document.getElementById("joinForm").addEventListener("submit", async (e) => {
+  e.preventDefault();
+
+  const form = e.target;
+  const fd = new FormData(form);
+
+  const email = String(fd.get("email") || "").trim().toLowerCase();
+  const audience = String(fd.get("audience") || "").trim();
+
+  if (!email) return showToast("Please enter an email.");
+  if (!audience) return showToast("Please choose one option.");
+
+  try {
+    const res = await fetch(form.action, {
+      method: "POST",
+      body: fd,
+      headers: { "Accept": "application/json" }
+    });
+
+    if (res.ok) {
+      form.reset();
+      closeJoin();
+      showToast("You’re on the list.");
+    } else {
+      showToast("Something went wrong. Try again.");
+    }
+  } catch (err) {
+    showToast("Network error. Try again.");
+  }
+});      e.preventDefault();
       const fd = new FormData(e.target);
       const email = String(fd.get("email") || "").trim().toLowerCase();
       const firstName = String(fd.get("firstName") || "").trim();
