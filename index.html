@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Buckshot Brewing | Coming Soon</title>
-  <meta name="description" content="Buckshot Brewing is a coming soon brand. No alcoholic beverages are available for sale. Join the list for launch updates. Retail and distributor inquiries: sales@buckshotbrewing.com" />
+  <meta name="description" content="Buckshot Brewing. Coming soon. Join the list for launch updates. Retail and distributor inquiries: sales@buckshotbrewing.com" />
   <meta name="robots" content="index,follow" />
 
   <style>
@@ -18,13 +18,13 @@
       --gold2:#b79a45;
 
       --ink:#101214;
-      --muted:rgba(16,18,20,.72);
+      --muted:rgba(16,18,20,.70);
       --line:rgba(16,18,20,.12);
+      --soft:rgba(16,18,20,.06);
 
       --max:1180px;
       --shadow: 0 18px 70px rgba(16,18,20,.14);
       --shadow2: 0 10px 34px rgba(16,18,20,.10);
-      --radius: 22px;
     }
 
     *{ box-sizing:border-box; }
@@ -33,7 +33,7 @@
       margin:0;
       color:var(--ink);
       background:
-        radial-gradient(1000px 650px at 12% 0%, rgba(199,176,106,.18), transparent 55%),
+        radial-gradient(1000px 650px at 12% 0%, rgba(199,176,106,.22), transparent 55%),
         radial-gradient(900px 520px at 82% 10%, rgba(12,47,35,.14), transparent 55%),
         linear-gradient(180deg, var(--cream), var(--cream2));
       font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Apple Color Emoji", "Segoe UI Emoji";
@@ -79,6 +79,7 @@
     .brandName{
       font-weight:900;
       letter-spacing:.02em;
+      white-space:nowrap;
     }
 
     .nav{
@@ -120,6 +121,7 @@
       gap:10px;
       transition: transform .15s ease, background .2s ease, border-color .2s ease;
       box-shadow: var(--shadow2);
+      justify-content:center;
     }
     .btn:hover{
       transform: translateY(-1px);
@@ -169,7 +171,7 @@
     .heroBg{
       position:absolute;
       inset:0;
-      background-image: url("assets/Hunting-Field-Dog-Lager.png");
+      background-image: url("assets/Hunting-Feild-Dog-Lager.png");
       background-size: cover;
       background-position: center;
       transform: scale(1.02);
@@ -178,8 +180,8 @@
       position:absolute;
       inset:0;
       background:
-        radial-gradient(900px 520px at 18% 18%, rgba(199,176,106,.16), transparent 55%),
-        linear-gradient(180deg, rgba(0,0,0,.06), rgba(0,0,0,.54));
+        radial-gradient(900px 520px at 18% 18%, rgba(199,176,106,.18), transparent 55%),
+        linear-gradient(180deg, rgba(0,0,0,.10), rgba(0,0,0,.68));
     }
 
     .heroContent{
@@ -195,7 +197,7 @@
       height:auto;
       display:block;
       margin: 0 0 18px;
-      filter: drop-shadow(0 18px 60px rgba(0,0,0,.34));
+      filter: drop-shadow(0 18px 60px rgba(0,0,0,.38));
     }
 
     .kicker{
@@ -205,7 +207,7 @@
       font-size:12px;
       letter-spacing:.14em;
       text-transform:uppercase;
-      color: rgba(255,255,255,.84);
+      color: rgba(255,255,255,.82);
       margin-bottom: 10px;
     }
     .kicker .dot{
@@ -223,7 +225,7 @@
     .heroLead{
       margin:0;
       max-width: 62ch;
-      color: rgba(255,255,255,.88);
+      color: rgba(255,255,255,.86);
       font-size: 18px;
       line-height: 1.65;
     }
@@ -233,6 +235,7 @@
       gap:12px;
       flex-wrap:wrap;
       margin-top: 18px;
+      max-width: 420px; /* mobile-friendly width control */
     }
 
     .heroNote{
@@ -288,7 +291,9 @@
       padding: 22px 0 0;
     }
 
-    .beerText{ padding-right: 10px; }
+    .beerText{
+      padding-right: 10px;
+    }
 
     .pill{
       display:inline-flex;
@@ -303,6 +308,7 @@
       letter-spacing:.12em;
       text-transform: uppercase;
       box-shadow: 0 10px 26px rgba(16,18,20,.08);
+      width: max-content;
     }
     .pill .dot{
       width:9px; height:9px; border-radius:999px;
@@ -338,7 +344,6 @@
       position:relative;
     }
 
-    /* No “soft boxes” around cans */
     .canFrame img{
       width: 100%;
       height:auto;
@@ -354,7 +359,7 @@
       gap: 14px;
     }
     .photo{
-      border-radius: var(--radius);
+      border-radius: 22px;
       overflow:hidden;
       border:1px solid rgba(16,18,20,.10);
       box-shadow: var(--shadow2);
@@ -362,7 +367,9 @@
       min-height: 320px;
       position:relative;
     }
-    .photo.full{ min-height: 360px; }
+    .photo.full{
+      min-height: 360px;
+    }
     .photo img{
       width:100%;
       height:100%;
@@ -373,7 +380,7 @@
     .photoShade{
       position:absolute;
       inset:0;
-      background: linear-gradient(180deg, rgba(0,0,0,.06), rgba(0,0,0,.20));
+      background: linear-gradient(180deg, rgba(0,0,0,.08), rgba(0,0,0,.26));
       pointer-events:none;
     }
 
@@ -413,12 +420,14 @@
     .contactCard{
       background: rgba(255,255,255,.72);
       border: 1px solid rgba(16,18,20,.10);
-      border-radius: var(--radius);
+      border-radius: 22px;
       box-shadow: var(--shadow2);
       overflow:hidden;
     }
 
-    .contactInner{ padding: 18px; }
+    .contactInner{
+      padding: 18px;
+    }
 
     .formGrid{
       display:grid;
@@ -443,7 +452,10 @@
       outline:none;
       color: var(--ink);
     }
-    textarea{ min-height: 120px; resize: vertical; }
+    textarea{
+      min-height: 120px;
+      resize: vertical;
+    }
     .input:focus, .select:focus, textarea:focus{
       border-color: rgba(12,47,35,.34);
       box-shadow: 0 0 0 4px rgba(12,47,35,.10);
@@ -499,7 +511,7 @@
     .modal{
       width: min(640px, 100%);
       background: #fff;
-      border-radius: var(--radius);
+      border-radius: 22px;
       border: 1px solid rgba(16,18,20,.12);
       box-shadow: 0 30px 100px rgba(16,18,20,.28);
       overflow:hidden;
@@ -513,7 +525,11 @@
       background: linear-gradient(180deg, var(--cream), var(--cream2));
       border-bottom: 1px solid rgba(16,18,20,.10);
     }
-    .modalTitle{ margin:0; font-size: 18px; font-weight: 950; }
+    .modalTitle{
+      margin:0;
+      font-size: 18px;
+      font-weight: 950;
+    }
     .modalSub{
       margin: 6px 0 0;
       color: rgba(16,18,20,.70);
@@ -536,6 +552,8 @@
       color:#fff;
       box-shadow: 0 20px 60px rgba(12,47,35,.24);
       font-size: 14px;
+      max-width: calc(100% - 24px);
+      text-align:center;
     }
     .toast.show{ display:block; }
 
@@ -616,6 +634,7 @@
       display:inline-flex;
       align-items:center;
       gap: 10px;
+      justify-content:center;
     }
     .ageBtn:hover{
       transform: translateY(-1px);
@@ -631,7 +650,7 @@
       border-color: rgba(199,176,106,.66);
     }
 
-    /* Responsive */
+    /* Existing responsive (kept) */
     @media (max-width: 980px){
       .nav{ display:none; }
       .heroContent{ padding: 28px 18px; }
@@ -641,6 +660,89 @@
       .values{ grid-template-columns: 1fr; }
       .contactGrid{ grid-template-columns: 1fr; }
       .beerText h3{ font-size: 30px; }
+    }
+
+    /* Mobile polish */
+    @media (max-width: 720px){
+      .wrap{ padding: 0 16px; }
+
+      .topbarInner{ padding: 12px 0; }
+      .brand{ min-width: 0; }
+      .brandName{ font-size: 14px; }
+      .navCtas .btn{ padding: 10px 12px; box-shadow:none; }
+
+      .hero{
+        min-height: auto;
+        padding: 14px 0 18px;
+        align-items: stretch;
+      }
+      .heroFrame{
+        min-height: 560px;
+        border-radius: 20px;
+      }
+      .heroContent{
+        padding: 22px 16px;
+        max-width: 100%;
+      }
+      .heroLogo{
+        width: min(280px, 78%);
+        margin: 0 0 14px;
+      }
+      h1{
+        font-size: clamp(30px, 8vw, 44px);
+        line-height: 1.08;
+      }
+      .heroLead{
+        font-size: 16px;
+        line-height: 1.6;
+      }
+      .heroActions .btn{
+        width: 100%;
+        justify-content: center;
+      }
+
+      .section{ padding: 46px 0; }
+      .sectionHead{ margin-bottom: 14px; }
+      .sectionHead h2{ font-size: 24px; }
+
+      .beerGrid{
+        grid-template-columns: 1fr;
+        gap: 18px;
+        padding-top: 20px;
+      }
+      .beerText{ padding-right: 0; }
+      .beerText h3{ font-size: 28px; }
+
+      .canFrame{
+        width: min(320px, 92%);
+        margin: 0 auto;
+      }
+
+      .photoBand{ grid-template-columns: 1fr; }
+      .photo.full{ min-height: 280px; }
+      .photo{ min-height: 220px; border-radius: 18px; }
+
+      .contactCard{ border-radius: 18px; }
+      .contactInner{ padding: 16px; }
+
+      .input, .select, textarea{ border-radius: 14px; }
+
+      .btn{
+        width: 100%;
+        justify-content: center;
+        padding: 12px 14px;
+      }
+
+      .footerInner{
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+
+    @media (min-width: 721px) and (max-width: 980px){
+      .heroFrame{ min-height: 620px; }
+      .heroActions .btn{ width: auto; }
+      .btn{ width: auto; }
     }
 
     @media (prefers-reduced-motion: reduce){
@@ -770,15 +872,15 @@
           </div>
 
           <div class="value">
-            <div class="pill"><span class="dot" aria-hidden="true"></span> Presence</div>
-            <h4>Clean design, clear identity</h4>
-            <p>Outdoors first. Premium without trying too hard.</p>
+            <div class="pill"><span class="dot" aria-hidden="true"></span> Premium presence</div>
+            <h4>Clean design. Clear identity</h4>
+            <p>Built for the outdoors with a premium shelf look.</p>
           </div>
 
           <div class="value">
             <div class="pill"><span class="dot" aria-hidden="true"></span> Community</div>
-            <h4>Type 1 Diabetes support</h4>
-            <p>We plan to support Type 1 Diabetes research as we grow, this is something very important to us.</p>
+            <h4>Community impact</h4>
+            <p>We plan to support Type 1 Diabetes research as the brand grows. This matters to us.</p>
           </div>
         </div>
       </div>
@@ -792,7 +894,7 @@
             <h2>The lineup starts simple.</h2>
             <p>
               A clean flagship lager and seasonal drops that earn their place. Same standard, every time.
-              These are concept mockups, not approved labels.
+              These are mock up designs for potential cans.
             </p>
           </div>
         </div>
@@ -805,7 +907,7 @@
             <h3>Buckshot Lager</h3>
             <p>
               Clean American lager. Crisp finish. Built for long weekends and shared stories.
-              Planned packaging: 16 oz cans.
+              Plan is to be packaged in 16 oz cans.
             </p>
             <div style="margin-top:16px;">
               <button class="btn btnDark" type="button" id="openJoinBeer1">
@@ -834,7 +936,7 @@
             <h3>OktoberPheas Amber</h3>
             <p>
               Seasonal amber built for pheasant season. Hunting, bonfires, football, and cold nights outside.
-              Drinkability first.
+              Drinkability first. This is the legacy of Rudy and Rex's 1100.
             </p>
             <div style="margin-top:16px;">
               <a class="btn" href="#contact">Retail or distributor inquiry</a>
@@ -849,7 +951,7 @@
           </div>
           <div class="photo" style="background: linear-gradient(180deg, rgba(12,47,35,.10), rgba(199,176,106,.10));">
             <div style="padding:18px; height:100%; display:flex; flex-direction:column; justify-content:flex-end;">
-              <div class="pill" style="box-shadow:none; width:max-content;"><span class="dot" aria-hidden="true"></span> Coming soon</div>
+              <div class="pill" style="box-shadow:none;"><span class="dot" aria-hidden="true"></span> Coming soon</div>
               <div style="margin-top:10px; font-size:22px; font-weight:950; letter-spacing:-.01em;">
                 Get launch updates.
               </div>
@@ -861,9 +963,6 @@
                   <span class="brandDot" aria-hidden="true"></span>
                   Join the list
                 </button>
-              </div>
-              <div class="fine" style="margin-top:12px;">
-                By joining, you agree to our <a href="privacy.html">Privacy Policy</a> and <a href="terms.html">Terms</a>.
               </div>
             </div>
           </div>
@@ -879,7 +978,7 @@
           <div>
             <h2>Built for the outdoors.</h2>
             <p>
-              Buckshot is a coming soon brand. We want it to feel real before it ever feels big.
+              Buckshot is consumer first. We want the brand to feel real before it ever feels big.
             </p>
           </div>
         </div>
@@ -897,7 +996,7 @@
           </div>
           <div class="value">
             <h4>Respect the rules</h4>
-            <p>We will launch only when permitted. No product is available for sale right now.</p>
+            <p>We are coming soon. No product is available for sale. We will launch only when permitted.</p>
           </div>
         </div>
       </div>
@@ -916,11 +1015,11 @@
         <div class="divider"></div>
 
         <div class="contactGrid">
-          <!-- Industry inquiries -> Formspree -->
           <div class="contactCard">
             <div class="contactInner">
               <div class="pill"><span class="dot" aria-hidden="true"></span> Industry inquiries</div>
 
+              <!-- Formspree contact form -->
               <form id="contactForm" action="https://formspree.io/f/xpqjobab" method="POST">
                 <div class="formGrid">
                   <div>
@@ -940,21 +1039,21 @@
 
                   <div>
                     <label for="reason">Reason</label>
-                    <select class="select" id="reason" name="reason" required>
-                      <option value="Retail buyer inquiry">Retail buyer inquiry</option>
-                      <option value="Distributor inquiry">Distributor inquiry</option>
-                      <option value="Press or media">Press or media</option>
-                      <option value="Other">Other</option>
+                    <select class="select" id="reason" name="reason">
+                      <option>Retail buyer inquiry</option>
+                      <option>Distributor inquiry</option>
+                      <option>Press or media</option>
+                      <option>Other</option>
                     </select>
                   </div>
 
                   <div>
                     <label for="message">Message</label>
-                    <textarea id="message" name="message" placeholder="Market, placement goals, and best number to reach you." required></textarea>
+                    <textarea id="message" name="message" placeholder="Market, placement goals, and best number to reach you."></textarea>
                   </div>
 
-                  <!-- Honeypot -->
-                  <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off" />
+                  <!-- Optional: email subject line in Formspree -->
+                  <input type="hidden" name="_subject" value="Buckshot Brewing Industry Inquiry" />
                 </div>
 
                 <div style="margin-top:14px; display:flex; gap:10px; flex-wrap:wrap;">
@@ -962,23 +1061,19 @@
                     <span class="brandDot" aria-hidden="true"></span>
                     Submit inquiry
                   </button>
-                  <a class="btn" href="mailto:sales@buckshotbrewing.com?subject=Buckshot%20Brewing%20Inquiry">
-                    Email sales@buckshotbrewing.com
-                  </a>
+                  <a class="btn" href="mailto:sales@buckshotbrewing.com?subject=Buckshot%20Brewing%20Inquiry">Email us direct</a>
                 </div>
 
                 <div class="fine">
-                  Submits securely. If you prefer, you can email us directly.
+                  This form submits securely via Formspree. If you prefer, you can email us directly.
                 </div>
               </form>
             </div>
           </div>
 
-          <!-- Customer list -> Formspree -->
           <div class="contactCard">
             <div class="contactInner">
               <div class="pill"><span class="dot" aria-hidden="true"></span> Customer list</div>
-
               <div style="margin-top:12px; font-size:26px; font-weight:950; letter-spacing:-.01em;">
                 Be first to know.
               </div>
@@ -993,14 +1088,15 @@
                 </button>
               </div>
 
-              <div class="fine">
-                Unsubscribe anytime. By joining, you agree to our <a href="privacy.html">Privacy Policy</a> and <a href="terms.html">Terms</a>.
-              </div>
+              <div class="fine">Unsubscribe anytime.</div>
 
               <div style="margin-top:18px; border-top:1px solid rgba(16,18,20,.10); padding-top:14px;">
                 <div class="pill" style="box-shadow:none;"><span class="dot" aria-hidden="true"></span> Note</div>
                 <div class="fine" style="margin-top:10px;">
                   Buckshot Brewing is a coming soon brand. No alcoholic beverages are available for sale.
+                </div>
+                <div class="fine" style="margin-top:10px;">
+                  By joining the list, you agree to our <a href="privacy.html"><strong>Privacy Policy</strong></a> and <a href="terms.html"><strong>Terms</strong></a>.
                 </div>
               </div>
             </div>
@@ -1027,7 +1123,7 @@
     </footer>
   </main>
 
-  <!-- Join Modal (Formspree) -->
+  <!-- Join Modal -->
   <div class="backdrop" id="joinBackdrop" role="dialog" aria-modal="true" aria-label="Join the list">
     <div class="modal" role="document">
       <div class="modalHeader">
@@ -1039,6 +1135,7 @@
       </div>
 
       <div class="modalBody">
+        <!-- Formspree join form -->
         <form id="joinForm" action="https://formspree.io/f/xpqjobab" method="POST">
           <div class="formGrid">
             <div>
@@ -1052,18 +1149,18 @@
             </div>
 
             <div>
-              <label for="audience">I am a…</label>
+              <label for="audience">I am a</label>
               <select class="select" id="audience" name="audience" required>
-                <option value="">Select one</option>
+                <option value="" selected disabled>Select one</option>
                 <option value="Customer">Customer</option>
-                <option value="Retail buyer">Retail buyer</option>
+                <option value="Retail Buyer">Retail Buyer</option>
                 <option value="Distributor">Distributor</option>
-                <option value="Press / media">Press / media</option>
+                <option value="Press">Press</option>
+                <option value="Other">Other</option>
               </select>
             </div>
 
-            <!-- Honeypot -->
-            <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off" />
+            <input type="hidden" name="_subject" value="Buckshot Brewing: New Launch List Signup" />
           </div>
 
           <div style="margin-top:14px; display:flex; gap:10px; flex-wrap:wrap;">
@@ -1075,8 +1172,8 @@
           </div>
 
           <div class="fine" style="margin-top:10px;">
-            By joining, you agree to our <a href="privacy.html">Privacy Policy</a> and <a href="terms.html">Terms</a>.
-            You can unsubscribe anytime.
+            By joining, you agree to receive launch updates from Buckshot Brewing. You can unsubscribe anytime.
+            View our <a href="privacy.html"><strong>Privacy Policy</strong></a> and <a href="terms.html"><strong>Terms</strong></a>.
           </div>
         </form>
       </div>
@@ -1087,14 +1184,6 @@
 
   <script>
     document.getElementById("year").textContent = new Date().getFullYear();
-
-    // Toast
-    const toast = document.getElementById("toast");
-    function showToast(msg){
-      toast.textContent = msg;
-      toast.classList.add("show");
-      setTimeout(() => toast.classList.remove("show"), 2600);
-    }
 
     // Age gate
     const AGE_KEY = "buckshotAgeVerified";
@@ -1113,13 +1202,23 @@
       window.location.href = "https://www.responsibility.org/";
     });
 
-    // Join modal open/close
+    // Join modal
     const joinBackdrop = document.getElementById("joinBackdrop");
+    const toast = document.getElementById("toast");
+
+    function showToast(msg){
+      toast.textContent = msg;
+      toast.classList.add("show");
+      setTimeout(() => toast.classList.remove("show"), 2600);
+    }
+
     function openJoin(){
       joinBackdrop.classList.add("open");
       setTimeout(() => document.getElementById("joinEmail").focus(), 60);
     }
-    function closeJoin(){ joinBackdrop.classList.remove("open"); }
+    function closeJoin(){
+      joinBackdrop.classList.remove("open");
+    }
 
     ["openJoinTop","openJoinHero","openJoinBeer1","openJoinBand","openJoinContact"].forEach(id => {
       const el = document.getElementById(id);
@@ -1133,70 +1232,42 @@
       if (e.key === "Escape" && joinBackdrop.classList.contains("open")) closeJoin();
     });
 
-    // Join form -> Formspree (AJAX so you stay on-page)
-    document.getElementById("joinForm").addEventListener("submit", async (e) => {
-      e.preventDefault();
-      const form = e.target;
+    // Formspree submits (AJAX) so you stay on page + get a toast
+    async function formspreeSubmit(form, successMsg){
       const fd = new FormData(form);
-
-      const email = String(fd.get("email") || "").trim().toLowerCase();
-      const audience = String(fd.get("audience") || "").trim();
-
-      if (!email) return showToast("Please enter an email.");
-      if (!audience) return showToast("Please choose one option.");
-
-      try {
+      try{
         const res = await fetch(form.action, {
           method: "POST",
           body: fd,
           headers: { "Accept": "application/json" }
         });
-
-        if (res.ok) {
+        if (res.ok){
           form.reset();
-          closeJoin();
-          showToast("You’re on the list.");
-        } else {
-          showToast("Something went wrong. Try again.");
+          showToast(successMsg);
+          return true;
         }
-      } catch (err) {
-        showToast("Network error. Try again.");
+        showToast("Something went wrong. Please try again.");
+        return false;
+      }catch(err){
+        showToast("Network error. Please try again.");
+        return false;
       }
+    }
+
+    // Join list -> Formspree
+    const joinForm = document.getElementById("joinForm");
+    joinForm.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const ok = await formspreeSubmit(joinForm, "You're on the list. Welcome.");
+      if (ok) closeJoin();
     });
 
-    // Industry contact form -> Formspree (AJAX)
-    document.getElementById("contactForm").addEventListener("submit", async (e) => {
+    // Contact form -> Formspree
+    const contactForm = document.getElementById("contactForm");
+    contactForm.addEventListener("submit", async (e) => {
       e.preventDefault();
-
-      const form = e.target;
-      const fd = new FormData(form);
-
-      const email = String(fd.get("email") || "").trim().toLowerCase();
-      const name = String(fd.get("name") || "").trim();
-      const message = String(fd.get("message") || "").trim();
-
-      if (!name) return showToast("Please enter your name.");
-      if (!email) return showToast("Please enter your email.");
-      if (!message) return showToast("Please enter a message.");
-
-      try {
-        const res = await fetch(form.action, {
-          method: "POST",
-          body: fd,
-          headers: { "Accept": "application/json" }
-        });
-
-        if (res.ok) {
-          form.reset();
-          showToast("Submitted. We’ll be in touch.");
-        } else {
-          showToast("Something went wrong. Try again.");
-        }
-      } catch (err) {
-        showToast("Network error. Try again.");
-      }
+      await formspreeSubmit(contactForm, "Thanks. We received your message.");
     });
   </script>
-
 </body>
 </html>
