@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Buckshot Merch | Buckshot Brewing</title>
+  <meta name="description" content="Shop Buckshot Brewing hats, apparel, and limited-run merch." />
+
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background: #f7f2e8;
+      color: #1f1a14;
+    }
+
+    header {
+      padding: 22px 24px;
+      background: #fffaf0;
+      border-bottom: 1px solid rgba(31, 26, 20, 0.12);
+    }
+
+    .nav {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+
+    .logo {
+      font-weight: 900;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      text-decoration: none;
+      color: #1f1a14;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 22px;
+      align-items: center;
+    }
+
+    .nav-links a {
+      color: #1f1a14;
+      text-decoration: none;
+      font-weight: 700;
+    }
+
+    .nav-links a:hover {
+      text-decoration: underline;
+    }
+
+    main {
+      min-height: 100vh;
+      padding: 64px 24px;
+    }
+
+    .hero {
+      max-width: 1100px;
+      margin: 0 auto 48px;
+      text-align: center;
+    }
+
+    .eyebrow {
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      font-size: 13px;
+      font-weight: 800;
+      margin-bottom: 12px;
+    }
+
+    h1 {
+      font-size: clamp(42px, 7vw, 76px);
+      line-height: 1;
+      margin: 0 0 20px;
+    }
+
+    .hero p {
+      font-size: 20px;
+      line-height: 1.6;
+      max-width: 760px;
+      margin: 0 auto;
+    }
+
+    .product-grid {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 32px;
+    }
+
+    .product-card {
+      background: #fffaf0;
+      border: 1px solid rgba(31, 26, 20, 0.15);
+      border-radius: 24px;
+      overflow: hidden;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.08);
+    }
+
+    .product-image-wrap {
+      background: #e9dfcf;
+      padding: 24px;
+    }
+
+    .product-image-wrap img {
+      width: 100%;
+      display: block;
+      border-radius: 18px;
+    }
+
+    .product-info {
+      padding: 28px;
+    }
+
+    .product-type {
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      font-size: 12px;
+      font-weight: 800;
+      margin-bottom: 10px;
+    }
+
+    h2 {
+      font-size: 30px;
+      line-height: 1.1;
+      margin: 0 0 12px;
+    }
+
+    .description {
+      font-size: 16px;
+      line-height: 1.6;
+      margin-bottom: 18px;
+    }
+
+    .price {
+      font-size: 22px;
+      font-weight: 900;
+      margin-bottom: 16px;
+    }
+
+    .colors {
+      font-size: 14px;
+      margin-bottom: 24px;
+      opacity: 0.8;
+    }
+
+    .buy-button {
+      display: inline-block;
+      width: 100%;
+      box-sizing: border-box;
+      text-align: center;
+      background: #1f1a14;
+      color: #fff;
+      padding: 16px 22px;
+      border-radius: 999px;
+      text-decoration: none;
+      font-weight: 900;
+      font-size: 16px;
+    }
+
+    .buy-button:hover {
+      opacity: 0.9;
+    }
+
+    footer {
+      padding: 32px 24px;
+      text-align: center;
+      background: #fffaf0;
+      border-top: 1px solid rgba(31, 26, 20, 0.12);
+      font-size: 14px;
+    }
+
+    @media (max-width: 700px) {
+      .nav {
+        flex-direction: column;
+      }
+
+      .nav-links {
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+
+      main {
+        padding: 48px 18px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <nav class="nav">
+      <a class="logo" href="index.html">Buckshot Brewing</a>
+
+      <div class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="shop.html">Shop</a>
+        <a href="privacy.html">Privacy</a>
+        <a href="terms.html">Terms</a>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="eyebrow">Buckshot Brewing</div>
+      <h1>Buckshot Merch</h1>
+      <p>
+        Hats, gear, and limited-run merch built for cabin weekends, hunting camp,
+        tailgates, and beer fridge restocks.
+      </p>
+    </section>
+
+    <section class="product-grid">
+      <article class="product-card">
+        <div class="product-image-wrap">
+          <img src="assets/buckshot-hat.jpg" alt="Buckshot Brewing Richardson Hat" />
+        </div>
+
+        <div class="product-info">
+          <div class="product-type">Richardson Hat</div>
+
+          <h2>Buckshot Brewing Hat</h2>
+
+          <p class="description">
+            Classic embroidered Buckshot Brewing hat, ready for the cabin,
+            the blind, the golf cart, or the beer fridge run.
+          </p>
+
+          <div class="price">$34.99</div>
+
+          <div class="colors">
+            Available colors: Heather Gray, Caramel, Blaze Orange
+          </div>
+
+          <a class="buy-button" href="https://ughvdp-1b.myshopify.com">
+            Buy Now
+          </a>
+        </div>
+      </article>
+    </section>
+  </main>
+
+  <footer>
+    © 2026 Buckshot Brewing. All rights reserved.
+  </footer>
+</body>
+</html>
