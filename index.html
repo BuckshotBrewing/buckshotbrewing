@@ -21,7 +21,6 @@
       --ink: #101214;
       --muted: rgba(16,18,20,.70);
       --line: rgba(16,18,20,.12);
-      --soft: rgba(16,18,20,.06);
       --max: 1260px;
       --shadow: 0 22px 70px rgba(16,18,20,.14);
       --shadow-soft: 0 12px 34px rgba(16,18,20,.10);
@@ -74,7 +73,7 @@
     }
 
     section {
-      scroll-margin-top: 140px;
+      scroll-margin-top: 96px;
     }
 
     .brandDot,
@@ -172,18 +171,18 @@
       position: sticky;
       top: 0;
       z-index: 90;
-      background: rgba(251,247,238,.94);
+      background: rgba(251,247,238,.95);
       backdrop-filter: blur(12px) saturate(140%);
       border-bottom: 1px solid rgba(16,18,20,.10);
     }
 
     .topbarInner {
-      min-height: 128px;
+      min-height: 94px;
       display: flex;
       align-items: center;
       justify-content: space-between;
       gap: 22px;
-      padding: 18px 0;
+      padding: 6px 0;
     }
 
     .brand {
@@ -194,7 +193,7 @@
     }
 
     .brand img {
-      height: 280px;
+      height: 82px;
       width: auto;
       display: block;
     }
@@ -246,7 +245,7 @@
 
     .hero {
       position: relative;
-      min-height: calc(100vh - 128px);
+      min-height: calc(100vh - 94px);
       display: flex;
       align-items: stretch;
       padding: 0;
@@ -256,7 +255,7 @@
     .heroFrame {
       position: relative;
       width: 100%;
-      min-height: calc(100vh - 128px);
+      min-height: calc(100vh - 94px);
       overflow: hidden;
       background:
         radial-gradient(1000px 650px at 12% 0%, rgba(199,176,106,.18), transparent 55%),
@@ -284,8 +283,8 @@
     .heroContent {
       position: relative;
       z-index: 2;
-      max-width: 650px;
-      min-height: calc(100vh - 128px);
+      max-width: 620px;
+      min-height: calc(100vh - 94px);
       color: #fff;
       display: flex;
       flex-direction: column;
@@ -313,7 +312,7 @@
 
     h1 {
       margin: 0 0 16px;
-      font-size: clamp(42px, 5.7vw, 78px);
+      font-size: clamp(42px, 5.7vw, 76px);
       line-height: .94;
       letter-spacing: -.055em;
       text-shadow: 0 16px 50px rgba(0,0,0,.34);
@@ -321,7 +320,7 @@
 
     .heroLead {
       margin: 0;
-      max-width: 58ch;
+      max-width: 55ch;
       color: rgba(255,255,255,.92);
       font-size: 20px;
       line-height: 1.64;
@@ -740,7 +739,7 @@
     }
 
     .ageTop {
-      padding: 22px 22px 14px;
+      padding: 18px 22px 12px;
       border-bottom: 1px solid rgba(16,18,20,.10);
       display: flex;
       align-items: center;
@@ -749,7 +748,7 @@
     }
 
     .ageLogo {
-      height: 86px;
+      height: 78px;
       width: auto;
       display: block;
     }
@@ -764,7 +763,7 @@
     }
 
     .ageBody {
-      padding: 26px 22px 24px;
+      padding: 24px 22px;
       display: grid;
       gap: 12px;
     }
@@ -826,11 +825,11 @@
 
     @media (max-width: 1100px) {
       .topbarInner {
-        min-height: 110px;
+        min-height: 88px;
       }
 
       .brand img {
-        height: 78px;
+        height: 74px;
       }
 
       .nav {
@@ -901,13 +900,13 @@
 
       .topbarInner {
         min-height: auto;
-        padding: 14px 0;
+        padding: 10px 0;
         flex-direction: column;
         align-items: center;
       }
 
       .brand img {
-        height: 70px;
+        height: 68px;
       }
 
       .nav {
@@ -1000,7 +999,7 @@
       }
 
       .ageLogo {
-        height: 70px;
+        height: 68px;
       }
 
       .ageBtn {
