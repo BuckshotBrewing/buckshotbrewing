@@ -90,7 +90,7 @@
       max-width: 1100px;
       margin: 0 auto;
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
       gap: 32px;
     }
 
@@ -100,6 +100,8 @@
       border-radius: 24px;
       overflow: hidden;
       box-shadow: 0 20px 50px rgba(0,0,0,0.08);
+      display: flex;
+      flex-direction: column;
     }
 
     .product-image-wrap {
@@ -109,12 +111,18 @@
 
     .product-image-wrap img {
       width: 100%;
+      height: 280px;
+      object-fit: contain;
       display: block;
       border-radius: 18px;
+      background: #fffaf0;
     }
 
     .product-info {
       padding: 28px;
+      display: flex;
+      flex-direction: column;
+      flex: 1;
     }
 
     .product-type {
@@ -126,7 +134,7 @@
     }
 
     h2 {
-      font-size: 30px;
+      font-size: 28px;
       line-height: 1.1;
       margin: 0 0 12px;
     }
@@ -140,13 +148,8 @@
     .price {
       font-size: 22px;
       font-weight: 900;
-      margin-bottom: 16px;
-    }
-
-    .colors {
-      font-size: 14px;
-      margin-bottom: 24px;
-      opacity: 0.8;
+      margin-bottom: 22px;
+      margin-top: auto;
     }
 
     .buy-button {
@@ -188,6 +191,10 @@
       main {
         padding: 48px 18px;
       }
+
+      .product-image-wrap img {
+        height: 240px;
+      }
     }
   </style>
 </head>
@@ -217,32 +224,99 @@
     </section>
 
     <section class="product-grid">
+
       <article class="product-card">
         <div class="product-image-wrap">
-          <img src="assets/buckshot-hat.jpg" alt="Buckshot Brewing Richardson Hat" />
+          <img src="assets/Heather Gray Hat.png" alt="Buckshot Brewing Heather Gray White Hat" />
         </div>
 
         <div class="product-info">
-          <div class="product-type">Richardson Hat</div>
+          <div class="product-type">Buckshot Hat</div>
 
-          <h2>Buckshot Brewing Hat</h2>
+          <h2>Gray and White Hat</h2>
 
           <p class="description">
-            Classic embroidered Buckshot Brewing hat, ready for the cabin,
-            the blind, the golf cart, or the beer fridge run.
+            Classic Buckshot Brewing hat with a clean gray and white look.
+            Easy to wear, easy to grab, and built for everyday Buckshot runs.
           </p>
 
           <div class="price">$34.99</div>
 
-          <div class="colors">
-            Available colors: Heather Gray, Caramel, Blaze Orange
-          </div>
-
-          <a class="buy-button" href="https://ughvdp-1b.myshopify.com">
+          <a class="buy-button" href="https://ughvdp-1b.myshopify.com/products/buckshot-brewing-heather-gray-white-hat?variant=52210232066350">
             Buy Now
           </a>
         </div>
       </article>
+
+      <article class="product-card">
+        <div class="product-image-wrap">
+          <img src="assets/Heather Gray Black Hat.png" alt="Buckshot Brewing Heather Gray Black Hat" />
+        </div>
+
+        <div class="product-info">
+          <div class="product-type">Buckshot Hat</div>
+
+          <h2>Gray and Black Hat</h2>
+
+          <p class="description">
+            A sharp Buckshot hat with a heather gray crown and black detail.
+            Clean, bold, and ready for the cabin, course, or beer fridge.
+          </p>
+
+          <div class="price">$34.99</div>
+
+          <a class="buy-button" href="https://ughvdp-1b.myshopify.com/products/buckshot-brewing-heather-gray-black-hat?variant=52210403344686">
+            Buy Now
+          </a>
+        </div>
+      </article>
+
+      <article class="product-card">
+        <div class="product-image-wrap">
+          <img src="assets/Caramel Hat.png" alt="Buckshot Brewing Caramel Black Hat" />
+        </div>
+
+        <div class="product-info">
+          <div class="product-type">Buckshot Hat</div>
+
+          <h2>Caramel and Black Hat</h2>
+
+          <p class="description">
+            A sharp outdoor-style Buckshot hat with caramel and black coloring.
+            Built for hunting camp, tailgates, and weekend beer runs.
+          </p>
+
+          <div class="price">$34.99</div>
+
+          <a class="buy-button" href="https://ughvdp-1b.myshopify.com/products/buckshot-brewing-caramel-black-hat?variant=52210557354286">
+            Buy Now
+          </a>
+        </div>
+      </article>
+
+      <article class="product-card">
+        <div class="product-image-wrap">
+          <img src="assets/Buckshot Orange Hat.png" alt="Buckshot Brewing Hunter Orange Hat" />
+        </div>
+
+        <div class="product-info">
+          <div class="product-type">Buckshot Hat</div>
+
+          <h2>Hunter Orange Hat</h2>
+
+          <p class="description">
+            Loud in the right way. A hunter orange Buckshot hat built for the blind,
+            the cabin, the tailgate, and standing out at the beer fridge.
+          </p>
+
+          <div class="price">$34.99</div>
+
+          <a class="buy-button" href="https://ughvdp-1b.myshopify.com/products/buckshot-brewing-hunter-orange?variant=52211230277934">
+            Buy Now
+          </a>
+        </div>
+      </article>
+
     </section>
   </main>
 
