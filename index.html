@@ -4,999 +4,217 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Buckshot Brewing | Premium Beer for the Outdoors</title>
-  <meta name="description" content="Buckshot Brewing. Premium beer for the outdoors. Coming soon. Shop Buckshot merch and request launch updates.">
+  <meta name="description" content="Buckshot Brewing is a premium Minnesota lager built for cabins, campfires, tailgates, and long days outside. Beer coming soon. Merch available now.">
   <meta name="robots" content="index,follow">
+  <meta name="theme-color" content="#050605">
+  <link rel="preload" as="image" href="assets/Buckshot Lager Campfire.png">
+  <script>document.documentElement.classList.add("js")</script>
 
   <style>
     :root {
-      --black: #050605;
-      --charcoal: #101211;
-      --deep-green: #071c15;
-      --green: #0d3427;
-      --red: #a3201a;
-      --red-dark: #5f120e;
-      --brass: #b99a56;
-      --brass-light: #d6bd78;
-      --cream: #f5efe0;
-      --white: #ffffff;
-      --soft-white: rgba(255, 255, 255, .82);
-      --muted-white: rgba(255, 255, 255, .62);
-      --ink: #121312;
-      --muted: rgba(18, 19, 18, .68);
-      --line: rgba(255, 255, 255, .14);
-      --dark-line: rgba(18, 19, 18, .12);
-      --max: 1200px;
-      --radius: 28px;
-      --shadow: 0 34px 100px rgba(0, 0, 0, .34);
-      --shadow-soft: 0 20px 60px rgba(0, 0, 0, .18);
-    }
-
-    * {
-      box-sizing: border-box;
-    }
-
-    html {
-      scroll-behavior: smooth;
-    }
-
-    body {
-      margin: 0;
-      color: var(--white);
-      background: var(--black);
-      font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
-      overflow-x: hidden;
-    }
-
-    body.no-scroll {
-      overflow: hidden;
-    }
-
-    img {
-      max-width: 100%;
-      display: block;
-    }
-
-    a {
-      color: inherit;
-      text-decoration: none;
-    }
-
-    button {
-      font: inherit;
-    }
-
-    .wrap {
-      width: min(var(--max), calc(100% - 40px));
-      margin: 0 auto;
-    }
-
-    .age-gate {
-      position: fixed;
-      inset: 0;
-      z-index: 999;
-      display: none;
-      align-items: center;
-      justify-content: center;
-      padding: 20px;
-      background:
-        linear-gradient(180deg, rgba(5, 6, 5, .74), rgba(5, 6, 5, .94)),
-        url("assets/Campfire shells.png") center / cover no-repeat;
-    }
-
-    .age-gate.open {
-      display: flex;
-    }
-
-    .age-card {
-      width: min(720px, 100%);
-      overflow: hidden;
-      border-radius: 32px;
-      background:
-        linear-gradient(180deg, rgba(245, 239, 224, .98), rgba(231, 218, 188, .98));
-      color: var(--ink);
-      border: 1px solid rgba(255, 255, 255, .22);
-      box-shadow: 0 36px 120px rgba(0, 0, 0, .62);
-    }
-
-    .age-top {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 18px;
-      padding: 20px 24px 16px;
-      border-bottom: 1px solid rgba(18, 19, 18, .12);
-    }
-
-    .age-top img {
-      width: auto;
-      height: 74px;
-    }
-
-    .age-label {
-      color: rgba(18, 19, 18, .62);
-      font-size: 12px;
-      font-weight: 950;
-      letter-spacing: .16em;
-      text-transform: uppercase;
-      white-space: nowrap;
-    }
-
-    .age-body {
-      padding: 28px 24px 26px;
-    }
-
-    .age-body h1 {
-      margin: 0 0 14px;
-      color: var(--ink);
-      font-size: clamp(38px, 6vw, 58px);
-      line-height: .94;
-      letter-spacing: -.055em;
-    }
-
-    .age-body p {
-      margin: 0;
-      color: rgba(18, 19, 18, .72);
-      font-size: 16px;
-      line-height: 1.62;
-      max-width: 62ch;
-    }
-
-    .age-actions {
-      display: flex;
-      gap: 12px;
-      flex-wrap: wrap;
-      margin-top: 24px;
-    }
-
-    .site-header {
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      z-index: 80;
-      background: linear-gradient(180deg, rgba(5, 6, 5, .82), rgba(5, 6, 5, .46));
-      border-bottom: 1px solid rgba(255, 255, 255, .10);
-      backdrop-filter: blur(14px);
-    }
-
-    .header-inner {
-      min-height: 82px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 22px;
-      padding: 10px 0;
-    }
-
-    .brand {
-      display: inline-flex;
-      align-items: center;
-      flex: 0 0 auto;
-    }
-
-    .menu-toggle {
-      display: none;
-      width: 46px;
-      height: 46px;
-      align-items: center;
-      justify-content: center;
-      flex-direction: column;
-      gap: 5px;
-      padding: 0;
-      border: 1px solid rgba(255, 255, 255, .18);
-      border-radius: 12px;
-      color: #fff;
-      background: rgba(255, 255, 255, .08);
-      cursor: pointer;
-    }
-
-    .menu-toggle span {
-      width: 21px;
-      height: 2px;
-      border-radius: 999px;
-      background: currentColor;
-      transition: transform .2s ease, opacity .2s ease;
-    }
-
-    .menu-toggle[aria-expanded="true"] span:nth-child(1) {
-      transform: translateY(7px) rotate(45deg);
-    }
-
-    .menu-toggle[aria-expanded="true"] span:nth-child(2) {
-      opacity: 0;
-    }
-
-    .menu-toggle[aria-expanded="true"] span:nth-child(3) {
-      transform: translateY(-7px) rotate(-45deg);
-    }
-
-    .brand img {
-      width: auto;
-      height: 58px;
-      filter: drop-shadow(0 12px 24px rgba(0, 0, 0, .42));
-    }
-
-    .nav {
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      font-size: 12px;
-      font-weight: 950;
-      letter-spacing: .12em;
-      text-transform: uppercase;
-      color: rgba(255, 255, 255, .78);
-    }
-
-    .nav a {
-      padding: 10px 12px;
-      border-radius: 999px;
-      border: 1px solid transparent;
-      transition: background .2s ease, border-color .2s ease, transform .2s ease, color .2s ease;
-      white-space: nowrap;
-    }
-
-    .nav a:hover {
-      transform: translateY(-1px);
-      color: #fff;
-      background: rgba(255, 255, 255, .08);
-      border-color: rgba(255, 255, 255, .14);
-    }
-
-    .nav .shop-link {
-      color: #14100a;
-      background: linear-gradient(180deg, var(--brass-light), var(--brass));
-      border-color: rgba(255, 255, 255, .26);
-      box-shadow: 0 14px 34px rgba(0, 0, 0, .25);
-    }
-
-    .nav .shop-link:hover {
-      color: #14100a;
-      background: linear-gradient(180deg, #e5cb83, #bf9c4f);
-    }
-
-    .hero {
-      position: relative;
-      min-height: 100vh;
-      overflow: hidden;
-      background: #050605;
-    }
-
-    .hero-bg {
-      position: absolute;
-      inset: 0;
-      background-image: url("assets/Buckshot Lager Campfire.png");
-      background-size: cover;
-      background-position: center;
-      transform: scale(1.03);
-      filter: saturate(1.08) contrast(1.06);
-    }
-
-    .hero-shade {
-      position: absolute;
-      inset: 0;
-      background:
-        radial-gradient(700px 520px at 72% 48%, rgba(163, 32, 26, .18), transparent 60%),
-        linear-gradient(90deg, rgba(5, 6, 5, .92) 0%, rgba(5, 6, 5, .74) 42%, rgba(5, 6, 5, .30) 74%, rgba(5, 6, 5, .18) 100%),
-        linear-gradient(180deg, rgba(5, 6, 5, .28), rgba(5, 6, 5, .88));
-    }
-
-    .hero-inner {
-      position: relative;
-      z-index: 2;
-      min-height: 100vh;
-      display: grid;
-      grid-template-columns: minmax(0, 680px) 1fr;
-      align-items: center;
-      gap: 40px;
-      padding: 130px 0 86px;
-    }
-
-    .hero-logo {
-      width: min(280px, 72vw);
-      margin-bottom: 28px;
-      filter: drop-shadow(0 18px 42px rgba(0, 0, 0, .48));
-    }
-
-    .badge {
-      width: max-content;
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      padding: 9px 13px;
-      margin-bottom: 18px;
-      border-radius: 999px;
-      color: #1a150d;
-      background: linear-gradient(180deg, var(--brass-light), var(--brass));
-      font-size: 12px;
-      font-weight: 950;
-      letter-spacing: .14em;
-      text-transform: uppercase;
-      box-shadow: 0 16px 40px rgba(0, 0, 0, .28);
-    }
-
-    .dot {
-      width: 9px;
-      height: 9px;
-      border-radius: 999px;
-      background: var(--red);
-      box-shadow: 0 0 0 6px rgba(163, 32, 26, .20);
-      flex: 0 0 auto;
-    }
-
-    h1,
-    h2,
-    h3,
-    p {
-      margin-top: 0;
-    }
-
-    h1 {
-      margin-bottom: 20px;
-      max-width: 760px;
-      font-size: clamp(48px, 7.4vw, 96px);
-      line-height: .89;
-      letter-spacing: -.07em;
-      text-wrap: balance;
-      text-shadow: 0 20px 70px rgba(0, 0, 0, .44);
-    }
-
-    .hero p {
-      max-width: 64ch;
-      margin-bottom: 28px;
-      color: var(--soft-white);
-      font-size: clamp(17px, 2vw, 21px);
-      line-height: 1.68;
-      text-shadow: 0 10px 32px rgba(0, 0, 0, .38);
-    }
-
-    .actions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 12px;
-      align-items: center;
-    }
-
-    .btn {
-      display: inline-flex;
-      justify-content: center;
-      align-items: center;
-      gap: 10px;
-      min-height: 50px;
-      padding: 13px 19px;
-      border: 1px solid rgba(255, 255, 255, .16);
-      border-radius: 999px;
-      color: #fff;
-      background: rgba(255, 255, 255, .08);
-      font-weight: 950;
-      cursor: pointer;
-      box-shadow: 0 18px 44px rgba(0, 0, 0, .22);
-      transition: transform .18s ease, background .18s ease, border-color .18s ease;
-    }
-
-    .btn:hover {
-      transform: translateY(-2px);
-      background: rgba(255, 255, 255, .13);
-      border-color: rgba(255, 255, 255, .26);
-    }
-
-    .btn-brass {
-      color: #14100a;
-      background: linear-gradient(180deg, var(--brass-light), var(--brass));
-      border-color: rgba(255, 255, 255, .24);
-    }
-
-    .btn-brass:hover {
-      background: linear-gradient(180deg, #e7cf86, #be9a4c);
-    }
-
-    .btn-red {
-      color: #fff;
-      background: linear-gradient(180deg, var(--red), var(--red-dark));
-      border-color: rgba(255, 255, 255, .18);
-    }
-
-    .btn-red:hover {
-      background: linear-gradient(180deg, #b4261f, #6b1711);
-    }
-
-    .hero-note {
-      margin-top: 18px;
-      color: var(--muted-white);
-      font-size: 13px;
-      line-height: 1.55;
-    }
-
-    .section {
-      position: relative;
-      padding: 104px 0;
-    }
-
-    .section-dark {
-      background:
-        radial-gradient(900px 540px at 18% 10%, rgba(185, 154, 86, .13), transparent 56%),
-        radial-gradient(800px 520px at 88% 20%, rgba(163, 32, 26, .13), transparent 58%),
-        linear-gradient(180deg, #050605, #07110e);
-    }
-
-    .section-green {
-      background:
-        radial-gradient(900px 540px at 85% 0%, rgba(185, 154, 86, .12), transparent 58%),
-        linear-gradient(180deg, #071c15, #050605);
-    }
-
-    .section-light {
-      color: var(--ink);
-      background:
-        radial-gradient(900px 500px at 8% 0%, rgba(185, 154, 86, .20), transparent 55%),
-        linear-gradient(180deg, #f2ead8, #e7d8ba);
-    }
-
-    .section-head {
-      display: grid;
-      grid-template-columns: .92fr 1.08fr;
-      align-items: end;
-      gap: 36px;
-      margin-bottom: 42px;
-    }
-
-    .eyebrow {
-      margin-bottom: 14px;
-      color: var(--brass-light);
-      font-size: 13px;
-      font-weight: 950;
-      letter-spacing: .18em;
-      text-transform: uppercase;
-    }
-
-    .section-light .eyebrow {
-      color: var(--red);
-    }
-
-    h2 {
-      margin-bottom: 0;
-      font-size: clamp(36px, 5.7vw, 72px);
-      line-height: .95;
-      letter-spacing: -.06em;
-      text-wrap: balance;
-    }
-
-    .section-head p {
-      margin-bottom: 0;
-      color: var(--soft-white);
-      font-size: 18px;
-      line-height: 1.72;
-    }
-
-    .section-light .section-head p {
-      color: var(--muted);
-    }
-
-    .split {
-      display: grid;
-      grid-template-columns: 1.04fr .96fr;
-      align-items: center;
-      gap: 52px;
-    }
-
-    .split.reverse {
-      grid-template-columns: .96fr 1.04fr;
-    }
-
-    .split.reverse .media {
-      order: 2;
-    }
-
-    .media {
-      position: relative;
-    }
-
-    .media:before {
-      content: "";
-      position: absolute;
-      inset: -14px;
-      border-radius: 34px;
-      border: 1px solid rgba(185, 154, 86, .34);
-      pointer-events: none;
-    }
-
-    .media img {
-      width: 100%;
-      aspect-ratio: 4 / 3;
-      object-fit: cover;
-      border-radius: var(--radius);
-      border: 1px solid rgba(255, 255, 255, .13);
-      box-shadow: var(--shadow);
-    }
-
-    .section-light .media img {
-      border-color: rgba(18, 19, 18, .12);
-    }
-
-    .copy h2 {
-      margin-bottom: 22px;
-    }
-
-    .copy p {
-      margin-bottom: 28px;
-      color: var(--soft-white);
-      font-size: 19px;
-      line-height: 1.76;
-    }
-
-    .section-light .copy p {
-      color: var(--muted);
-    }
-
-    .proof-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 16px;
-      margin-top: 44px;
-    }
-
-    .proof-card {
-      min-height: 210px;
-      padding: 26px;
-      border-radius: 26px;
-      background: rgba(255, 255, 255, .06);
-      border: 1px solid rgba(255, 255, 255, .11);
-      box-shadow: 0 18px 55px rgba(0, 0, 0, .15);
-    }
-
-    .proof-card h3 {
-      margin: 17px 0 9px;
-      font-size: 23px;
-      letter-spacing: -.03em;
-    }
-
-    .proof-card p {
-      margin: 0;
-      color: var(--muted-white);
-      line-height: 1.62;
-    }
-
-    .can-stage {
-      position: relative;
-      overflow: hidden;
-      min-height: 620px;
-      display: grid;
-      align-items: center;
-      background:
-        linear-gradient(90deg, rgba(5, 6, 5, .92), rgba(5, 6, 5, .55), rgba(5, 6, 5, .92)),
-        url("assets/Tailgate After Hunt.png") center / cover no-repeat;
-      border-top: 1px solid rgba(255, 255, 255, .10);
-      border-bottom: 1px solid rgba(255, 255, 255, .10);
-    }
-
-    .can-stage-inner {
-      display: grid;
-      grid-template-columns: .9fr 1.1fr;
-      align-items: center;
-      gap: 48px;
-      padding: 92px 0;
-    }
-
-    .can-stage img {
-      width: min(360px, 74vw);
-      margin: 0 auto;
-      filter: drop-shadow(0 42px 64px rgba(0, 0, 0, .58));
-    }
-
-    .can-stage h2 {
-      margin-bottom: 20px;
-    }
-
-    .can-stage p {
-      color: var(--soft-white);
-      font-size: 20px;
-      line-height: 1.75;
-      max-width: 62ch;
-      margin-bottom: 28px;
-    }
-
-    .gallery {
-      display: grid;
-      grid-template-columns: 1.2fr .8fr;
-      gap: 18px;
-      align-items: stretch;
-    }
-
-    .gallery-main img,
-    .gallery-side img {
-      width: 100%;
-      object-fit: cover;
-      border-radius: 26px;
-      border: 1px solid rgba(255, 255, 255, .12);
-      box-shadow: var(--shadow-soft);
-    }
-
-    .gallery-main img {
-      height: 100%;
-      min-height: 620px;
-    }
-
-    .gallery-side {
-      display: grid;
-      gap: 18px;
-    }
-
-    .gallery-side img {
-      height: 301px;
-    }
-
-    .merch-panel {
-      overflow: hidden;
-      display: grid;
-      grid-template-columns: .95fr 1.05fr;
-      align-items: stretch;
-      border-radius: 34px;
-      color: var(--ink);
-      background: #f4eddd;
-      border: 1px solid rgba(18, 19, 18, .12);
-      box-shadow: var(--shadow);
-    }
-
-    .merch-photo img {
-      width: 100%;
-      height: 100%;
-      min-height: 560px;
-      object-fit: cover;
-    }
-
-    .merch-copy {
-      padding: 50px;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-    }
-
-    .merch-copy h2 {
-      margin-bottom: 20px;
-    }
-
-    .merch-copy p {
-      color: var(--muted);
-      font-size: 18px;
-      line-height: 1.7;
-      margin-bottom: 24px;
-    }
-
-    .hat-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 12px;
-      margin: 18px 0 26px;
-    }
-
-    .hat-tile {
-      background: #fff;
-      border: 1px solid rgba(18, 19, 18, .10);
-      border-radius: 20px;
-      padding: 10px;
-      box-shadow: 0 12px 34px rgba(0, 0, 0, .08);
-    }
-
-    .hat-tile img {
-      width: 100%;
-      aspect-ratio: 1 / 1;
-      object-fit: contain;
-    }
-
-    .launch {
-      position: relative;
-      overflow: hidden;
-      padding: 104px 0;
-      background:
-        linear-gradient(90deg, rgba(5, 6, 5, .92), rgba(5, 6, 5, .72)),
-        url("assets/Pond shells.png") center / cover no-repeat;
-      border-top: 1px solid rgba(255, 255, 255, .10);
-    }
-
-    .launch-box {
-      display: grid;
-      grid-template-columns: 1.1fr .9fr;
-      align-items: center;
-      gap: 40px;
-      padding: 50px;
-      border-radius: 36px;
-      background: rgba(5, 6, 5, .62);
-      border: 1px solid rgba(255, 255, 255, .14);
-      box-shadow: var(--shadow);
-      backdrop-filter: blur(10px);
-    }
-
-    .launch-box h2 {
-      margin-bottom: 18px;
-    }
-
-    .launch-box p {
-      margin-bottom: 0;
-      color: var(--soft-white);
-      font-size: 18px;
-      line-height: 1.72;
-    }
-
-    .launch-actions {
-      display: grid;
-      gap: 12px;
-    }
-
-    .fine {
-      margin-top: 16px;
-      color: var(--muted-white);
-      font-size: 13px;
-      line-height: 1.55;
-    }
-
-    .footer {
-      padding: 36px 0 44px;
-      color: rgba(255, 255, 255, .58);
-      background: #050605;
-      border-top: 1px solid rgba(255, 255, 255, .10);
-      font-size: 14px;
-    }
-
-    .footer-inner {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 18px;
-      flex-wrap: wrap;
-    }
-
-    .footer-links {
-      display: flex;
-      gap: 14px;
-      flex-wrap: wrap;
-    }
-
-    .footer a {
-      border-bottom: 1px solid transparent;
-    }
-
-    .footer a:hover {
-      color: #fff;
-      border-color: var(--brass);
-    }
-
-    @media (max-width: 1020px) {
-      .site-header {
-        position: absolute;
-      }
-
-      .header-inner {
-        min-height: 78px;
-      }
-
-      .nav {
-        gap: 4px;
-        font-size: 11px;
-      }
-
-      .nav a {
-        padding: 9px 9px;
-      }
-
-      .hero-inner,
-      .section-head,
-      .split,
-      .split.reverse,
-      .can-stage-inner,
-      .gallery,
-      .merch-panel,
-      .launch-box {
-        grid-template-columns: 1fr;
-      }
-
-      .split.reverse .media {
-        order: 0;
-      }
-
-      .hero-inner {
-        min-height: 760px;
-        padding-top: 150px;
-      }
-
-      .proof-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .gallery-main img {
-        min-height: 420px;
-      }
-
-      .gallery-side {
-        grid-template-columns: 1fr 1fr;
-      }
-
-      .gallery-side img {
-        height: 280px;
-      }
-
-      .merch-copy {
-        padding: 38px;
-      }
-
-      .merch-photo img {
-        min-height: 420px;
-      }
-    }
-
-    @media (max-width: 740px) {
-      .wrap {
-        width: min(var(--max), calc(100% - 28px));
-      }
-
-      .site-header {
-        position: relative;
-        background: #050605;
-      }
-
-      .header-inner {
-        position: relative;
-        min-height: 72px;
-        flex-direction: row;
-        gap: 14px;
-        padding: 10px 0;
-      }
-
-      .brand img {
-        height: 50px;
-        max-width: min(250px, 68vw);
-      }
-
-      .menu-toggle {
-        display: inline-flex;
-        flex: 0 0 auto;
-      }
-
-      .nav {
-        position: absolute;
-        top: calc(100% + 1px);
-        left: -14px;
-        right: -14px;
-        display: none;
-        width: auto;
-        flex-direction: column;
-        align-items: stretch;
-        gap: 4px;
-        padding: 14px;
-        background: rgba(5, 6, 5, .98);
-        border: 1px solid rgba(255, 255, 255, .12);
-        border-top: 0;
-        box-shadow: 0 24px 48px rgba(0, 0, 0, .42);
-      }
-
-      .nav.open {
-        display: flex;
-      }
-
-      .nav a,
-      .nav .shop-link {
-        width: 100%;
-        padding: 12px 14px;
-        text-align: left;
-      }
-
-      .hero {
-        min-height: auto;
-      }
-
-      .hero-bg {
-        background-position: center;
-      }
-
-      .hero-shade {
-        background:
-          radial-gradient(560px 420px at 55% 32%, rgba(163, 32, 26, .16), transparent 60%),
-          rgba(5, 6, 5, .68);
-      }
-
-      .hero-inner {
-        min-height: 650px;
-        grid-template-columns: 1fr;
-        text-align: center;
-        justify-items: center;
-        padding: 58px 0 64px;
-      }
-
-      .hero-logo,
-      .badge {
-        margin-left: auto;
-        margin-right: auto;
-      }
-
-      h1 {
-        font-size: clamp(42px, 13vw, 62px);
-      }
-
-      h2 {
-        font-size: clamp(34px, 11vw, 54px);
-      }
-
-      .actions {
-        width: 100%;
-      }
-
-      .btn {
-        width: 100%;
-      }
-
-      .section,
-      .launch {
-        padding: 64px 0;
-      }
-
-      .can-stage {
-        min-height: auto;
-      }
-
-      .can-stage-inner {
-        text-align: center;
-        padding: 68px 0;
-      }
-
-      .media:before {
-        inset: -8px;
-        border-radius: 28px;
-      }
-
-      .gallery-side {
-        grid-template-columns: 1fr;
-      }
-
-      .gallery-main img,
-      .gallery-side img {
-        min-height: 0;
-        height: auto;
-        aspect-ratio: 4 / 3;
-      }
-
-      .merch-copy {
-        padding: 28px;
-      }
-
-      .merch-photo img {
-        min-height: 320px;
-      }
-
-      .hat-grid {
-        grid-template-columns: repeat(2, 1fr);
-      }
-
-      .launch-box {
-        padding: 28px;
-      }
-
-      .footer-inner {
-        align-items: flex-start;
-        flex-direction: column;
-      }
-
-      .footer-links {
-        flex-direction: column;
-        gap: 9px;
-      }
-
-      .age-top {
-        align-items: flex-start;
-        flex-direction: column;
-      }
-
-      .age-top img {
-        height: 64px;
-      }
-
-      .age-actions {
-        width: 100%;
-      }
-    }
-
-    @media (prefers-reduced-motion: reduce) {
-      * {
-        scroll-behavior: auto !important;
-        transition: none !important;
-      }
+      --ink:#050605;
+      --ink-soft:#0d100e;
+      --forest:#071c15;
+      --forest-light:#0d3427;
+      --red:#a3201a;
+      --red-dark:#65130f;
+      --brass:#b99a56;
+      --brass-light:#dec983;
+      --cream:#f4ecd9;
+      --paper:#e9dcc0;
+      --white:#fff;
+      --text:rgba(255,255,255,.86);
+      --muted:rgba(255,255,255,.62);
+      --line:rgba(255,255,255,.14);
+      --dark-line:rgba(17,19,17,.14);
+      --serif:Georgia,"Times New Roman",serif;
+      --sans:ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+      --max:1240px;
+      --shadow:0 30px 90px rgba(0,0,0,.38);
+    }
+
+    *,*::before,*::after{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{margin:0;background:var(--ink);color:var(--white);font-family:var(--sans);overflow-x:hidden;-webkit-font-smoothing:antialiased}
+    body.no-scroll{overflow:hidden}
+    img{display:block;max-width:100%}
+    a{color:inherit;text-decoration:none}
+    button{font:inherit}
+    .wrap{width:min(var(--max),calc(100% - 48px));margin:0 auto}
+    .eyebrow{margin:0 0 14px;color:var(--brass-light);font-size:11px;font-weight:900;letter-spacing:.2em;text-transform:uppercase}
+    .display{font-family:var(--serif);font-weight:700;letter-spacing:-.045em;text-wrap:balance}
+    .btn{display:inline-flex;min-height:52px;align-items:center;justify-content:center;gap:10px;padding:13px 21px;border:1px solid var(--line);border-radius:999px;background:rgba(255,255,255,.08);color:#fff;font-size:14px;font-weight:850;letter-spacing:.02em;cursor:pointer;transition:transform .2s ease,background .2s ease,border-color .2s ease}
+    .btn:hover{transform:translateY(-2px);background:rgba(255,255,255,.14);border-color:rgba(255,255,255,.28)}
+    .btn-brass{color:#171108;background:linear-gradient(180deg,var(--brass-light),var(--brass));border-color:rgba(255,255,255,.25)}
+    .btn-brass:hover{background:linear-gradient(180deg,#ead790,#c3a25b)}
+    .btn-red{background:linear-gradient(180deg,var(--red),var(--red-dark));border-color:rgba(255,255,255,.2)}
+    .actions{display:flex;align-items:center;flex-wrap:wrap;gap:12px}
+
+    .site-header{position:absolute;inset:0 0 auto;z-index:80;border-bottom:1px solid rgba(255,255,255,.11);background:linear-gradient(180deg,rgba(5,6,5,.84),rgba(5,6,5,.24));backdrop-filter:blur(12px)}
+    .header-inner{min-height:86px;display:flex;align-items:center;justify-content:space-between;gap:24px}
+    .brand{display:inline-flex;align-items:center;flex:0 0 auto}
+    .brand img{width:auto;height:58px;filter:drop-shadow(0 12px 28px rgba(0,0,0,.45))}
+    .nav{display:flex;align-items:center;gap:2px;color:rgba(255,255,255,.78);font-size:11px;font-weight:900;letter-spacing:.13em;text-transform:uppercase}
+    .nav a{padding:11px 13px;border-radius:999px;white-space:nowrap;transition:color .2s,background .2s}
+    .nav a:hover{color:#fff;background:rgba(255,255,255,.09)}
+    .nav .shop-link{margin-left:7px;color:#171108;background:linear-gradient(180deg,var(--brass-light),var(--brass))}
+    .menu-toggle{display:none;width:46px;height:46px;align-items:center;justify-content:center;flex-direction:column;gap:5px;padding:0;border:1px solid rgba(255,255,255,.22);border-radius:12px;color:#fff;background:rgba(5,6,5,.5);cursor:pointer}
+    .menu-toggle span{width:21px;height:2px;border-radius:999px;background:currentColor;transition:transform .2s,opacity .2s}
+    .menu-toggle[aria-expanded="true"] span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+    .menu-toggle[aria-expanded="true"] span:nth-child(2){opacity:0}
+    .menu-toggle[aria-expanded="true"] span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+
+    .hero{position:relative;min-height:100svh;display:grid;align-items:end;overflow:hidden;background:var(--ink)}
+    .hero-bg{position:absolute;inset:0;background:url("assets/Buckshot Lager Campfire.png") center 50%/cover no-repeat;transform:scale(1.02)}
+    .hero-shade{position:absolute;inset:0;background:linear-gradient(90deg,rgba(5,6,5,.96) 0%,rgba(5,6,5,.74) 42%,rgba(5,6,5,.2) 78%),linear-gradient(180deg,rgba(5,6,5,.18) 25%,rgba(5,6,5,.92) 100%)}
+    .hero-inner{position:relative;z-index:2;padding:170px 0 86px}
+    .hero-copy{max-width:780px}
+    .hero-logo{width:min(280px,62vw);height:auto;margin-bottom:28px;filter:drop-shadow(0 18px 42px rgba(0,0,0,.5))}
+    .hero h1{margin:0 0 23px;font-size:clamp(54px,7.6vw,104px);line-height:.88;text-shadow:0 22px 60px rgba(0,0,0,.48)}
+    .hero-lead{max-width:630px;margin:0 0 30px;color:var(--text);font-size:clamp(17px,1.8vw,21px);line-height:1.65;text-shadow:0 8px 30px rgba(0,0,0,.5)}
+    .hero-fine{margin:18px 0 0;color:var(--muted);font-size:12px;line-height:1.55}
+
+    .brand-strip{border-top:1px solid var(--line);border-bottom:1px solid var(--line);background:#080a09}
+    .brand-strip-inner{min-height:74px;display:grid;grid-template-columns:repeat(4,1fr);align-items:center}
+    .brand-strip span{padding:0 24px;border-right:1px solid var(--line);color:rgba(255,255,255,.58);font-family:var(--serif);font-size:15px;font-style:italic;text-align:center}
+    .brand-strip span:last-child{border-right:0}
+
+    .section{position:relative;padding:120px 0}
+    .section-head{display:grid;grid-template-columns:.85fr 1.15fr;align-items:end;gap:48px;margin-bottom:52px}
+    .section h2{margin:0;font-size:clamp(42px,6vw,78px);line-height:.94}
+    .section-intro{max-width:650px;margin:0;color:var(--text);font-size:18px;line-height:1.75}
+    .beer{background:radial-gradient(800px 500px at 84% 12%,rgba(163,32,26,.15),transparent 60%),linear-gradient(180deg,#050605,#07130f)}
+    .beer-grid{display:grid;grid-template-columns:.8fr 1.2fr;align-items:stretch;gap:22px}
+    .can-card{position:relative;min-height:690px;display:grid;place-items:center;overflow:hidden;border:1px solid var(--line);border-radius:30px;background:radial-gradient(circle at 50% 42%,rgba(185,154,86,.16),transparent 42%),linear-gradient(160deg,#111512,#050605)}
+    .can-card::after{content:"BUCKSHOT LAGER";position:absolute;left:22px;bottom:20px;color:rgba(255,255,255,.2);font-size:10px;font-weight:900;letter-spacing:.25em}
+    .can-card img{position:relative;z-index:1;width:min(390px,78%);max-height:610px;object-fit:contain;filter:drop-shadow(0 44px 60px rgba(0,0,0,.58));transition:transform .5s ease}
+    .can-card:hover img{transform:translateY(-7px) scale(1.015)}
+    .beer-story{position:relative;min-height:690px;display:flex;align-items:flex-end;overflow:hidden;border-radius:30px;border:1px solid var(--line);box-shadow:var(--shadow)}
+    .beer-story img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+    .beer-story::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 24%,rgba(5,6,5,.92) 100%)}
+    .beer-story-copy{position:relative;z-index:2;max-width:650px;padding:46px}
+    .beer-story h3{margin:0 0 16px;font-family:var(--serif);font-size:clamp(34px,4.6vw,60px);line-height:.98;letter-spacing:-.04em}
+    .beer-story p{margin:0 0 26px;color:var(--text);font-size:17px;line-height:1.7}
+
+    .manifesto{position:relative;min-height:720px;display:grid;align-items:center;overflow:hidden;background:#090b09}
+    .manifesto-bg{position:absolute;inset:0;background:url("assets/Tailgate After Hunt.png") center/cover no-repeat}
+    .manifesto::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(5,6,5,.94),rgba(5,6,5,.52) 60%,rgba(5,6,5,.2)),linear-gradient(180deg,rgba(5,6,5,.15),rgba(5,6,5,.68))}
+    .manifesto-copy{position:relative;z-index:2;max-width:760px;padding:100px 0}
+    .manifesto blockquote{margin:0 0 25px;font-family:var(--serif);font-size:clamp(45px,7vw,90px);font-weight:700;line-height:.94;letter-spacing:-.05em;text-wrap:balance}
+    .manifesto p{max-width:600px;margin:0;color:var(--text);font-size:18px;line-height:1.75}
+
+    .field{color:#171713;background:radial-gradient(900px 500px at 5% 0%,rgba(185,154,86,.24),transparent 58%),linear-gradient(180deg,var(--cream),var(--paper))}
+    .field .eyebrow{color:var(--red)}
+    .field .section-intro{color:rgba(23,23,19,.7)}
+    .field-grid{display:grid;grid-template-columns:1.15fr .85fr;grid-template-rows:repeat(2,340px);gap:18px}
+    .field-card{position:relative;overflow:hidden;border-radius:28px;box-shadow:0 22px 58px rgba(48,36,18,.18)}
+    .field-card:first-child{grid-row:1/3}
+    .field-card img{width:100%;height:100%;object-fit:cover;transition:transform .6s ease}
+    .field-card:hover img{transform:scale(1.035)}
+    .field-card::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 45%,rgba(5,6,5,.88))}
+    .field-caption{position:absolute;z-index:2;inset:auto 28px 27px;color:#fff}
+    .field-number{display:block;margin-bottom:8px;color:var(--brass-light);font-size:10px;font-weight:900;letter-spacing:.2em;text-transform:uppercase}
+    .field-caption h3{margin:0;font-family:var(--serif);font-size:clamp(27px,3vw,40px);line-height:1}
+    .concept-note{margin:18px 0 0;color:rgba(23,23,19,.58);font-size:12px}
+
+    .merch{background:linear-gradient(180deg,#071c15,#050605)}
+    .merch-grid{display:grid;grid-template-columns:1.05fr .95fr;align-items:stretch;overflow:hidden;border:1px solid var(--line);border-radius:32px;background:#f1e8d5;box-shadow:var(--shadow)}
+    .merch-photo img{width:100%;height:100%;min-height:620px;object-fit:cover}
+    .merch-copy{display:flex;flex-direction:column;justify-content:center;padding:52px;color:#171713}
+    .merch-copy .eyebrow{color:var(--red)}
+    .merch-copy h2{font-size:clamp(42px,5vw,68px)}
+    .merch-copy>p{margin:20px 0 24px;color:rgba(23,23,19,.7);font-size:17px;line-height:1.7}
+    .hat-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:4px 0 26px}
+    .hat-grid img{width:100%;aspect-ratio:1;object-fit:contain;border:1px solid var(--dark-line);border-radius:16px;background:#fff}
+
+    .launch{position:relative;min-height:660px;display:grid;align-items:center;overflow:hidden}
+    .launch-bg{position:absolute;inset:0;background:url("assets/Buckshot Lager Duck Hunt.png") center/cover no-repeat}
+    .launch::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(5,6,5,.95),rgba(5,6,5,.72) 52%,rgba(5,6,5,.22)),linear-gradient(180deg,rgba(5,6,5,.1),rgba(5,6,5,.66))}
+    .launch-card{position:relative;z-index:2;max-width:720px;padding:90px 0}
+    .launch-card h2{margin:0 0 20px;font-size:clamp(46px,6.5vw,82px);line-height:.94}
+    .launch-card p{max-width:600px;margin:0 0 28px;color:var(--text);font-size:18px;line-height:1.7}
+    .launch-fine{margin-top:16px;color:var(--muted);font-size:12px;line-height:1.55}
+
+    .footer{padding:40px 0;color:rgba(255,255,255,.55);border-top:1px solid var(--line);background:#050605;font-size:13px}
+    .footer-inner{display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap}
+    .footer-links{display:flex;gap:18px;flex-wrap:wrap}
+    .footer a:hover{color:#fff}
+
+    .age-gate{position:fixed;inset:0;z-index:999;display:none;align-items:center;justify-content:center;padding:20px;background:linear-gradient(180deg,rgba(5,6,5,.78),rgba(5,6,5,.95)),url("assets/Campfire shells.png") center/cover no-repeat}
+    .age-gate.open{display:flex}
+    .age-card{width:min(680px,100%);overflow:hidden;border:1px solid rgba(255,255,255,.3);border-radius:30px;color:#171713;background:linear-gradient(180deg,#f7f0df,#e5d4b2);box-shadow:0 40px 120px rgba(0,0,0,.65)}
+    .age-top{display:flex;align-items:center;justify-content:space-between;gap:20px;padding:18px 24px;border-bottom:1px solid var(--dark-line)}
+    .age-top img{width:auto;height:70px}
+    .age-label{color:rgba(23,23,19,.6);font-size:11px;font-weight:900;letter-spacing:.16em;text-transform:uppercase}
+    .age-body{padding:30px 24px 27px}
+    .age-body h2{margin:0 0 14px;font-family:var(--serif);font-size:clamp(38px,6vw,58px);line-height:.95;letter-spacing:-.04em}
+    .age-body p{margin:0;color:rgba(23,23,19,.7);line-height:1.65}
+    .age-actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:24px}
+    .age-actions .btn:not(.btn-red){color:#171713;border-color:var(--dark-line);background:rgba(255,255,255,.5)}
+
+    .reveal{opacity:1;transform:none}
+    .js .reveal{opacity:0;transform:translateY(24px);transition:opacity .7s ease,transform .7s ease}
+    .js .reveal.visible{opacity:1;transform:none}
+
+    @media(max-width:980px){
+      .section{padding:92px 0}
+      .section-head,.beer-grid,.merch-grid{grid-template-columns:1fr}
+      .can-card,.beer-story{min-height:580px}
+      .merch-photo img{min-height:470px}
+      .brand-strip-inner{grid-template-columns:repeat(2,1fr)}
+      .brand-strip span:nth-child(2){border-right:0}
+      .brand-strip span:nth-child(-n+2){border-bottom:1px solid var(--line)}
+    }
+
+    @media(max-width:740px){
+      .wrap{width:min(var(--max),calc(100% - 30px))}
+      .site-header{position:absolute}
+      .header-inner{position:relative;min-height:72px}
+      .brand img{height:48px;max-width:min(235px,66vw)}
+      .menu-toggle{display:inline-flex}
+      .nav{position:absolute;top:calc(100% + 1px);left:-15px;right:-15px;display:none;flex-direction:column;align-items:stretch;gap:3px;padding:14px;background:rgba(5,6,5,.98);border:1px solid var(--line);box-shadow:0 24px 50px rgba(0,0,0,.45)}
+      .nav.open{display:flex}
+      .nav a,.nav .shop-link{width:100%;margin:0;padding:13px 14px;text-align:left}
+      .hero{min-height:860px}
+      .hero-bg{background-position:58% center}
+      .hero-shade{background:linear-gradient(180deg,rgba(5,6,5,.48),rgba(5,6,5,.94) 76%)}
+      .hero-inner{padding:150px 0 55px}
+      .hero-copy{text-align:center}
+      .hero-logo{margin:0 auto 24px}
+      .hero h1{font-size:clamp(49px,16vw,68px)}
+      .hero-lead{font-size:17px}
+      .actions{width:100%}
+      .actions .btn{width:100%}
+      .brand-strip span{min-height:58px;display:grid;place-items:center;padding:10px;font-size:13px}
+      .section{padding:72px 0}
+      .section-head{gap:22px;margin-bottom:34px}
+      .section h2{font-size:clamp(40px,13vw,56px)}
+      .section-intro{font-size:16px}
+      .can-card,.beer-story{min-height:520px}
+      .beer-story-copy{padding:28px}
+      .manifesto{min-height:650px}
+      .manifesto-bg{background-position:64% center}
+      .manifesto blockquote{font-size:clamp(44px,14vw,64px)}
+      .field-grid{grid-template-columns:1fr;grid-template-rows:auto}
+      .field-card,.field-card:first-child{grid-row:auto;min-height:410px}
+      .field-card:not(:first-child){min-height:300px}
+      .field-caption{inset:auto 22px 22px}
+      .merch-copy{padding:30px 24px}
+      .merch-photo img{min-height:390px}
+      .hat-grid{grid-template-columns:repeat(2,1fr)}
+      .launch{min-height:650px}
+      .launch-bg{background-position:62% center}
+      .launch-card{text-align:center}
+      .footer-inner{align-items:flex-start;flex-direction:column}
+      .footer-links{flex-direction:column;gap:10px}
+      .age-top{align-items:flex-start;flex-direction:column}
+      .age-actions,.age-actions .btn{width:100%}
+    }
+
+    @media(prefers-reduced-motion:reduce){
+      html{scroll-behavior:auto}
+      *,*::before,*::after{transition:none!important;animation:none!important}
+      .js .reveal{opacity:1;transform:none}
     }
   </style>
 </head>
@@ -1008,24 +226,15 @@
         <img src="assets/BB logo_FULL blk.png" alt="Buckshot Brewing" width="1080" height="1080">
         <div class="age-label">21+ required</div>
       </div>
-
       <div class="age-body">
         <p class="eyebrow">Before you enter</p>
-        <h1 id="ageTitle">Are you 21 or older?</h1>
+        <h2 id="ageTitle">Are you 21 or older?</h2>
         <p id="ageDescription">Buckshot Brewing is intended for adults of legal drinking age. Please confirm before entering.</p>
-
         <div class="age-actions">
-          <button class="btn btn-red" type="button" id="ageYes">
-            <span class="dot" aria-hidden="true"></span>
-            Yes, I am 21+
-          </button>
-
-          <button class="btn" type="button" id="ageNo">
-            No
-          </button>
+          <button class="btn btn-red" type="button" id="ageYes">Yes, I am 21+</button>
+          <button class="btn" type="button" id="ageNo">No</button>
         </div>
-
-        <p style="font-size: 12px; margin-top: 16px;">Your selection is saved in this browser.</p>
+        <p style="font-size:12px;margin-top:16px">Your selection is saved in this browser.</p>
       </div>
     </div>
   </div>
@@ -1035,19 +244,15 @@
       <a class="brand" href="#top" aria-label="Buckshot Brewing home">
         <img src="assets/BB logo_FULL wht.png" alt="Buckshot Brewing" width="1080" height="1080">
       </a>
-
       <button class="menu-toggle" type="button" id="menuToggle" aria-expanded="false" aria-controls="primaryNav" aria-label="Open menu">
-        <span aria-hidden="true"></span>
-        <span aria-hidden="true"></span>
-        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span><span aria-hidden="true"></span><span aria-hidden="true"></span>
       </button>
-
       <nav class="nav" id="primaryNav" aria-label="Primary navigation">
-        <a href="#beer">Beer</a>
-        <a href="#outdoors">Outdoors</a>
+        <a href="#beer">The Lager</a>
+        <a href="#field">Field Notes</a>
         <a href="#merch">Merch</a>
-        <a href="#join">Join</a>
-        <a href="mailto:sales@buckshotbrewing.com?subject=Buckshot%20Brewing%20Inquiry">Contact</a>
+        <a href="#updates">Updates</a>
+        <a href="mailto:sales@buckshotbrewing.com?subject=Buckshot%20Brewing%20Inquiry">Industry</a>
         <a class="shop-link" href="https://buckshotbrewing.myshopify.com">Shop merch</a>
       </nav>
     </div>
@@ -1057,260 +262,138 @@
     <section class="hero">
       <div class="hero-bg" aria-hidden="true"></div>
       <div class="hero-shade" aria-hidden="true"></div>
-
       <div class="wrap hero-inner">
-        <div>
-          <img class="hero-logo" src="assets/BB logo_FULL wht.png" alt="Buckshot Brewing">
-
-          <div class="badge">
-            <span class="dot" aria-hidden="true"></span>
-            Coming soon
-          </div>
-
-          <h1>Premium beer for the outdoors.</h1>
-
-          <p>
-            Buckshot Brewing is built for the cabin, the lake, the tailgate, the field, and every place a cold beer tastes better. The beer is coming. The merch is live.
-          </p>
-
+        <div class="hero-copy">
+          <img class="hero-logo" src="assets/BB logo_FULL wht.png" alt="Buckshot Brewing" width="1080" height="1080">
+          <p class="eyebrow">Minnesota · Beer coming soon</p>
+          <h1 class="display">The day ends.<br>The stories start.</h1>
+          <p class="hero-lead">A clean American lager built for cabins, campfires, tailgates, fish houses, and every place a cold beer belongs.</p>
           <div class="actions">
-            <a class="btn btn-red" href="https://buckshotbrewing.myshopify.com/pages/contact">
-              <span class="dot" aria-hidden="true"></span>
-              Get launch updates
-            </a>
-
-            <a class="btn btn-brass" href="https://buckshotbrewing.myshopify.com">
-              Shop Buckshot merch
-            </a>
-
-            <a class="btn" href="#beer">
-              See the beer
-            </a>
+            <a class="btn btn-red" href="https://buckshotbrewing.myshopify.com/pages/contact">Get launch updates</a>
+            <a class="btn btn-brass" href="https://buckshotbrewing.myshopify.com">Shop Buckshot merch</a>
+            <a class="btn" href="#beer">Meet the lager</a>
           </div>
-
-          <div class="hero-note">
-            No alcoholic beverages are available for sale online. Online purchases are for Buckshot merch only.
-          </div>
+          <p class="hero-fine">No alcoholic beverages are available for sale online. Merchandise only.</p>
         </div>
       </div>
     </section>
 
-    <section class="section section-dark" id="beer">
-      <div class="wrap">
-        <div class="section-head">
-          <div>
-            <p class="eyebrow">Flagship beer</p>
-            <h2>Buckshot Lager</h2>
-          </div>
+    <div class="brand-strip" aria-label="Buckshot brand values">
+      <div class="brand-strip-inner">
+        <span>Clean American lager</span>
+        <span>Built in Minnesota</span>
+        <span>Drinkability first</span>
+        <span>Premium without pretense</span>
+      </div>
+    </div>
 
-          <p>
-            A clean American lager with a crisp finish. Built for long weekends, garage fridges, hunting camp, fish houses, lake days, and nights around the fire.
-          </p>
+    <section class="section beer" id="beer">
+      <div class="wrap">
+        <div class="section-head reveal">
+          <div>
+            <p class="eyebrow">The flagship</p>
+            <h2 class="display">Buckshot Lager</h2>
+          </div>
+          <p class="section-intro">Crisp, familiar, and built to earn the next one. Buckshot is designed for domestic beer drinkers who want better branding, better quality, and none of the craft-beer lecture.</p>
         </div>
 
-        <div class="split">
-          <div class="media">
-            <img src="assets/Buckshot Lager Bar.png" alt="Buckshot Lager can in a premium outdoor bar setting" loading="lazy" decoding="async">
-          </div>
-
-          <div class="copy">
-            <p class="eyebrow">Clean. Crisp. Familiar.</p>
-            <h2>The beer that belongs in the cooler.</h2>
-
-            <p>
-              Buckshot is being built around drinkability first. A premium lager that feels easy to grab, easy to share, and right at home wherever the outdoors takes you.
-            </p>
-
-            <div class="actions">
-              <a class="btn btn-red" href="https://buckshotbrewing.myshopify.com/pages/contact">
-                <span class="dot" aria-hidden="true"></span>
-                Get launch updates
-              </a>
-
-              <a class="btn" href="mailto:sales@buckshotbrewing.com?subject=Buckshot%20Brewing%20Retail%20Inquiry">
-                Retail inquiry
-              </a>
+        <div class="beer-grid">
+          <article class="can-card reveal">
+            <img src="assets/Buckshot-Lager.png" alt="Buckshot Lager concept can" loading="lazy" decoding="async">
+          </article>
+          <article class="beer-story reveal">
+            <img src="assets/Buckshot Lager Bar.png" alt="Buckshot Lager concept can in an outdoor bar setting" loading="lazy" decoding="async">
+            <div class="beer-story-copy">
+              <p class="eyebrow">Made for the cooler</p>
+              <h3>Good beer. Clear identity. No explaining required.</h3>
+              <p>The beer is still coming. The standard is already set: clean, consistent, approachable, and right at home after a long day outside.</p>
+              <div class="actions">
+                <a class="btn btn-red" href="https://buckshotbrewing.myshopify.com/pages/contact">Request launch updates</a>
+                <a class="btn" href="mailto:sales@buckshotbrewing.com?subject=Buckshot%20Retail%20Inquiry">Retail inquiry</a>
+              </div>
             </div>
-          </div>
-        </div>
-
-        <div class="proof-grid">
-          <div class="proof-card">
-            <span class="dot" aria-hidden="true"></span>
-            <h3>Premium shelf presence</h3>
-            <p>A bold red can, brass bottom, and outdoor identity made to stand out fast.</p>
-          </div>
-
-          <div class="proof-card">
-            <span class="dot" aria-hidden="true"></span>
-            <h3>Outdoor first</h3>
-            <p>Built around campfires, tailgates, cabins, hunting, fishing, and lake weekends.</p>
-          </div>
-
-          <div class="proof-card">
-            <span class="dot" aria-hidden="true"></span>
-            <h3>Community minded</h3>
-            <p>As Buckshot grows, the plan is to support Type 1 Diabetes research and families impacted by T1D.</p>
-          </div>
+          </article>
         </div>
       </div>
     </section>
 
-    <section class="can-stage" id="outdoors">
-      <div class="wrap can-stage-inner">
-        <div>
-          <img src="assets/Buckshot-Lager.png" alt="Buckshot Lager can" loading="lazy" decoding="async">
-        </div>
-
-        <div>
-          <p class="eyebrow">Built for the outdoors</p>
-          <h2>Cabins. Campfires. Tailgates. Fish houses.</h2>
-
-          <p>
-            Buckshot should feel like it has always been there. On the stump by the fire. In the cooler at the landing. In the back of the truck after a good day outside.
-          </p>
-
-          <div class="actions">
-            <a class="btn btn-brass" href="https://buckshotbrewing.myshopify.com">
-              Shop the hats
-            </a>
-
-            <a class="btn" href="#gallery">
-              View the Buckshot world
-            </a>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="section section-green" id="gallery">
+    <section class="manifesto">
+      <div class="manifesto-bg" aria-hidden="true"></div>
       <div class="wrap">
-        <div class="section-head">
+        <div class="manifesto-copy reveal">
+          <p class="eyebrow">Why Buckshot</p>
+          <blockquote>Built for the people who would rather be outside.</blockquote>
+          <p>Not a taproom lifestyle. Not a tasting-flight personality. Buckshot belongs in the truck, the cabin fridge, the golf cooler, and around the fire when the best part of the day finally starts.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section field" id="field">
+      <div class="wrap">
+        <div class="section-head reveal">
           <div>
-            <p class="eyebrow">The Buckshot world</p>
-            <h2>Made for where you drink it.</h2>
+            <p class="eyebrow">From the field</p>
+            <h2 class="display">The Buckshot world</h2>
           </div>
-
-          <p>
-            Warm light, weathered wood, real outdoor settings, and a brand that feels premium without feeling soft.
-          </p>
+          <p class="section-intro">Minnesota seasons change. The ritual does not: finish the day, open the cooler, and tell the story one more time.</p>
         </div>
 
-        <div class="gallery">
-          <div class="gallery-main">
-            <img src="assets/Dog and Pheasant.png" alt="Buckshot Lager with a hunting dog and pheasant at sunset" loading="lazy" decoding="async">
-          </div>
-
-          <div class="gallery-side">
-            <img src="assets/Campfire with guys.png" alt="Friends around a campfire with Buckshot Lager" loading="lazy" decoding="async">
-            <img src="assets/Buckshot Lager Fishing.png" alt="Buckshot Lager with fishing gear near a river" loading="lazy" decoding="async">
-          </div>
+        <div class="field-grid">
+          <article class="field-card reveal">
+            <img src="assets/Dog and Pheasant.png" alt="Buckshot Lager concept scene with a hunting dog and pheasant at sunset" loading="lazy" decoding="async">
+            <div class="field-caption"><span class="field-number">Field Note 01</span><h3>Opening weekend</h3></div>
+          </article>
+          <article class="field-card reveal">
+            <img src="assets/Buckshot Lager Fishing.png" alt="Buckshot Lager concept scene with fishing gear by the water" loading="lazy" decoding="async">
+            <div class="field-caption"><span class="field-number">Field Note 02</span><h3>Last cast</h3></div>
+          </article>
+          <article class="field-card reveal">
+            <img src="assets/Campfire with guys.png" alt="Buckshot Lager concept scene with adult friends around a campfire" loading="lazy" decoding="async">
+            <div class="field-caption"><span class="field-number">Field Note 03</span><h3>One more story</h3></div>
+          </article>
         </div>
+        <p class="concept-note">Product and lifestyle imagery shown is concept imagery and may change before launch.</p>
       </div>
     </section>
 
-    <section class="section section-light" id="merch">
+    <section class="section merch" id="merch">
       <div class="wrap">
-        <div class="merch-panel">
+        <div class="merch-grid reveal">
           <div class="merch-photo">
-            <img src="assets/Buckshot Lager Tailgate.png" alt="Buckshot Lager and Buckshot merch on a truck tailgate" loading="lazy" decoding="async">
+            <img src="assets/Buckshot Lager Tailgate.png" alt="Buckshot Lager concept scene and Buckshot merch on a tailgate" loading="lazy" decoding="async">
           </div>
-
           <div class="merch-copy">
-            <p class="eyebrow">Buckshot merch</p>
-            <h2>The first hats are live.</h2>
-
-            <p>
-              The beer is coming, but the gear is ready. Grab a Buckshot hat for the cabin, course, hunting camp, lake weekends, or your next beer run.
-            </p>
-
-            <div class="hat-grid" aria-label="Buckshot hats">
-              <div class="hat-tile">
-                <img src="assets/Caramel Hat.png" alt="Buckshot caramel and black hat" loading="lazy" decoding="async">
-              </div>
-
-              <div class="hat-tile">
-                <img src="assets/Heather Gray Black Hat.png" alt="Buckshot heather gray and black hat" loading="lazy" decoding="async">
-              </div>
-
-              <div class="hat-tile">
-                <img src="assets/Heather Gray Hat.png" alt="Buckshot heather gray and white hat" loading="lazy" decoding="async">
-              </div>
-
-              <div class="hat-tile">
-                <img src="assets/Buckshot Orange Hat.png" alt="Buckshot hunter orange hat" loading="lazy" decoding="async">
-              </div>
+            <p class="eyebrow">Merch is live</p>
+            <h2 class="display">Wear it before you drink it.</h2>
+            <p>The beer is coming. The first Buckshot hats are ready for hunting camp, cabin weekends, the course, and your next beer run.</p>
+            <div class="hat-grid" aria-label="Buckshot hat styles">
+              <img src="assets/Caramel Hat.png" alt="Buckshot caramel and black hat" loading="lazy" decoding="async">
+              <img src="assets/Heather Gray Black Hat.png" alt="Buckshot heather gray and black hat" loading="lazy" decoding="async">
+              <img src="assets/Heather Gray Hat.png" alt="Buckshot heather gray and white hat" loading="lazy" decoding="async">
+              <img src="assets/Buckshot Orange Hat.png" alt="Buckshot hunter orange hat" loading="lazy" decoding="async">
             </div>
-
             <div class="actions">
-              <a class="btn btn-red" href="https://buckshotbrewing.myshopify.com">
-                <span class="dot" aria-hidden="true"></span>
-                Shop Buckshot merch
-              </a>
+              <a class="btn btn-red" href="https://buckshotbrewing.myshopify.com">Shop official merch</a>
+              <a class="btn" style="color:#171713;border-color:var(--dark-line)" href="shop.html">Explore merch</a>
             </div>
-
-            <p style="font-size: 13px; margin-top: 16px;">
-              Online sales are for merch only. No alcoholic beverages are available for sale online.
-            </p>
           </div>
         </div>
       </div>
     </section>
 
-    <section class="section section-dark">
+    <section class="launch" id="updates">
+      <div class="launch-bg" aria-hidden="true"></div>
       <div class="wrap">
-        <div class="split reverse">
-          <div class="media">
-            <img src="assets/Buckshot Lager Duck Hunt.png" alt="Buckshot Lager at duck camp by the water" loading="lazy" decoding="async">
+        <div class="launch-card reveal">
+          <p class="eyebrow">Beer coming soon</p>
+          <h2 class="display">Be there when Buckshot lands.</h2>
+          <p>Request launch updates, retail announcements, tasting information, and the first places to find Buckshot Lager.</p>
+          <!-- TODO: Replace this contact-page link with a true Shopify Forms/newsletter signup when configured. -->
+          <div class="actions">
+            <a class="btn btn-brass" href="https://buckshotbrewing.myshopify.com/pages/contact">Get launch updates</a>
+            <a class="btn" href="mailto:sales@buckshotbrewing.com?subject=Buckshot%20Brewing%20Inquiry">Industry inquiry</a>
           </div>
-
-          <div class="copy">
-            <p class="eyebrow">Launch list</p>
-            <h2>Be first to know when Buckshot lands.</h2>
-
-            <p>
-              Get launch updates for beer launch updates, tasting announcements, retail locations, and new merch drops.
-            </p>
-
-            <a class="btn btn-red" href="https://buckshotbrewing.myshopify.com/pages/contact">
-              <span class="dot" aria-hidden="true"></span>
-              Get launch updates
-            </a>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="launch" id="join">
-      <div class="wrap">
-        <div class="launch-box">
-          <div>
-            <p class="eyebrow">Contact Buckshot</p>
-            <h2>Retail, distributor, and launch updates.</h2>
-
-            <p>
-              Use the Shopify contact page to request launch updates or send a note. Retail buyers, distributors, restaurants, bars, and press can also email directly.
-            </p>
-
-            <div class="fine">
-              This is currently a contact workflow, not a marketing subscription. A dedicated Shopify Forms signup will replace it later.
-            </div>
-          </div>
-
-          <!-- TODO: Replace this contact-page link with a Shopify Forms/newsletter signup when configured. -->
-          <div class="launch-actions">
-            <a class="btn btn-brass" href="https://buckshotbrewing.myshopify.com/pages/contact">
-              Go to Shopify contact form
-            </a>
-
-            <a class="btn" href="https://buckshotbrewing.myshopify.com">
-              Shop Buckshot merch
-            </a>
-
-            <a class="btn" href="mailto:sales@buckshotbrewing.com?subject=Buckshot%20Brewing%20Inquiry">
-              Email sales@buckshotbrewing.com
-            </a>
-          </div>
+          <p class="launch-fine">The current Shopify page is a contact workflow, not an automatic marketing subscription.</p>
         </div>
       </div>
     </section>
@@ -1318,14 +401,12 @@
 
   <footer class="footer">
     <div class="wrap footer-inner">
-      <div>© <span id="year"></span> Buckshot Brewing</div>
-
+      <div>© <span id="year"></span> Buckshot Brewing · Minnesota</div>
       <div class="footer-links">
-        <a href="#beer">Beer</a>
-        <a href="#outdoors">Outdoors</a>
+        <a href="#beer">The Lager</a>
+        <a href="#field">Field Notes</a>
         <a href="#merch">Merch</a>
         <a href="https://buckshotbrewing.myshopify.com">Shop</a>
-        <a href="https://buckshotbrewing.myshopify.com/pages/contact">Updates</a>
         <a href="privacy.html">Privacy Policy</a>
         <a href="terms.html">Terms</a>
         <a href="mailto:sales@buckshotbrewing.com?subject=Buckshot%20Brewing%20Inquiry">Email</a>
@@ -1334,84 +415,66 @@
   </footer>
 
   <script>
-    document.getElementById("year").textContent = new Date().getFullYear();
+    document.getElementById("year").textContent=new Date().getFullYear();
 
-    const AGE_KEY = "buckshot_age_verified_v3";
-    const ageGate = document.getElementById("ageGate");
-    const ageYes = document.getElementById("ageYes");
-    const ageNo = document.getElementById("ageNo");
-    const menuToggle = document.getElementById("menuToggle");
-    const primaryNav = document.getElementById("primaryNav");
-    let focusBeforeAgeGate = null;
+    const AGE_KEY="buckshot_age_verified_v3";
+    const ageGate=document.getElementById("ageGate");
+    const ageYes=document.getElementById("ageYes");
+    const ageNo=document.getElementById("ageNo");
+    const menuToggle=document.getElementById("menuToggle");
+    const primaryNav=document.getElementById("primaryNav");
+    let focusBeforeAgeGate=null;
 
-    function openAgeGate() {
-      focusBeforeAgeGate = document.activeElement;
+    function ageIsVerified(){
+      try{return localStorage.getItem(AGE_KEY)==="yes"}catch(error){return false}
+    }
+    function openAgeGate(){
+      focusBeforeAgeGate=document.activeElement;
       ageGate.classList.add("open");
       document.body.classList.add("no-scroll");
-      window.setTimeout(function () {
-        ageYes.focus();
-      }, 0);
+      window.setTimeout(function(){ageYes.focus()},0);
     }
-
-    function closeAgeGate() {
+    function closeAgeGate(){
       ageGate.classList.remove("open");
       document.body.classList.remove("no-scroll");
-      if (focusBeforeAgeGate && typeof focusBeforeAgeGate.focus === "function") {
-        focusBeforeAgeGate.focus();
-      }
+      if(focusBeforeAgeGate&&typeof focusBeforeAgeGate.focus==="function")focusBeforeAgeGate.focus();
     }
-
-    ageGate.addEventListener("keydown", function (event) {
-      if (event.key !== "Tab") return;
-      const focusable = [ageYes, ageNo];
-      const first = focusable[0];
-      const last = focusable[focusable.length - 1];
-
-      if (event.shiftKey && document.activeElement === first) {
-        event.preventDefault();
-        last.focus();
-      } else if (!event.shiftKey && document.activeElement === last) {
-        event.preventDefault();
-        first.focus();
-      }
+    ageGate.addEventListener("keydown",function(event){
+      if(event.key!=="Tab")return;
+      if(event.shiftKey&&document.activeElement===ageYes){event.preventDefault();ageNo.focus()}
+      else if(!event.shiftKey&&document.activeElement===ageNo){event.preventDefault();ageYes.focus()}
     });
-
-    function closeMenu() {
-      primaryNav.classList.remove("open");
-      menuToggle.setAttribute("aria-expanded", "false");
-      menuToggle.setAttribute("aria-label", "Open menu");
-    }
-
-    menuToggle.addEventListener("click", function () {
-      const isOpen = primaryNav.classList.toggle("open");
-      menuToggle.setAttribute("aria-expanded", String(isOpen));
-      menuToggle.setAttribute("aria-label", isOpen ? "Close menu" : "Open menu");
-    });
-
-    primaryNav.querySelectorAll("a").forEach(function (link) {
-      link.addEventListener("click", closeMenu);
-    });
-
-    document.addEventListener("keydown", function (event) {
-      if (event.key === "Escape") closeMenu();
-    });
-
-    window.addEventListener("resize", function () {
-      if (window.innerWidth > 740) closeMenu();
-    });
-
-    if (localStorage.getItem(AGE_KEY) !== "yes") {
-      openAgeGate();
-    }
-
-    ageYes.addEventListener("click", function () {
-      localStorage.setItem(AGE_KEY, "yes");
+    if(!ageIsVerified())openAgeGate();
+    ageYes.addEventListener("click",function(){
+      try{localStorage.setItem(AGE_KEY,"yes")}catch(error){}
       closeAgeGate();
     });
+    ageNo.addEventListener("click",function(){window.location.href="https://www.responsibility.org/"});
 
-    ageNo.addEventListener("click", function () {
-      window.location.href = "https://www.responsibility.org/";
+    function closeMenu(){
+      primaryNav.classList.remove("open");
+      menuToggle.setAttribute("aria-expanded","false");
+      menuToggle.setAttribute("aria-label","Open menu");
+    }
+    menuToggle.addEventListener("click",function(){
+      const isOpen=primaryNav.classList.toggle("open");
+      menuToggle.setAttribute("aria-expanded",String(isOpen));
+      menuToggle.setAttribute("aria-label",isOpen?"Close menu":"Open menu");
     });
+    primaryNav.querySelectorAll("a").forEach(function(link){link.addEventListener("click",closeMenu)});
+    document.addEventListener("keydown",function(event){if(event.key==="Escape")closeMenu()});
+    window.addEventListener("resize",function(){if(window.innerWidth>740)closeMenu()});
+
+    if("IntersectionObserver" in window){
+      const observer=new IntersectionObserver(function(entries){
+        entries.forEach(function(entry){
+          if(entry.isIntersecting){entry.target.classList.add("visible");observer.unobserve(entry.target)}
+        });
+      },{threshold:.12,rootMargin:"0px 0px -30px"});
+      document.querySelectorAll(".reveal").forEach(function(element){observer.observe(element)});
+    }else{
+      document.querySelectorAll(".reveal").forEach(function(element){element.classList.add("visible")});
+    }
   </script>
 </body>
 </html>
