@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Buckshot Brewing | Premium Beer for the Outdoors</title>
-  <meta name="description" content="Buckshot Brewing. Premium beer for the outdoors. Coming soon. Shop Buckshot merch and join the launch list.">
+  <meta name="description" content="Buckshot Brewing. Premium beer for the outdoors. Coming soon. Shop Buckshot merch and request launch updates.">
   <meta name="robots" content="index,follow">
 
   <style>
@@ -171,6 +171,43 @@
     .brand {
       display: inline-flex;
       align-items: center;
+      flex: 0 0 auto;
+    }
+
+    .menu-toggle {
+      display: none;
+      width: 46px;
+      height: 46px;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      gap: 5px;
+      padding: 0;
+      border: 1px solid rgba(255, 255, 255, .18);
+      border-radius: 12px;
+      color: #fff;
+      background: rgba(255, 255, 255, .08);
+      cursor: pointer;
+    }
+
+    .menu-toggle span {
+      width: 21px;
+      height: 2px;
+      border-radius: 999px;
+      background: currentColor;
+      transition: transform .2s ease, opacity .2s ease;
+    }
+
+    .menu-toggle[aria-expanded="true"] span:nth-child(1) {
+      transform: translateY(7px) rotate(45deg);
+    }
+
+    .menu-toggle[aria-expanded="true"] span:nth-child(2) {
+      opacity: 0;
+    }
+
+    .menu-toggle[aria-expanded="true"] span:nth-child(3) {
+      transform: translateY(-7px) rotate(-45deg);
     }
 
     .brand img {
@@ -796,28 +833,49 @@
       }
 
       .header-inner {
-        flex-direction: column;
-        gap: 10px;
-        padding: 12px 0 14px;
+        position: relative;
+        min-height: 72px;
+        flex-direction: row;
+        gap: 14px;
+        padding: 10px 0;
       }
 
       .brand img {
-        height: 58px;
+        height: 50px;
+        max-width: min(250px, 68vw);
+      }
+
+      .menu-toggle {
+        display: inline-flex;
+        flex: 0 0 auto;
       }
 
       .nav {
-        justify-content: center;
-        flex-wrap: wrap;
-        width: 100%;
+        position: absolute;
+        top: calc(100% + 1px);
+        left: -14px;
+        right: -14px;
+        display: none;
+        width: auto;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 4px;
+        padding: 14px;
+        background: rgba(5, 6, 5, .98);
+        border: 1px solid rgba(255, 255, 255, .12);
+        border-top: 0;
+        box-shadow: 0 24px 48px rgba(0, 0, 0, .42);
       }
 
-      .nav a {
-        padding: 9px 10px;
+      .nav.open {
+        display: flex;
       }
 
+      .nav a,
       .nav .shop-link {
         width: 100%;
-        text-align: center;
+        padding: 12px 14px;
+        text-align: left;
       }
 
       .hero {
@@ -944,17 +1002,17 @@
 </head>
 
 <body>
-  <div class="age-gate" id="ageGate" role="dialog" aria-modal="true" aria-label="Age verification">
+  <div class="age-gate" id="ageGate" role="dialog" aria-modal="true" aria-labelledby="ageTitle" aria-describedby="ageDescription">
     <div class="age-card" role="document">
       <div class="age-top">
-        <img src="assets/BB logo_FULL blk.png" alt="Buckshot Brewing">
+        <img src="assets/BB logo_FULL blk.png" alt="Buckshot Brewing" width="1080" height="1080">
         <div class="age-label">21+ required</div>
       </div>
 
       <div class="age-body">
         <p class="eyebrow">Before you enter</p>
-        <h1>Are you 21 or older?</h1>
-        <p>Buckshot Brewing is intended for adults of legal drinking age. Please confirm before entering.</p>
+        <h1 id="ageTitle">Are you 21 or older?</h1>
+        <p id="ageDescription">Buckshot Brewing is intended for adults of legal drinking age. Please confirm before entering.</p>
 
         <div class="age-actions">
           <button class="btn btn-red" type="button" id="ageYes">
@@ -975,10 +1033,16 @@
   <header class="site-header">
     <div class="wrap header-inner">
       <a class="brand" href="#top" aria-label="Buckshot Brewing home">
-        <img src="assets/BB logo_FULL wht.png" alt="Buckshot Brewing">
+        <img src="assets/BB logo_FULL wht.png" alt="Buckshot Brewing" width="1080" height="1080">
       </a>
 
-      <nav class="nav" aria-label="Primary navigation">
+      <button class="menu-toggle" type="button" id="menuToggle" aria-expanded="false" aria-controls="primaryNav" aria-label="Open menu">
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+      </button>
+
+      <nav class="nav" id="primaryNav" aria-label="Primary navigation">
         <a href="#beer">Beer</a>
         <a href="#outdoors">Outdoors</a>
         <a href="#merch">Merch</a>
@@ -1012,7 +1076,7 @@
           <div class="actions">
             <a class="btn btn-red" href="https://buckshotbrewing.myshopify.com/pages/contact">
               <span class="dot" aria-hidden="true"></span>
-              Join the Buckshot list
+              Get launch updates
             </a>
 
             <a class="btn btn-brass" href="https://buckshotbrewing.myshopify.com">
@@ -1046,7 +1110,7 @@
 
         <div class="split">
           <div class="media">
-            <img src="assets/Buckshot Lager Bar.png" alt="Buckshot Lager can in a premium outdoor bar setting">
+            <img src="assets/Buckshot Lager Bar.png" alt="Buckshot Lager can in a premium outdoor bar setting" loading="lazy" decoding="async">
           </div>
 
           <div class="copy">
@@ -1095,7 +1159,7 @@
     <section class="can-stage" id="outdoors">
       <div class="wrap can-stage-inner">
         <div>
-          <img src="assets/Buckshot-Lager.png" alt="Buckshot Lager can">
+          <img src="assets/Buckshot-Lager.png" alt="Buckshot Lager can" loading="lazy" decoding="async">
         </div>
 
         <div>
@@ -1134,12 +1198,12 @@
 
         <div class="gallery">
           <div class="gallery-main">
-            <img src="assets/Dog and Pheasant.png" alt="Buckshot Lager with a hunting dog and pheasant at sunset">
+            <img src="assets/Dog and Pheasant.png" alt="Buckshot Lager with a hunting dog and pheasant at sunset" loading="lazy" decoding="async">
           </div>
 
           <div class="gallery-side">
-            <img src="assets/Campfire with guys.png" alt="Friends around a campfire with Buckshot Lager">
-            <img src="assets/Buckshot Lager Fishing.png" alt="Buckshot Lager with fishing gear near a river">
+            <img src="assets/Campfire with guys.png" alt="Friends around a campfire with Buckshot Lager" loading="lazy" decoding="async">
+            <img src="assets/Buckshot Lager Fishing.png" alt="Buckshot Lager with fishing gear near a river" loading="lazy" decoding="async">
           </div>
         </div>
       </div>
@@ -1149,7 +1213,7 @@
       <div class="wrap">
         <div class="merch-panel">
           <div class="merch-photo">
-            <img src="assets/Buckshot Lager Tailgate.png" alt="Buckshot Lager and Buckshot merch on a truck tailgate">
+            <img src="assets/Buckshot Lager Tailgate.png" alt="Buckshot Lager and Buckshot merch on a truck tailgate" loading="lazy" decoding="async">
           </div>
 
           <div class="merch-copy">
@@ -1162,19 +1226,19 @@
 
             <div class="hat-grid" aria-label="Buckshot hats">
               <div class="hat-tile">
-                <img src="assets/Caramel Hat.png" alt="Buckshot caramel and black hat">
+                <img src="assets/Caramel Hat.png" alt="Buckshot caramel and black hat" loading="lazy" decoding="async">
               </div>
 
               <div class="hat-tile">
-                <img src="assets/Heather Gray Black Hat.png" alt="Buckshot heather gray and black hat">
+                <img src="assets/Heather Gray Black Hat.png" alt="Buckshot heather gray and black hat" loading="lazy" decoding="async">
               </div>
 
               <div class="hat-tile">
-                <img src="assets/Heather Gray Hat.png" alt="Buckshot heather gray and white hat">
+                <img src="assets/Heather Gray Hat.png" alt="Buckshot heather gray and white hat" loading="lazy" decoding="async">
               </div>
 
               <div class="hat-tile">
-                <img src="assets/Buckshot Orange Hat.png" alt="Buckshot hunter orange hat">
+                <img src="assets/Buckshot Orange Hat.png" alt="Buckshot hunter orange hat" loading="lazy" decoding="async">
               </div>
             </div>
 
@@ -1197,7 +1261,7 @@
       <div class="wrap">
         <div class="split reverse">
           <div class="media">
-            <img src="assets/Buckshot Lager Duck Hunt.png" alt="Buckshot Lager at duck camp by the water">
+            <img src="assets/Buckshot Lager Duck Hunt.png" alt="Buckshot Lager at duck camp by the water" loading="lazy" decoding="async">
           </div>
 
           <div class="copy">
@@ -1205,12 +1269,12 @@
             <h2>Be first to know when Buckshot lands.</h2>
 
             <p>
-              Join the Buckshot list for beer launch updates, tasting announcements, retail locations, and new merch drops.
+              Get launch updates for beer launch updates, tasting announcements, retail locations, and new merch drops.
             </p>
 
             <a class="btn btn-red" href="https://buckshotbrewing.myshopify.com/pages/contact">
               <span class="dot" aria-hidden="true"></span>
-              Join the Buckshot list
+              Get launch updates
             </a>
           </div>
         </div>
@@ -1225,14 +1289,15 @@
             <h2>Retail, distributor, and launch updates.</h2>
 
             <p>
-              Use the Shopify contact form to join the list or send a note. Retail buyers, distributors, restaurants, bars, and press can also email directly.
+              Use the Shopify contact page to request launch updates or send a note. Retail buyers, distributors, restaurants, bars, and press can also email directly.
             </p>
 
             <div class="fine">
-              This site no longer sends anything to Formspree. New signups and contact submissions should flow through Shopify.
+              This is currently a contact workflow, not a marketing subscription. A dedicated Shopify Forms signup will replace it later.
             </div>
           </div>
 
+          <!-- TODO: Replace this contact-page link with a Shopify Forms/newsletter signup when configured. -->
           <div class="launch-actions">
             <a class="btn btn-brass" href="https://buckshotbrewing.myshopify.com/pages/contact">
               Go to Shopify contact form
@@ -1260,7 +1325,9 @@
         <a href="#outdoors">Outdoors</a>
         <a href="#merch">Merch</a>
         <a href="https://buckshotbrewing.myshopify.com">Shop</a>
-        <a href="https://buckshotbrewing.myshopify.com/pages/contact">Join</a>
+        <a href="https://buckshotbrewing.myshopify.com/pages/contact">Updates</a>
+        <a href="privacy.html">Privacy Policy</a>
+        <a href="terms.html">Terms</a>
         <a href="mailto:sales@buckshotbrewing.com?subject=Buckshot%20Brewing%20Inquiry">Email</a>
       </div>
     </div>
@@ -1273,16 +1340,65 @@
     const ageGate = document.getElementById("ageGate");
     const ageYes = document.getElementById("ageYes");
     const ageNo = document.getElementById("ageNo");
+    const menuToggle = document.getElementById("menuToggle");
+    const primaryNav = document.getElementById("primaryNav");
+    let focusBeforeAgeGate = null;
 
     function openAgeGate() {
+      focusBeforeAgeGate = document.activeElement;
       ageGate.classList.add("open");
       document.body.classList.add("no-scroll");
+      window.setTimeout(function () {
+        ageYes.focus();
+      }, 0);
     }
 
     function closeAgeGate() {
       ageGate.classList.remove("open");
       document.body.classList.remove("no-scroll");
+      if (focusBeforeAgeGate && typeof focusBeforeAgeGate.focus === "function") {
+        focusBeforeAgeGate.focus();
+      }
     }
+
+    ageGate.addEventListener("keydown", function (event) {
+      if (event.key !== "Tab") return;
+      const focusable = [ageYes, ageNo];
+      const first = focusable[0];
+      const last = focusable[focusable.length - 1];
+
+      if (event.shiftKey && document.activeElement === first) {
+        event.preventDefault();
+        last.focus();
+      } else if (!event.shiftKey && document.activeElement === last) {
+        event.preventDefault();
+        first.focus();
+      }
+    });
+
+    function closeMenu() {
+      primaryNav.classList.remove("open");
+      menuToggle.setAttribute("aria-expanded", "false");
+      menuToggle.setAttribute("aria-label", "Open menu");
+    }
+
+    menuToggle.addEventListener("click", function () {
+      const isOpen = primaryNav.classList.toggle("open");
+      menuToggle.setAttribute("aria-expanded", String(isOpen));
+      menuToggle.setAttribute("aria-label", isOpen ? "Close menu" : "Open menu");
+    });
+
+    primaryNav.querySelectorAll("a").forEach(function (link) {
+      link.addEventListener("click", closeMenu);
+    });
+
+    document.addEventListener("keydown", function (event) {
+      if (event.key === "Escape") closeMenu();
+    });
+
+    window.addEventListener("resize", function () {
+      if (window.innerWidth > 740) closeMenu();
+    });
 
     if (localStorage.getItem(AGE_KEY) !== "yes") {
       openAgeGate();
