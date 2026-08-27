@@ -3,478 +3,294 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Buckshot Brewing | Premium Beer for the Outdoors</title>
-  <meta name="description" content="Buckshot Brewing is a premium Minnesota lager built for cabins, campfires, tailgates, and long days outside. Beer coming soon. Merch available now.">
+  <title>Buckshot Brewing | Buckshot Lager Coming Soon</title>
+  <meta name="description" content="Buckshot Brewing is a Minnesota beer brand building Buckshot Lager, a clean American lager made for cabins, tailgates, fishing, hunting, golf, neighborhood bars, and long days outside. Beer coming soon. Merch available now.">
   <meta name="robots" content="index,follow">
   <meta name="theme-color" content="#050605">
-  <link rel="preload" as="image" href="assets/Buckshot Lager Campfire.png">
+  <link rel="canonical" href="https://www.buckshotbrewing.com/">
+  <link rel="icon" href="assets/BB logo_FULL blk.png" type="image/png">
+  <meta property="og:title" content="Buckshot Brewing | Buckshot Lager Coming Soon">
+  <meta property="og:description" content="Clean American lager built for the outdoors. Beer coming soon. Merch available now.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://www.buckshotbrewing.com/">
+  <meta property="og:image" content="https://www.buckshotbrewing.com/assets/Buckshot%20Lager%20Tailgate.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Buckshot Brewing | Buckshot Lager Coming Soon">
+  <meta name="twitter:description" content="Clean American lager built for the outdoors. Beer coming soon. Merch available now.">
+  <meta name="twitter:image" content="https://www.buckshotbrewing.com/assets/Buckshot%20Lager%20Tailgate.png">
+  <link rel="preload" as="image" href="assets/Buckshot-Lager.png" imagesrcset="assets/Buckshot-Lager.png 1024w" imagesizes="(min-width: 900px) 390px, 72vw">
   <script>document.documentElement.classList.add("js")</script>
-
-  <style>
-    :root {
-      --ink:#050605;
-      --ink-soft:#0d100e;
-      --forest:#071c15;
-      --forest-light:#0d3427;
-      --red:#a3201a;
-      --red-dark:#65130f;
-      --brass:#b99a56;
-      --brass-light:#dec983;
-      --cream:#f4ecd9;
-      --paper:#e9dcc0;
-      --white:#fff;
-      --text:rgba(255,255,255,.86);
-      --muted:rgba(255,255,255,.62);
-      --line:rgba(255,255,255,.14);
-      --dark-line:rgba(17,19,17,.14);
-      --serif:Georgia,"Times New Roman",serif;
-      --sans:ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
-      --max:1240px;
-      --shadow:0 30px 90px rgba(0,0,0,.38);
-    }
-
-    *,*::before,*::after{box-sizing:border-box}
-    html{scroll-behavior:smooth}
-    body{margin:0;background:var(--ink);color:var(--white);font-family:var(--sans);overflow-x:hidden;-webkit-font-smoothing:antialiased}
-    body.no-scroll{overflow:hidden}
-    img{display:block;max-width:100%}
-    a{color:inherit;text-decoration:none}
-    button{font:inherit}
-    .wrap{width:min(var(--max),calc(100% - 48px));margin:0 auto}
-    .eyebrow{margin:0 0 14px;color:var(--brass-light);font-size:11px;font-weight:900;letter-spacing:.2em;text-transform:uppercase}
-    .display{font-family:var(--serif);font-weight:700;letter-spacing:-.045em;text-wrap:balance}
-    .btn{display:inline-flex;min-height:52px;align-items:center;justify-content:center;gap:10px;padding:13px 21px;border:1px solid var(--line);border-radius:999px;background:rgba(255,255,255,.08);color:#fff;font-size:14px;font-weight:850;letter-spacing:.02em;cursor:pointer;transition:transform .2s ease,background .2s ease,border-color .2s ease}
-    .btn:hover{transform:translateY(-2px);background:rgba(255,255,255,.14);border-color:rgba(255,255,255,.28)}
-    .btn-brass{color:#171108;background:linear-gradient(180deg,var(--brass-light),var(--brass));border-color:rgba(255,255,255,.25)}
-    .btn-brass:hover{background:linear-gradient(180deg,#ead790,#c3a25b)}
-    .btn-red{background:linear-gradient(180deg,var(--red),var(--red-dark));border-color:rgba(255,255,255,.2)}
-    .actions{display:flex;align-items:center;flex-wrap:wrap;gap:12px}
-
-    .site-header{position:absolute;inset:0 0 auto;z-index:80;border-bottom:1px solid rgba(255,255,255,.11);background:linear-gradient(180deg,rgba(5,6,5,.84),rgba(5,6,5,.24));backdrop-filter:blur(12px)}
-    .header-inner{min-height:86px;display:flex;align-items:center;justify-content:space-between;gap:24px}
-    .brand{display:inline-flex;align-items:center;flex:0 0 auto}
-    .brand img{width:auto;height:58px;filter:drop-shadow(0 12px 28px rgba(0,0,0,.45))}
-    .nav{display:flex;align-items:center;gap:2px;color:rgba(255,255,255,.78);font-size:11px;font-weight:900;letter-spacing:.13em;text-transform:uppercase}
-    .nav a{padding:11px 13px;border-radius:999px;white-space:nowrap;transition:color .2s,background .2s}
-    .nav a:hover{color:#fff;background:rgba(255,255,255,.09)}
-    .nav .shop-link{margin-left:7px;color:#171108;background:linear-gradient(180deg,var(--brass-light),var(--brass))}
-    .menu-toggle{display:none;width:46px;height:46px;align-items:center;justify-content:center;flex-direction:column;gap:5px;padding:0;border:1px solid rgba(255,255,255,.22);border-radius:12px;color:#fff;background:rgba(5,6,5,.5);cursor:pointer}
-    .menu-toggle span{width:21px;height:2px;border-radius:999px;background:currentColor;transition:transform .2s,opacity .2s}
-    .menu-toggle[aria-expanded="true"] span:nth-child(1){transform:translateY(7px) rotate(45deg)}
-    .menu-toggle[aria-expanded="true"] span:nth-child(2){opacity:0}
-    .menu-toggle[aria-expanded="true"] span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
-
-    .hero{position:relative;min-height:100svh;display:grid;align-items:end;overflow:hidden;background:var(--ink)}
-    .hero-bg{position:absolute;inset:0;background:url("assets/Buckshot Lager Campfire.png") center 50%/cover no-repeat;transform:scale(1.02)}
-    .hero-shade{position:absolute;inset:0;background:linear-gradient(90deg,rgba(5,6,5,.96) 0%,rgba(5,6,5,.74) 42%,rgba(5,6,5,.2) 78%),linear-gradient(180deg,rgba(5,6,5,.18) 25%,rgba(5,6,5,.92) 100%)}
-    .hero-inner{position:relative;z-index:2;padding:170px 0 86px}
-    .hero-copy{max-width:780px}
-    .hero-logo{width:min(280px,62vw);height:auto;margin-bottom:28px;filter:drop-shadow(0 18px 42px rgba(0,0,0,.5))}
-    .hero h1{margin:0 0 23px;font-size:clamp(54px,7.6vw,104px);line-height:.88;text-shadow:0 22px 60px rgba(0,0,0,.48)}
-    .hero-lead{max-width:630px;margin:0 0 30px;color:var(--text);font-size:clamp(17px,1.8vw,21px);line-height:1.65;text-shadow:0 8px 30px rgba(0,0,0,.5)}
-    .hero-fine{margin:18px 0 0;color:var(--muted);font-size:12px;line-height:1.55}
-
-    .brand-strip{border-top:1px solid var(--line);border-bottom:1px solid var(--line);background:#080a09}
-    .brand-strip-inner{min-height:74px;display:grid;grid-template-columns:repeat(4,1fr);align-items:center}
-    .brand-strip span{padding:0 24px;border-right:1px solid var(--line);color:rgba(255,255,255,.58);font-family:var(--serif);font-size:15px;font-style:italic;text-align:center}
-    .brand-strip span:last-child{border-right:0}
-
-    .section{position:relative;padding:120px 0}
-    .section-head{display:grid;grid-template-columns:.85fr 1.15fr;align-items:end;gap:48px;margin-bottom:52px}
-    .section h2{margin:0;font-size:clamp(42px,6vw,78px);line-height:.94}
-    .section-intro{max-width:650px;margin:0;color:var(--text);font-size:18px;line-height:1.75}
-    .beer{background:radial-gradient(800px 500px at 84% 12%,rgba(163,32,26,.15),transparent 60%),linear-gradient(180deg,#050605,#07130f)}
-    .beer-grid{display:grid;grid-template-columns:.8fr 1.2fr;align-items:stretch;gap:22px}
-    .can-card{position:relative;min-height:690px;display:grid;place-items:center;overflow:hidden;border:1px solid var(--line);border-radius:30px;background:radial-gradient(circle at 50% 42%,rgba(185,154,86,.16),transparent 42%),linear-gradient(160deg,#111512,#050605)}
-    .can-card::after{content:"BUCKSHOT LAGER";position:absolute;left:22px;bottom:20px;color:rgba(255,255,255,.2);font-size:10px;font-weight:900;letter-spacing:.25em}
-    .can-card img{position:relative;z-index:1;width:min(390px,78%);max-height:610px;object-fit:contain;filter:drop-shadow(0 44px 60px rgba(0,0,0,.58));transition:transform .5s ease}
-    .can-card:hover img{transform:translateY(-7px) scale(1.015)}
-    .beer-story{position:relative;min-height:690px;display:flex;align-items:flex-end;overflow:hidden;border-radius:30px;border:1px solid var(--line);box-shadow:var(--shadow)}
-    .beer-story img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
-    .beer-story::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 24%,rgba(5,6,5,.92) 100%)}
-    .beer-story-copy{position:relative;z-index:2;max-width:650px;padding:46px}
-    .beer-story h3{margin:0 0 16px;font-family:var(--serif);font-size:clamp(34px,4.6vw,60px);line-height:.98;letter-spacing:-.04em}
-    .beer-story p{margin:0 0 26px;color:var(--text);font-size:17px;line-height:1.7}
-
-    .manifesto{position:relative;min-height:720px;display:grid;align-items:center;overflow:hidden;background:#090b09}
-    .manifesto-bg{position:absolute;inset:0;background:url("assets/Tailgate After Hunt.png") center/cover no-repeat}
-    .manifesto::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(5,6,5,.94),rgba(5,6,5,.52) 60%,rgba(5,6,5,.2)),linear-gradient(180deg,rgba(5,6,5,.15),rgba(5,6,5,.68))}
-    .manifesto-copy{position:relative;z-index:2;max-width:760px;padding:100px 0}
-    .manifesto blockquote{margin:0 0 25px;font-family:var(--serif);font-size:clamp(45px,7vw,90px);font-weight:700;line-height:.94;letter-spacing:-.05em;text-wrap:balance}
-    .manifesto p{max-width:600px;margin:0;color:var(--text);font-size:18px;line-height:1.75}
-
-    .field{color:#171713;background:radial-gradient(900px 500px at 5% 0%,rgba(185,154,86,.24),transparent 58%),linear-gradient(180deg,var(--cream),var(--paper))}
-    .field .eyebrow{color:var(--red)}
-    .field .section-intro{color:rgba(23,23,19,.7)}
-    .field-grid{display:grid;grid-template-columns:1.15fr .85fr;grid-template-rows:repeat(2,340px);gap:18px}
-    .field-card{position:relative;overflow:hidden;border-radius:28px;box-shadow:0 22px 58px rgba(48,36,18,.18)}
-    .field-card:first-child{grid-row:1/3}
-    .field-card img{width:100%;height:100%;object-fit:cover;transition:transform .6s ease}
-    .field-card:hover img{transform:scale(1.035)}
-    .field-card::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 45%,rgba(5,6,5,.88))}
-    .field-caption{position:absolute;z-index:2;inset:auto 28px 27px;color:#fff}
-    .field-number{display:block;margin-bottom:8px;color:var(--brass-light);font-size:10px;font-weight:900;letter-spacing:.2em;text-transform:uppercase}
-    .field-caption h3{margin:0;font-family:var(--serif);font-size:clamp(27px,3vw,40px);line-height:1}
-    .concept-note{margin:18px 0 0;color:rgba(23,23,19,.58);font-size:12px}
-
-    .merch{background:linear-gradient(180deg,#071c15,#050605)}
-    .merch-grid{display:grid;grid-template-columns:1.05fr .95fr;align-items:stretch;overflow:hidden;border:1px solid var(--line);border-radius:32px;background:#f1e8d5;box-shadow:var(--shadow)}
-    .merch-photo img{width:100%;height:100%;min-height:620px;object-fit:cover}
-    .merch-copy{display:flex;flex-direction:column;justify-content:center;padding:52px;color:#171713}
-    .merch-copy .eyebrow{color:var(--red)}
-    .merch-copy h2{font-size:clamp(42px,5vw,68px)}
-    .merch-copy>p{margin:20px 0 24px;color:rgba(23,23,19,.7);font-size:17px;line-height:1.7}
-    .hat-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:4px 0 26px}
-    .hat-grid img{width:100%;aspect-ratio:1;object-fit:contain;border:1px solid var(--dark-line);border-radius:16px;background:#fff}
-
-    .launch{position:relative;min-height:660px;display:grid;align-items:center;overflow:hidden}
-    .launch-bg{position:absolute;inset:0;background:url("assets/Buckshot Lager Duck Hunt.png") center/cover no-repeat}
-    .launch::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(5,6,5,.95),rgba(5,6,5,.72) 52%,rgba(5,6,5,.22)),linear-gradient(180deg,rgba(5,6,5,.1),rgba(5,6,5,.66))}
-    .launch-card{position:relative;z-index:2;max-width:720px;padding:90px 0}
-    .launch-card h2{margin:0 0 20px;font-size:clamp(46px,6.5vw,82px);line-height:.94}
-    .launch-card p{max-width:600px;margin:0 0 28px;color:var(--text);font-size:18px;line-height:1.7}
-    .launch-fine{margin-top:16px;color:var(--muted);font-size:12px;line-height:1.55}
-
-    .footer{padding:40px 0;color:rgba(255,255,255,.55);border-top:1px solid var(--line);background:#050605;font-size:13px}
-    .footer-inner{display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap}
-    .footer-links{display:flex;gap:18px;flex-wrap:wrap}
-    .footer a:hover{color:#fff}
-
-    .age-gate{position:fixed;inset:0;z-index:999;display:none;align-items:center;justify-content:center;padding:20px;background:linear-gradient(180deg,rgba(5,6,5,.78),rgba(5,6,5,.95)),url("assets/Campfire shells.png") center/cover no-repeat}
-    .age-gate.open{display:flex}
-    .age-card{width:min(680px,100%);overflow:hidden;border:1px solid rgba(255,255,255,.3);border-radius:30px;color:#171713;background:linear-gradient(180deg,#f7f0df,#e5d4b2);box-shadow:0 40px 120px rgba(0,0,0,.65)}
-    .age-top{display:flex;align-items:center;justify-content:space-between;gap:20px;padding:18px 24px;border-bottom:1px solid var(--dark-line)}
-    .age-top img{width:auto;height:70px}
-    .age-label{color:rgba(23,23,19,.6);font-size:11px;font-weight:900;letter-spacing:.16em;text-transform:uppercase}
-    .age-body{padding:30px 24px 27px}
-    .age-body h2{margin:0 0 14px;font-family:var(--serif);font-size:clamp(38px,6vw,58px);line-height:.95;letter-spacing:-.04em}
-    .age-body p{margin:0;color:rgba(23,23,19,.7);line-height:1.65}
-    .age-actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:24px}
-    .age-actions .btn:not(.btn-red){color:#171713;border-color:var(--dark-line);background:rgba(255,255,255,.5)}
-
-    .reveal{opacity:1;transform:none}
-    .js .reveal{opacity:0;transform:translateY(24px);transition:opacity .7s ease,transform .7s ease}
-    .js .reveal.visible{opacity:1;transform:none}
-
-    @media(max-width:980px){
-      .section{padding:92px 0}
-      .section-head,.beer-grid,.merch-grid{grid-template-columns:1fr}
-      .can-card,.beer-story{min-height:580px}
-      .merch-photo img{min-height:470px}
-      .brand-strip-inner{grid-template-columns:repeat(2,1fr)}
-      .brand-strip span:nth-child(2){border-right:0}
-      .brand-strip span:nth-child(-n+2){border-bottom:1px solid var(--line)}
-    }
-
-    @media(max-width:740px){
-      .wrap{width:min(var(--max),calc(100% - 30px))}
-      .site-header{position:absolute}
-      .header-inner{position:relative;min-height:72px}
-      .brand img{height:48px;max-width:min(235px,66vw)}
-      .menu-toggle{display:inline-flex}
-      .nav{position:absolute;top:calc(100% + 1px);left:-15px;right:-15px;display:none;flex-direction:column;align-items:stretch;gap:3px;padding:14px;background:rgba(5,6,5,.98);border:1px solid var(--line);box-shadow:0 24px 50px rgba(0,0,0,.45)}
-      .nav.open{display:flex}
-      .nav a,.nav .shop-link{width:100%;margin:0;padding:13px 14px;text-align:left}
-      .hero{min-height:860px}
-      .hero-bg{background-position:58% center}
-      .hero-shade{background:linear-gradient(180deg,rgba(5,6,5,.48),rgba(5,6,5,.94) 76%)}
-      .hero-inner{padding:150px 0 55px}
-      .hero-copy{text-align:center}
-      .hero-logo{margin:0 auto 24px}
-      .hero h1{font-size:clamp(49px,16vw,68px)}
-      .hero-lead{font-size:17px}
-      .actions{width:100%}
-      .actions .btn{width:100%}
-      .brand-strip span{min-height:58px;display:grid;place-items:center;padding:10px;font-size:13px}
-      .section{padding:72px 0}
-      .section-head{gap:22px;margin-bottom:34px}
-      .section h2{font-size:clamp(40px,13vw,56px)}
-      .section-intro{font-size:16px}
-      .can-card,.beer-story{min-height:520px}
-      .beer-story-copy{padding:28px}
-      .manifesto{min-height:650px}
-      .manifesto-bg{background-position:64% center}
-      .manifesto blockquote{font-size:clamp(44px,14vw,64px)}
-      .field-grid{grid-template-columns:1fr;grid-template-rows:auto}
-      .field-card,.field-card:first-child{grid-row:auto;min-height:410px}
-      .field-card:not(:first-child){min-height:300px}
-      .field-caption{inset:auto 22px 22px}
-      .merch-copy{padding:30px 24px}
-      .merch-photo img{min-height:390px}
-      .hat-grid{grid-template-columns:repeat(2,1fr)}
-      .launch{min-height:650px}
-      .launch-bg{background-position:62% center}
-      .launch-card{text-align:center}
-      .footer-inner{align-items:flex-start;flex-direction:column}
-      .footer-links{flex-direction:column;gap:10px}
-      .age-top{align-items:flex-start;flex-direction:column}
-      .age-actions,.age-actions .btn{width:100%}
-    }
-
-    @media(prefers-reduced-motion:reduce){
-      html{scroll-behavior:auto}
-      *,*::before,*::after{transition:none!important;animation:none!important}
-      .js .reveal{opacity:1;transform:none}
-    }
-  </style>
+  <link rel="stylesheet" href="styles.css">
 </head>
 
 <body>
-  <div class="age-gate" id="ageGate" role="dialog" aria-modal="true" aria-labelledby="ageTitle" aria-describedby="ageDescription">
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <div class="age-gate" data-age-gate role="dialog" aria-modal="true" aria-labelledby="age-title" aria-describedby="age-description">
     <div class="age-card" role="document">
-      <div class="age-top">
-        <img src="assets/BB logo_FULL blk.png" alt="Buckshot Brewing" width="1080" height="1080">
+      <div class="age-card-top">
+        <div class="age-brand">
+          <img src="assets/BB logo_FULL blk.png" alt="" width="1080" height="1080">
+          <span>Buckshot Brewing</span>
+        </div>
         <div class="age-label">21+ required</div>
       </div>
       <div class="age-body">
         <p class="eyebrow">Before you enter</p>
-        <h2 id="ageTitle">Are you 21 or older?</h2>
-        <p id="ageDescription">Buckshot Brewing is intended for adults of legal drinking age. Please confirm before entering.</p>
+        <h2 id="age-title">Are you 21 or older?</h2>
+        <p id="age-description">Buckshot Brewing is intended for adults of legal drinking age. Please confirm before entering.</p>
         <div class="age-actions">
-          <button class="btn btn-red" type="button" id="ageYes">Yes, I am 21+</button>
-          <button class="btn" type="button" id="ageNo">No</button>
+          <button class="btn btn-primary" type="button" data-age-yes>Yes, I am 21+</button>
+          <button class="btn" type="button" data-age-no>No</button>
         </div>
-        <p style="font-size:12px;margin-top:16px">Your selection is saved in this browser.</p>
+        <p class="fine">Your selection is saved in this browser.</p>
       </div>
     </div>
   </div>
 
-  <header class="site-header">
-    <div class="wrap header-inner">
-      <a class="brand" href="#top" aria-label="Buckshot Brewing home">
-        <img src="assets/BB logo_FULL wht.png" alt="Buckshot Brewing" width="1080" height="1080">
-      </a>
-      <button class="menu-toggle" type="button" id="menuToggle" aria-expanded="false" aria-controls="primaryNav" aria-label="Open menu">
-        <span aria-hidden="true"></span><span aria-hidden="true"></span><span aria-hidden="true"></span>
-      </button>
-      <nav class="nav" id="primaryNav" aria-label="Primary navigation">
-        <a href="#beer">The Lager</a>
-        <a href="#field">Field Notes</a>
-        <a href="#merch">Merch</a>
-        <a href="#updates">Updates</a>
-        <a href="mailto:sales@buckshotbrewing.com?subject=Buckshot%20Brewing%20Inquiry">Industry</a>
-        <a class="shop-link" href="https://buckshotbrewing.myshopify.com">Shop merch</a>
-      </nav>
-    </div>
-  </header>
-
-  <main id="top">
-    <section class="hero">
-      <div class="hero-bg" aria-hidden="true"></div>
-      <div class="hero-shade" aria-hidden="true"></div>
-      <div class="wrap hero-inner">
-        <div class="hero-copy">
-          <img class="hero-logo" src="assets/BB logo_FULL wht.png" alt="Buckshot Brewing" width="1080" height="1080">
-          <p class="eyebrow">Minnesota · Beer coming soon</p>
-          <h1 class="display">The day ends.<br>The stories start.</h1>
-          <p class="hero-lead">A clean American lager built for cabins, campfires, tailgates, fish houses, and every place a cold beer belongs.</p>
-          <div class="actions">
-            <a class="btn btn-red" href="https://buckshotbrewing.myshopify.com/pages/contact">Get launch updates</a>
-            <a class="btn btn-brass" href="https://buckshotbrewing.myshopify.com">Shop Buckshot merch</a>
-            <a class="btn" href="#beer">Meet the lager</a>
-          </div>
-          <p class="hero-fine">No alcoholic beverages are available for sale online. Merchandise only.</p>
-        </div>
+  <div class="page-shell">
+    <header class="site-header">
+      <div class="wrap header-inner">
+        <a class="brand" href="#top" aria-label="Buckshot Brewing home">
+          <img src="assets/BB logo_FULL wht.png" alt="Buckshot Brewing" width="1080" height="1080">
+          <span class="brand-name">Buckshot Brewing</span>
+        </a>
+        <button class="menu-toggle" type="button" data-menu-toggle aria-expanded="false" aria-controls="primary-nav" aria-label="Open menu">
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+        </button>
+        <nav class="nav" id="primary-nav" data-nav aria-label="Primary navigation">
+          <a href="#lager">Lager</a>
+          <a href="#story">Story</a>
+          <a href="#outdoors">Outdoors</a>
+          <a href="#merch">Merch</a>
+          <a href="#updates">Updates</a>
+          <a href="#industry">Industry</a>
+          <a class="nav-cta" href="https://buckshotbrewing.myshopify.com">Shop merch</a>
+        </nav>
       </div>
-    </section>
+    </header>
 
-    <div class="brand-strip" aria-label="Buckshot brand values">
-      <div class="brand-strip-inner">
-        <span>Clean American lager</span>
-        <span>Built in Minnesota</span>
-        <span>Drinkability first</span>
-        <span>Premium without pretense</span>
-      </div>
-    </div>
-
-    <section class="section beer" id="beer">
-      <div class="wrap">
-        <div class="section-head reveal">
-          <div>
-            <p class="eyebrow">The flagship</p>
-            <h2 class="display">Buckshot Lager</h2>
-          </div>
-          <p class="section-intro">Crisp, familiar, and built to earn the next one. Buckshot is designed for domestic beer drinkers who want better branding, better quality, and none of the craft-beer lecture.</p>
-        </div>
-
-        <div class="beer-grid">
-          <article class="can-card reveal">
-            <img src="assets/Buckshot-Lager.png" alt="Buckshot Lager concept can" loading="lazy" decoding="async">
-          </article>
-          <article class="beer-story reveal">
-            <img src="assets/Buckshot Lager Bar.png" alt="Buckshot Lager concept can in an outdoor bar setting" loading="lazy" decoding="async">
-            <div class="beer-story-copy">
-              <p class="eyebrow">Made for the cooler</p>
-              <h3>Good beer. Clear identity. No explaining required.</h3>
-              <p>The beer is still coming. The standard is already set: clean, consistent, approachable, and right at home after a long day outside.</p>
-              <div class="actions">
-                <a class="btn btn-red" href="https://buckshotbrewing.myshopify.com/pages/contact">Request launch updates</a>
-                <a class="btn" href="mailto:sales@buckshotbrewing.com?subject=Buckshot%20Retail%20Inquiry">Retail inquiry</a>
-              </div>
+    <main class="main" id="main">
+      <section class="hero" id="top">
+        <div class="wrap hero-grid">
+          <div class="hero-copy reveal">
+            <div class="hero-meta" aria-label="Brand status">
+              <span class="meta-pill">Minnesota</span>
+              <span class="meta-pill">Beer coming soon</span>
+              <span class="meta-pill">Merch available now</span>
             </div>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section class="manifesto">
-      <div class="manifesto-bg" aria-hidden="true"></div>
-      <div class="wrap">
-        <div class="manifesto-copy reveal">
-          <p class="eyebrow">Why Buckshot</p>
-          <blockquote>Built for the people who would rather be outside.</blockquote>
-          <p>Not a taproom lifestyle. Not a tasting-flight personality. Buckshot belongs in the truck, the cabin fridge, the golf cooler, and around the fire when the best part of the day finally starts.</p>
-        </div>
-      </div>
-    </section>
-
-    <section class="section field" id="field">
-      <div class="wrap">
-        <div class="section-head reveal">
-          <div>
-            <p class="eyebrow">From the field</p>
-            <h2 class="display">The Buckshot world</h2>
+            <p class="eyebrow">Clean American lager built for the outdoors</p>
+            <h1 class="display">Buckshot Lager</h1>
+            <p class="lead">A distribution-first Minnesota beer brand made for domestic-light drinkers, neighborhood bars, cabin coolers, tailgates, fish houses, golf rounds, and long days outside.</p>
+            <div class="actions">
+              <a class="btn btn-primary" href="https://buckshotbrewing.myshopify.com/pages/contact">Get launch updates</a>
+              <a class="btn btn-brass" href="https://buckshotbrewing.myshopify.com">Shop Buckshot merch</a>
+              <a class="btn" href="#industry">Retail and event inquiries</a>
+            </div>
+            <p class="fine">No alcoholic beverages are available for sale online. Merchandise only.</p>
           </div>
-          <p class="section-intro">Minnesota seasons change. The ritual does not: finish the day, open the cooler, and tell the story one more time.</p>
-        </div>
-
-        <div class="field-grid">
-          <article class="field-card reveal">
-            <img src="assets/Dog and Pheasant.png" alt="Buckshot Lager concept scene with a hunting dog and pheasant at sunset" loading="lazy" decoding="async">
-            <div class="field-caption"><span class="field-number">Field Note 01</span><h3>Opening weekend</h3></div>
-          </article>
-          <article class="field-card reveal">
-            <img src="assets/Buckshot Lager Fishing.png" alt="Buckshot Lager concept scene with fishing gear by the water" loading="lazy" decoding="async">
-            <div class="field-caption"><span class="field-number">Field Note 02</span><h3>Last cast</h3></div>
-          </article>
-          <article class="field-card reveal">
-            <img src="assets/Campfire with guys.png" alt="Buckshot Lager concept scene with adult friends around a campfire" loading="lazy" decoding="async">
-            <div class="field-caption"><span class="field-number">Field Note 03</span><h3>One more story</h3></div>
-          </article>
-        </div>
-        <p class="concept-note">Product and lifestyle imagery shown is concept imagery and may change before launch.</p>
-      </div>
-    </section>
-
-    <section class="section merch" id="merch">
-      <div class="wrap">
-        <div class="merch-grid reveal">
-          <div class="merch-photo">
-            <img src="assets/Buckshot Lager Tailgate.png" alt="Buckshot Lager concept scene and Buckshot merch on a tailgate" loading="lazy" decoding="async">
+          <div class="hero-product reveal" aria-label="Buckshot Lager can">
+            <div class="can-stage">
+              <img class="hero-can" src="assets/Buckshot-Lager.png" alt="Buckshot Lager can" width="1024" height="1536" fetchpriority="high" decoding="async">
+            </div>
+            <p class="hero-note">Flagship packaging shown as current concept artwork. Beer coming soon.</p>
           </div>
-          <div class="merch-copy">
+        </div>
+      </section>
+
+      <section class="proof-bar" aria-label="Buckshot positioning">
+        <div class="wrap proof-grid">
+          <div class="proof-item">
+            <strong>Approachable</strong>
+            <span>Built for domestic-light beer drinkers.</span>
+          </div>
+          <div class="proof-item">
+            <strong>Distribution-first</strong>
+            <span>Designed for retail, bars, restaurants, and events.</span>
+          </div>
+          <div class="proof-item">
+            <strong>Minnesota outdoor</strong>
+            <span>Cabins, tailgates, fishing, hunting, golf, and campfires.</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="section section-dark" id="lager">
+        <div class="wrap">
+          <div class="section-head reveal">
+            <p class="eyebrow">The flagship</p>
+            <h2 class="display">A lager that knows where it belongs.</h2>
+            <p>Buckshot Lager is being built as a crisp, familiar beer with a sharper identity. No tasting-flight lecture. No complicated craft vocabulary. Just a clean American lager made for real Midwest occasions.</p>
+          </div>
+
+          <div class="product-layout">
+            <div class="product-can reveal">
+              <img src="assets/Buckshot-Lager.png" alt="Buckshot Lager can concept artwork" width="1024" height="1536" loading="lazy" decoding="async">
+            </div>
+            <div class="product-copy">
+              <article class="card reveal">
+                <h3>Beer coming soon</h3>
+                <p>Buckshot Lager is not available for purchase yet. This site will continue to use launch language until availability is verified.</p>
+              </article>
+              <article class="card reveal">
+                <h3>Built for velocity</h3>
+                <p>The brand is built around the cooler door, the bar call, and the repeat purchase, not a taproom-only experience.</p>
+              </article>
+              <article class="card reveal">
+                <h3>Premium without pretense</h3>
+                <p>Rugged enough for the field, polished enough for the shelf, and simple enough to understand in one look.</p>
+              </article>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section section-forest" id="story">
+        <div class="wrap split">
+          <div class="split-copy reveal">
+            <p class="eyebrow">Why Buckshot</p>
+            <h2 class="display">Made for the story after the day.</h2>
+            <p>Buckshot is built around the moments when the work is done and the best part starts: the cabin fridge, the truck bed, the neighborhood bar, the golf cooler, and the fire after dark.</p>
+            <p>The brand is confident, welcoming, and unmistakably Minnesotan. It is not trying to impress beer nerds. It is trying to earn a regular spot with people who know exactly what they like.</p>
+          </div>
+          <figure class="image-panel reveal">
+            <img src="assets/Buckshot Lager Cabin.png" alt="Buckshot Lager can in a cabin setting" width="1672" height="941" loading="lazy" decoding="async">
+          </figure>
+        </div>
+      </section>
+
+      <section class="section section-cream" id="outdoors">
+        <div class="wrap">
+          <div class="section-head reveal">
+            <p class="eyebrow">Outdoor fit</p>
+            <h2 class="display">The places Buckshot makes sense.</h2>
+            <p>Hunting weekends, fishing trips, lake cabins, tailgates, fish houses, golf rounds, campfires, and high-fit neighborhood accounts where domestic light beer already moves.</p>
+          </div>
+
+          <div class="occasions-grid">
+            <article class="occasion-card reveal">
+              <img src="assets/Buckshot Lager Fishing.png" alt="Buckshot Lager can with fishing gear near moving water" width="1672" height="941" loading="lazy" decoding="async">
+              <div class="occasion-caption">
+                <h3>Lake and river days</h3>
+                <p>Clean, cold, and familiar after the last cast.</p>
+              </div>
+            </article>
+            <article class="occasion-card reveal">
+              <img src="assets/Hunting-Field-Dog-Lager.png" alt="Buckshot Lager cans on a truck tailgate after a field outing" width="1536" height="1024" loading="lazy" decoding="async">
+              <div class="occasion-caption">
+                <h3>Opening weekend</h3>
+                <p>Built for the cooler at the end of the day.</p>
+              </div>
+            </article>
+            <article class="occasion-card reveal">
+              <img src="assets/Campfire with guys.png" alt="Buckshot Lager can near a campfire with adults gathered outdoors" width="1448" height="1086" loading="lazy" decoding="async">
+              <div class="occasion-caption">
+                <h3>One more story</h3>
+                <p>A beer brand for the part everyone remembers.</p>
+              </div>
+            </article>
+          </div>
+          <p class="note">Product and lifestyle imagery shown is concept imagery and may change before launch.</p>
+        </div>
+      </section>
+
+      <section class="section section-forest" id="merch">
+        <div class="wrap merch-layout">
+          <figure class="merch-image reveal">
+            <img src="assets/Buckshot Lager Tailgate.png" alt="Buckshot Lager can and Buckshot merch on a truck tailgate" width="1672" height="941" loading="lazy" decoding="async">
+          </figure>
+          <div class="split-copy reveal">
             <p class="eyebrow">Merch is live</p>
             <h2 class="display">Wear it before you drink it.</h2>
-            <p>The beer is coming. The first Buckshot hats are ready for hunting camp, cabin weekends, the course, and your next beer run.</p>
+            <p>The beer is coming soon. Buckshot hats and merch are available now through the official Shopify store, where current products, pricing, inventory, shipping, and checkout are handled.</p>
             <div class="hat-grid" aria-label="Buckshot hat styles">
-              <img src="assets/Caramel Hat.png" alt="Buckshot caramel and black hat" loading="lazy" decoding="async">
-              <img src="assets/Heather Gray Black Hat.png" alt="Buckshot heather gray and black hat" loading="lazy" decoding="async">
-              <img src="assets/Heather Gray Hat.png" alt="Buckshot heather gray and white hat" loading="lazy" decoding="async">
-              <img src="assets/Buckshot Orange Hat.png" alt="Buckshot hunter orange hat" loading="lazy" decoding="async">
+              <a class="hat-card" href="https://buckshotbrewing.myshopify.com" aria-label="Shop Buckshot caramel and black hat">
+                <img src="assets/Caramel Hat.png" alt="Buckshot caramel and black hat" width="1000" height="1250" loading="lazy" decoding="async">
+              </a>
+              <a class="hat-card" href="https://buckshotbrewing.myshopify.com" aria-label="Shop Buckshot heather gray and black hat">
+                <img src="assets/Heather Gray Black Hat.png" alt="Buckshot heather gray and black hat" width="1000" height="1250" loading="lazy" decoding="async">
+              </a>
+              <a class="hat-card" href="https://buckshotbrewing.myshopify.com" aria-label="Shop Buckshot heather gray and white hat">
+                <img src="assets/Heather Gray Hat.png" alt="Buckshot heather gray and white hat" width="1000" height="1250" loading="lazy" decoding="async">
+              </a>
+              <a class="hat-card" href="https://buckshotbrewing.myshopify.com" aria-label="Shop Buckshot hunter orange hat">
+                <img src="assets/Buckshot Orange Hat.png" alt="Buckshot hunter orange hat" width="1000" height="1250" loading="lazy" decoding="async">
+              </a>
             </div>
             <div class="actions">
-              <a class="btn btn-red" href="https://buckshotbrewing.myshopify.com">Shop official merch</a>
-              <a class="btn" style="color:#171713;border-color:var(--dark-line)" href="shop.html">Explore merch</a>
+              <a class="btn btn-brass" href="https://buckshotbrewing.myshopify.com">Shop official merch</a>
+              <a class="btn" href="shop.html">Merch details</a>
             </div>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
 
-    <section class="launch" id="updates">
-      <div class="launch-bg" aria-hidden="true"></div>
-      <div class="wrap">
-        <div class="launch-card reveal">
-          <p class="eyebrow">Beer coming soon</p>
-          <h2 class="display">Be there when Buckshot lands.</h2>
-          <p>Request launch updates, retail announcements, tasting information, and the first places to find Buckshot Lager.</p>
-          <!-- TODO: Replace this contact-page link with a true Shopify Forms/newsletter signup when configured. -->
-          <div class="actions">
-            <a class="btn btn-brass" href="https://buckshotbrewing.myshopify.com/pages/contact">Get launch updates</a>
-            <a class="btn" href="mailto:sales@buckshotbrewing.com?subject=Buckshot%20Brewing%20Inquiry">Industry inquiry</a>
+      <section class="cta-band" id="updates">
+        <div class="wrap cta-grid">
+          <div class="reveal">
+            <p class="eyebrow">Launch updates</p>
+            <h2 class="display">Be there when Buckshot lands.</h2>
+            <p>Use the Buckshot contact page to request launch updates, retail announcements, tasting information, or general brand questions.</p>
           </div>
-          <p class="launch-fine">The current Shopify page is a contact workflow, not an automatic marketing subscription.</p>
+          <div class="reveal">
+            <div class="actions">
+              <a class="btn btn-brass" href="https://buckshotbrewing.myshopify.com/pages/contact">Get launch updates</a>
+              <a class="btn" href="shop.html">Shop merch first</a>
+            </div>
+            <p class="fine">The current Shopify page is a contact workflow, not an automatic marketing subscription.</p>
+          </div>
         </div>
+      </section>
+
+      <section class="section section-cream" id="industry">
+        <div class="wrap split">
+          <div class="split-copy reveal">
+            <p class="eyebrow">Retail, bars, restaurants, distributors, events</p>
+            <h2 class="display">Talk to Buckshot.</h2>
+            <p>If you are a retailer, bar, restaurant, distributor, event partner, or local account interested in Buckshot, send a clear note with your role, location, and what you want to discuss.</p>
+            <div class="actions">
+              <a class="btn btn-primary" href="https://buckshotbrewing.myshopify.com/pages/contact">Start an inquiry</a>
+              <a class="btn btn-dark" href="mailto:sales@buckshotbrewing.com?subject=Buckshot%20Industry%20Inquiry">Email sales@buckshotbrewing.com</a>
+            </div>
+          </div>
+          <div class="card reveal">
+            <h3>Useful details to include</h3>
+            <ul class="partner-list">
+              <li>Business name and location</li>
+              <li>Retail, bar, restaurant, distributor, or event role</li>
+              <li>What kind of partnership or account fit you want to discuss</li>
+              <li>Best phone number and email for follow-up</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="wrap">
+        <div class="footer-inner">
+          <div class="footer-brand">
+            <img src="assets/BB logo_FULL wht.png" alt="Buckshot Brewing" width="1080" height="1080" loading="lazy" decoding="async">
+            <p>Buckshot Brewing is a Minnesota beer brand. Buckshot Lager is beer coming soon. No alcoholic beverages are sold online.</p>
+          </div>
+          <nav class="footer-links" aria-label="Footer navigation">
+            <a href="#lager">Buckshot Lager</a>
+            <a href="#updates">Launch updates</a>
+            <a href="#industry">Industry inquiry</a>
+            <a href="https://buckshotbrewing.myshopify.com">Shop merch</a>
+            <a href="https://buckshotbrewing.myshopify.com/pages/contact">Contact</a>
+            <a href="mailto:sales@buckshotbrewing.com?subject=Buckshot%20Brewing%20Inquiry">Email</a>
+            <a href="privacy.html">Privacy Policy</a>
+            <a href="terms.html">Terms</a>
+          </nav>
+        </div>
+        <div class="footer-bottom">&copy; <span data-year></span> Buckshot Brewing / Minnesota / Please drink responsibly / 21+</div>
       </div>
-    </section>
-  </main>
+    </footer>
+  </div>
 
-  <footer class="footer">
-    <div class="wrap footer-inner">
-      <div>© <span id="year"></span> Buckshot Brewing · Minnesota</div>
-      <div class="footer-links">
-        <a href="#beer">The Lager</a>
-        <a href="#field">Field Notes</a>
-        <a href="#merch">Merch</a>
-        <a href="https://buckshotbrewing.myshopify.com">Shop</a>
-        <a href="privacy.html">Privacy Policy</a>
-        <a href="terms.html">Terms</a>
-        <a href="mailto:sales@buckshotbrewing.com?subject=Buckshot%20Brewing%20Inquiry">Email</a>
-      </div>
-    </div>
-  </footer>
-
-  <script>
-    document.getElementById("year").textContent=new Date().getFullYear();
-
-    const AGE_KEY="buckshot_age_verified_v3";
-    const ageGate=document.getElementById("ageGate");
-    const ageYes=document.getElementById("ageYes");
-    const ageNo=document.getElementById("ageNo");
-    const menuToggle=document.getElementById("menuToggle");
-    const primaryNav=document.getElementById("primaryNav");
-    let focusBeforeAgeGate=null;
-
-    function ageIsVerified(){
-      try{return localStorage.getItem(AGE_KEY)==="yes"}catch(error){return false}
-    }
-    function openAgeGate(){
-      focusBeforeAgeGate=document.activeElement;
-      ageGate.classList.add("open");
-      document.body.classList.add("no-scroll");
-      window.setTimeout(function(){ageYes.focus()},0);
-    }
-    function closeAgeGate(){
-      ageGate.classList.remove("open");
-      document.body.classList.remove("no-scroll");
-      if(focusBeforeAgeGate&&typeof focusBeforeAgeGate.focus==="function")focusBeforeAgeGate.focus();
-    }
-    ageGate.addEventListener("keydown",function(event){
-      if(event.key!=="Tab")return;
-      if(event.shiftKey&&document.activeElement===ageYes){event.preventDefault();ageNo.focus()}
-      else if(!event.shiftKey&&document.activeElement===ageNo){event.preventDefault();ageYes.focus()}
-    });
-    if(!ageIsVerified())openAgeGate();
-    ageYes.addEventListener("click",function(){
-      try{localStorage.setItem(AGE_KEY,"yes")}catch(error){}
-      closeAgeGate();
-    });
-    ageNo.addEventListener("click",function(){window.location.href="https://www.responsibility.org/"});
-
-    function closeMenu(){
-      primaryNav.classList.remove("open");
-      menuToggle.setAttribute("aria-expanded","false");
-      menuToggle.setAttribute("aria-label","Open menu");
-    }
-    menuToggle.addEventListener("click",function(){
-      const isOpen=primaryNav.classList.toggle("open");
-      menuToggle.setAttribute("aria-expanded",String(isOpen));
-      menuToggle.setAttribute("aria-label",isOpen?"Close menu":"Open menu");
-    });
-    primaryNav.querySelectorAll("a").forEach(function(link){link.addEventListener("click",closeMenu)});
-    document.addEventListener("keydown",function(event){if(event.key==="Escape")closeMenu()});
-    window.addEventListener("resize",function(){if(window.innerWidth>740)closeMenu()});
-
-    if("IntersectionObserver" in window){
-      const observer=new IntersectionObserver(function(entries){
-        entries.forEach(function(entry){
-          if(entry.isIntersecting){entry.target.classList.add("visible");observer.unobserve(entry.target)}
-        });
-      },{threshold:.12,rootMargin:"0px 0px -30px"});
-      document.querySelectorAll(".reveal").forEach(function(element){observer.observe(element)});
-    }else{
-      document.querySelectorAll(".reveal").forEach(function(element){element.classList.add("visible")});
-    }
-  </script>
+  <script src="site.js" defer></script>
 </body>
 </html>
