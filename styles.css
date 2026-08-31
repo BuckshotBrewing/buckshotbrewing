@@ -321,27 +321,32 @@ p {
 
 .hero {
   position: relative;
+  min-height: clamp(620px, calc(100svh - 112px), 820px);
+  display: grid;
+  align-items: end;
   overflow: hidden;
   border-bottom: 1px solid var(--line-light);
   background:
-    linear-gradient(180deg, rgba(5, 6, 5, 0.1), rgba(5, 6, 5, 0.94)),
     var(--black);
 }
 
 .hero-grid {
-  min-height: calc(100svh - 170px);
-  display: grid;
-  gap: 30px;
-  align-items: center;
-  padding: 30px 0 34px;
+  position: relative;
+  z-index: 2;
+  width: min(var(--max), calc(100% - 32px));
+  min-height: inherit;
+  display: flex;
+  align-items: end;
+  padding: 96px 0 54px;
 }
 
 .hero-copy {
-  max-width: 680px;
+  max-width: 650px;
+  text-shadow: 0 2px 22px rgba(0, 0, 0, 0.72);
 }
 
 .hero-lead {
-  max-width: 620px;
+  max-width: 600px;
   margin-top: 18px;
   color: var(--text-light);
   font-size: 1.07rem;
@@ -349,28 +354,32 @@ p {
 }
 
 .hero-scene {
-  position: relative;
+  position: absolute;
+  inset: 0;
+  z-index: 0;
   overflow: hidden;
   margin: 0;
-  border: 1px solid var(--line-light);
-  border-radius: 8px;
+  border: 0;
+  border-radius: 0;
   background: var(--charcoal);
-  box-shadow: var(--shadow);
+  box-shadow: none;
 }
 
 .hero-scene::after {
   content: "";
   position: absolute;
   inset: 0;
-  background: linear-gradient(180deg, rgba(5, 6, 5, 0.03), rgba(5, 6, 5, 0.24));
+  background:
+    linear-gradient(90deg, rgba(5, 6, 5, 0.88) 0%, rgba(5, 6, 5, 0.62) 34%, rgba(5, 6, 5, 0.14) 68%, rgba(5, 6, 5, 0.36) 100%),
+    linear-gradient(180deg, rgba(5, 6, 5, 0.12) 0%, rgba(5, 6, 5, 0.08) 48%, rgba(5, 6, 5, 0.86) 100%);
   pointer-events: none;
 }
 
 .hero-scene img {
   width: 100%;
-  height: auto;
-  object-fit: contain;
-  object-position: 56% center;
+  height: 100%;
+  object-fit: cover;
+  object-position: 58% center;
 }
 
 .signal-bar {
@@ -526,25 +535,42 @@ p {
 
 .editorial-grid {
   display: grid;
-  gap: 16px;
+  gap: 18px;
 }
 
 .editorial-item {
+  position: relative;
+  min-height: 310px;
   margin: 0;
   overflow: hidden;
   border: 1px solid var(--line-dark);
   border-radius: 8px;
-  background: rgba(255, 255, 255, 0.42);
+  background: var(--charcoal);
+  box-shadow: 0 24px 60px rgba(64, 47, 24, 0.18);
+}
+
+.editorial-item::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(180deg, rgba(5, 6, 5, 0.02) 38%, rgba(5, 6, 5, 0.82) 100%);
+  pointer-events: none;
 }
 
 .editorial-item img {
   width: 100%;
-  height: auto;
-  object-fit: contain;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 420ms ease;
+}
+
+.editorial-item:hover img {
+  transform: scale(1.025);
 }
 
 .editorial-large img {
-  object-position: 50% center;
+  object-position: 50% 48%;
 }
 
 .editorial-item:nth-child(2) img {
@@ -556,12 +582,15 @@ p {
 }
 
 .editorial-item figcaption {
-  padding: 16px;
+  position: absolute;
+  inset: auto 0 0;
+  z-index: 2;
+  padding: 18px;
 }
 
 .editorial-item span {
   display: block;
-  color: var(--red);
+  color: var(--brass-light);
   font-size: 0.78rem;
   font-weight: 900;
   text-transform: uppercase;
@@ -570,7 +599,7 @@ p {
 .editorial-item strong {
   display: block;
   margin-top: 6px;
-  color: var(--text-dark);
+  color: var(--cream);
   font-family: var(--serif);
   font-size: 1.38rem;
   line-height: 1.08;
@@ -968,11 +997,12 @@ p {
   }
 
   .editorial-grid {
-    grid-template-columns: 1.1fr 0.9fr;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
   .editorial-large {
-    grid-row: span 2;
+    grid-column: 1 / -1;
+    min-height: 430px;
   }
 
   .contact-grid {
@@ -1018,9 +1048,8 @@ p {
   }
 
   .hero-grid {
-    grid-template-columns: 1fr 1fr;
-    gap: 44px;
-    padding: 42px 0 50px;
+    width: min(var(--max), calc(100% - 48px));
+    padding: 118px 0 64px;
   }
 
   .section {
@@ -1077,6 +1106,10 @@ p {
   .primary-nav a {
     padding-inline: 13px;
   }
+
+  .editorial-large {
+    min-height: 500px;
+  }
 }
 
 @media (max-width: 620px) {
@@ -1086,9 +1119,17 @@ p {
   }
 
   .hero-grid {
-    min-height: auto;
-    gap: 24px;
-    padding: 28px 0 26px;
+    padding: 170px 0 34px;
+  }
+
+  .hero-scene::after {
+    background:
+      linear-gradient(180deg, rgba(5, 6, 5, 0.08) 0%, rgba(5, 6, 5, 0.16) 38%, rgba(5, 6, 5, 0.9) 100%),
+      linear-gradient(90deg, rgba(5, 6, 5, 0.34) 0%, rgba(5, 6, 5, 0.04) 62%, rgba(5, 6, 5, 0.18) 100%);
+  }
+
+  .hero-scene img {
+    object-position: 50% center;
   }
 
   .hero-lead {
@@ -1148,6 +1189,10 @@ p {
 
   .js .reveal {
     opacity: 1;
+    transform: none;
+  }
+
+  .editorial-item:hover img {
     transform: none;
   }
 }
